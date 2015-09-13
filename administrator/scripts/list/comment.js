@@ -122,7 +122,7 @@ commentModule.module.directive('comment',function(){
 						$scope.title ="Comment"
 					}
 					var comment ={id_product:$scope.idLink,title:$scope.title,content:content,user_created_obj:$scope.link.user_created,is_reply:true}
-					comment.url_topic = $location.url();
+					comment.url_topic = server_url + "/#" + $location.url();
 					if($scope.link.attends){
 						comment.attends = $scope.link.attends;
 					}
