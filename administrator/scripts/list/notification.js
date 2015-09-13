@@ -1,6 +1,6 @@
 var notificationModule = new baseInput('notification','notification',["email_owner","email_sender","email_receiver","content","title"],'Thông báo',{
 	onView:function($scope,options){
-		$scope.data.content = $scope.data.content.replace(server_url,"");
+		$scope.data.content = $scope.data.content.replace(server_url + "/","");
 		if(!$scope.data.read){
 			options.service.update(id_app,$scope.data._id,{_id:$scope.data._id,read:true}).success(function(r){
 				$scope.data.read = true;
