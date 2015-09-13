@@ -1,0 +1,21 @@
+{
+	"name": "ungdungquanly-client",
+    "version": "1.5.0",
+    "dependencies": {
+        "bootstrap": "latest",
+		"font-awesome": "latest",
+		"underscore":"latest",
+		"async":"latest",
+		"angular": "latest",
+		"angular-cookies":"latest",
+		"angular-route": "latest",
+		"angular-animate":"latest",
+		"angular-sanitize":"latest",
+		"angular-touch":"latest",
+		"animate.css": "latest",
+		"angular-ui-date": "latest",
+		"ng-table":"latest",
+		"textAngular":"latest",
+		"ng-textcomplete":"latest"
+    }
+}

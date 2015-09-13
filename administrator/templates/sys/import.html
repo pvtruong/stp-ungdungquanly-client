@@ -1,0 +1,28 @@
+﻿
+<div class='container'>
+	<div class="col-sm-12">
+		<form  name ="form_import" action="{{action + '&update=' + update}}"  method="post"  enctype="multipart/form-data">
+			<div class="form-group">
+				<div class='col-lg-6'>
+					<input type="file" class="form-control" name ="xlsx"/>
+				</div>
+				<div class='col-lg-6'>
+					<br/>
+					<input type='checkbox' ng-model='update'/> Cập nhật nếu dữ liệu đã tồn tại
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-xs-12'>
+					<input type="submit" class='btn btn-primary btn-md' value="Gửi">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-xs-12'>
+					<br/>
+					<a href="{{template}}">Tải tệp mẫu</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

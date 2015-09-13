@@ -1,0 +1,13 @@
+﻿<div class='form-group  header-input'>
+	<!--header of form-->
+	<div class='col-xs-6'>
+		<div class="header-form">{{title}} <small style='font-size:12px' ng-if='action'> - {{action}}</small>
+		</div>
+	</div>
+	<!--action-->
+	<div class='col-xs-6 text-right'>
+		<a class="btn btn-danger" ng-click="create()" ng-disabled="form.$invalid" title="Ctrl+S">{{save_text?save_text:'Lưu'}}</a>
+		<a class="btn btn-default" ng-click="cancel()">{{cancel_text?cancel_text:'Hủy'}}</a>
+	</div>
+	<div ng-class="alertType" ng-if="messageError">{{messageError}}</div>
+</div>

@@ -1,0 +1,26 @@
+<div class='container-fluid'>
+	<div class="row">
+		<div class="col-sm-12 text-right">
+			<a class='btn btn-sm btn-default' ng-click="back()">Quay lại</a>
+			<a class='btn btn-sm btn-default' ng-click ="edit(data._id)" >Sửa</a>
+			<a class='btn btn-sm btn-default' ng-click ="delete(data._id)" >Xóa</a>
+		</div>
+	</div>
+	<div  style="background-color:white;padding:10px">
+		<fieldset>
+			<legend>
+				{{data.subject}}
+			</legend>
+			<p parse-html="data.mail.html"></p>
+			<hr/>
+			<div ng-show="data.attachments">
+				File đính kèm:
+				<div ng-repeat ="att in data.attachments">
+					<a href="{{server_url}}/api/attachments/{{data._id}}/{{att.contentId}}?access_token={{token}}">
+					{{att.fileName}}
+					</a>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>

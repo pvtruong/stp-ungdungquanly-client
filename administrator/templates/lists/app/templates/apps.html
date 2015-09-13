@@ -1,0 +1,35 @@
+﻿<h3 ng-show="email!='all'">Danh sách các công ty do <a ng-click='openProfile(email)'>{{email}}</a> tạo ({{list.length}})</h3>
+<h3 ng-show="email=='all'">Danh sách tất cả các công ty ({{list.length}})</h3>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Tên công ty</th><th>Địa chỉ</th><th>Kiểu chương trình</th><th>Người tạo</th><th>Ngày tạo</th><th>Ngày hết hạn</th><th>Số ngày còn lại</th><th></th></tr>
+		<tr ng-repeat="r in list">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td>
+					{{ r.name }}
+			</td>
+			<td>
+					{{r.address}}
+			</td>
+			<td>
+					{{r.create_db_sql?'SQL':'MONGO'}}
+			</td>
+			<td>
+					{{r.user_created}}
+			</td>
+			<td>
+					{{r.date_create|date:'dd/MM/yyyy'}}
+			</td>
+			<td>
+					{{r.expire_date|date:'dd/MM/yyyy'}}
+			</td>
+			<td>
+					{{r.so_ngay_con_lai|number:0}}
+			</td>
+			<td>
+				<a class='btn btn-primary btn-xs' ng-click='addDays(r)'>Thêm ngày sử dụng</a>
+			</td>
+		</tr>
+	</table>
+</div>
+<!--<ng-page></ng-page>-->

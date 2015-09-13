@@ -1,0 +1,46 @@
+﻿<!--<a href='#{{code}}'><i class="fa  fa-hand-o-right"></i> {{title}}</a>-->
+<h3 class="page-title-view" style="padding:5px">
+	<span><a href='#{{code}}' class="sub-page-title" title="Tới danh mục {{title}}">{{title}} :</a> </span>{{title_view}}
+	<!--<a ng-click="follow()"  ng-show='!data.follow_yn' style='color:silver'><i class="fa fa-star"></i></a>
+	<a ng-click="follow()"  ng-show='data.follow_yn' style='color:#F2BF16'><i class="fa fa-star"></i></a>
+	-->
+					
+</h3>
+<div class="col-sm-12 header-view">
+	<div class="col-sm-6">
+		<div style="padding-left:5px">
+			<a class="btn btn-md btn-default" ng-click="back()"><i class="fa  fa-arrow-left"></i> Quay lại</a>
+			<a class="btn btn-md btn-default" ng-click='edit(data._id)'><i class="fa fa-pencil-square-o"></i> Sửa</a>
+			<div class="btn-group">
+				<a class="btn btn-md btn-default  dropdown-toggle" data-toggle="dropdown">Chức năng <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li>
+						<a class='dropdown-header' ng-click="edit(data._id)" title="Ctrl+E"><i class="fa fa-pencil-square-o"></i> Sửa</a>
+					</li>
+					<li>
+						<a class='dropdown-header'  ng-click="delete(data._id)"><i class="glyphicon glyphicon-trash"></i> Xóa</a>
+					</li>
+					<li>
+						<a class='dropdown-header'  ng-click="add()" title="Ctrl+M"><i class="fa fa-plus-square-o"></i> Thêm mới</a>
+					</li>
+					
+					<span ng-transclude></span>
+					
+				  </ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6 text-right nav-record">
+		<div class='text-right'  style="padding-right:5px">
+			<span>{{current_record+1}} of {{total_records+1}}</span>
+			<div class='btn-group'>
+				<a class="btn btn-default btn-md " ng-disabled='current_record<=0' ng-click="backRecord()"> <b><</b> </a>
+				<a class="btn  btn-default btn-md"  ng-disabled='current_record>=total_records' ng-click='nextRecord()'> <b>></b> </i></a>
+			</div>
+			<div class='btn-group'>
+				<a ng-class="data.follow_yn?'btn btn-success btn-md':'btn btn-default btn-md'" ng-model='follow_yn' ng-click='follow()' btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0"><i class="fa fa-check" ng-show='data.follow_yn'> </i>Theo dõi</a>
+			</div >
+		</div>
+		
+	</div>
+</div>

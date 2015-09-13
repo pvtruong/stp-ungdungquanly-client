@@ -1,0 +1,197 @@
+﻿<div class="top-menu">
+	<ul class="nav navbar-nav pull-right">
+		<!-- BEGIN NOTIFICATION DROPDOWN -->
+		<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar"  ng-show="user">
+			<a href="javascript:;" ng-click="getInvitations()" class="dropdown-toggle" data-toggle="dropdown"  data-close-others="true">
+			<i class="icon-bell"></i>
+			<span class="badge badge-default">
+			{{notifies_count}} </span>
+			</a>
+			<ul class="dropdown-menu">
+				<li>
+					<p>
+						 Bạn có {{notifies_count}} thông báo
+					</p>
+				</li>
+				<li>
+					<ul class="dropdown-menu-list scroller" slimscroll="{slimscrollOption: 10}" style="height: 250px;">
+						<!--join group-->
+						<li  ng-repeat='inf in notifies.colls|limitTo:5'>
+							<a>
+								<span class="photo"><img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}{{inf.picture_invitor}}' alt=""/></span>
+								<span class="from">{{inf.name_invitor}} </span>
+								<span class="time"><small>{{inf.date_created|date:'HH:mm'}} ngày {{inf.date_created|date:'dd/MM/yy'}}</small> </span>
+								<div class="message">{{inf.content}}</div>
+								<div>
+									<button class='btn btn-primary btn-xs' ng-click="acceptInvitor('colleague',inf._id)">Chấp nhận</button>
+									<button class='btn btn-danger btn-xs' ng-click="notAcceptInvitor('colleague',inf._id)">Hủy</button>
+								</div>
+							</a>
+						</li>
+						<!--join company-->
+						<li ng-repeat='inf in notifies.apps|limitTo:5'>
+							<a>
+								
+								<span class="photo"><img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}{{inf.picture_invitor}}' alt=""/></span>
+								<span class="from">{{inf.name_invitor}} </span>
+								<span class="time"><small>{{inf.date_created|date:'HH:mm'}} ngày {{inf.date_created|date:'dd/MM/yy'}} </small></span>
+								<div class="message">{{inf.content}}</div>
+								<div>
+									<button class='btn btn-primary btn-xs' ng-click="acceptInvitor('app',inf._id)">Chấp nhận</button>
+									<button class='btn btn-danger btn-xs' ng-click="notAcceptInvitor('app',inf._id)">Hủy</button>
+								</div>
+							</a>
+						</li>
+						<!--other-->
+						<li ng-repeat='inf in notifies.notifications|limitTo:5'>
+							<a href = '#notification/view/{{inf._id}}' ng-show='inf.name_sender'>
+								<span class="photo"><img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}{{inf.picture_sender}}' alt=""/></span>
+								<span class="from">{{inf.name_sender}} </span>
+								<span class="time"><small>{{inf.date_created|date:'HH:mm'}} ngày {{inf.date_created|date:'dd/MM/yy'}} </small></span>
+								<div class="message" parse-text="inf.title" limit="50" ></div>
+							</a>
+							<a ng-show='!inf.name_sender'>
+								{{inf.content}}
+							</a>
+							
+						</li>
+						
+					</ul>
+				</li>
+				<li class="external">
+					<a href="#notification">
+					Xem tất cả các thông báo <i class="m-icon-swapright"></i>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- END NOTIFICATION DROPDOWN -->
+		<!-- BEGIN INBOX DROPDOWN -->
+		<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar"   ng-show="user">
+			<a href="javascript:;" ng-click='getMessages()' class="dropdown-toggle" data-toggle="dropdown"  data-close-others="true">
+			<i class="fa fa-comments"></i>
+			<span class="badge badge-default">
+			{{messages_count}} </span>
+			</a>
+			<ul class="dropdown-menu">
+				<li>
+					<p>
+						 Bạn có {{messages_count}} tin nhắn
+					</p>
+				</li>
+				<li>
+					<ul class="dropdown-menu-list scroller" slimscroll="{slimscrollOption: 10}" style="height: 250px;">
+						<li ng-repeat='msg in msgs|limitTo:5'>
+							<a href ="#message/chat/{{msg.email_sender}}" ng-show="msg.name_sender">
+								<span class="photo"><img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}{{msg.picture_sender}}' alt=""/></span>
+								<span class="from">{{msg.name_sender}} </span>
+								<span class="time"><small>{{msg.date_created|date:'HH:mm'}} ngày {{msg.date_created|date:'dd/MM/yy'}}</small></span>
+								<div class="message">{{msg.content|limitTo:64}}... </div>
+							</a>
+							<a  ng-show="!msg.name_sender">
+								{{msg.content|limitTo:64}}... 
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="external">
+					<a href="#message">
+					Xem tất cả các tin nhắn <i class="m-icon-swapright"></i>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- END INBOX DROPDOWN -->
+		<!-- BEGIN TODO DROPDOWN -->
+		<li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar"   ng-show="app_info">
+			<a href="javascript:;" ng-click="getTask()" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true">
+			<i class="icon-calendar"></i>
+			<span class="badge badge-default">
+			{{task_count}} </span>
+			</a>
+			<ul class="dropdown-menu extended tasks">
+				<li>
+					<p>
+						 Bạn có {{task_count}} việc cần làm
+					</p>
+				</li>
+				<li>
+					<ul class="dropdown-menu-list scroller" slimscroll="{slimscrollOption: 10}" style="height: 250px;">
+						<li ng-repeat="task in tasks">
+							<a href="#task/view/{{task._id}}">
+								<span class="task">
+									<span class="desc">{{task.ten_cv}} </span>
+									<span class="percent">{{task.percent}}% </span>
+								</span>
+								<span class="progress">
+									<span style="width: {{task.percent}}%;" class="progress-bar progress-bar-success" aria-valuenow="{{task.percent}}" aria-valuemin="0" aria-valuemax="100">
+										<span class="sr-only">{{task.percent}}% hoàn thành </span>
+									</span>
+								</span>
+							</a>
+							<a  ng-show="!task._id">
+								<span class="task">
+									<span class="desc">{{task.ten_cv}} </span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="external">
+					<a href="#task">
+					Xem tất cả các công việc <i class="m-icon-swapright"></i>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- END TODO DROPDOWN -->
+		<!-- BEGIN USER LOGIN DROPDOWN -->
+		<li class="dropdown dropdown-user">
+			<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-close-others="true"   ng-show="user">
+				<img alt="" class="img-circle" ng-src="{{server_url}}{{user.picture?user.picture:'/images/avatar.jpg'}}"/>
+				<span class="username">{{user.last_name}} </span>
+				<i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu">
+				<li ng-show="user">
+					<a href="#profile">
+					<i class="icon-user"></i> Thông tin cá nhân </a>
+				</li>
+				
+				<li  ng-show="app_info">
+					<a href="#mailbox">
+					<i class="icon-envelope-open"></i> Hộp thư
+					</a>
+				</li>
+				<li  ng-show="app_info">
+					<a href="#task">
+					<i class="icon-rocket"></i> Công việc
+					</a>
+				</li>
+				<li class="divider"  ng-show="user"></li>
+				<li  ng-show="user">
+					<a href="#colleague">
+						<i class="fa fa-group fa-fw"></i> Nhóm
+					</a>
+				</li>
+				<li  ng-show="user">
+					<a href="#app">
+						<i class="fa fa-building fa-fw"></i> Đơn vị tham  gia
+					</a>
+				</li>
+				<li class="divider"  ng-show="user"></li>
+				<li  ng-show="user && user.admin">
+					<a href="#admin">
+						<i class="fa fa-cog fa-fw"></i> Quản trị hệ thống
+					</a>
+				</li>
+				<li class="divider"  ng-show="user"></li>
+				<li>
+					<a href="#logout">
+					<i class="icon-key"></i> Đăng xuất </a>
+				</li>
+			</ul>
+		</li>
+		<!-- END USER LOGIN DROPDOWN -->
+	</ul>
+</div>

@@ -1,0 +1,193 @@
+{
+    "jscompiler": {
+        "outputs": [
+            {
+                "inputs": [
+                    
+                    
+                    "scripts/sys/appInfo.min.js",
+                    "scripts/sys/baseInput.min.js",
+                    "scripts/sys/baseRpt.min.js",
+                    "scripts/sys/baseVoucher.min.js",
+                    "scripts/sys/baseService.min.js",
+                    
+                    "scripts/sys/login.min.js",
+                    "scripts/sys/dashboard.min.js",
+                    
+                    "scripts/list/app.js",
+                    
+                    "scripts/list/colleague.js",
+                    "scripts/list/notification.js",
+                    "scripts/list/message.js",
+                    
+                    "scripts/list/users.js",
+                    "scripts/list/rpt.js",
+                    "scripts/list/parameter.js",
+                    "scripts/list/comment.js",
+                    "scripts/list/versioninfo.js",
+                    
+                   
+                    "scripts/list/dmkh.js",
+                    "scripts/list/lienhe.js",
+                    "scripts/list/note.js",
+                    "scripts/list/task.js",
+                    "scripts/list/group.js",
+                    "scripts/list/file.js",
+                    "scripts/list/mailaccount.js",
+                    "scripts/list/mailreceived.js",
+                    "scripts/list/mailsent.js",
+                    "scripts/list/mailschedule.js",
+                    "scripts/list/mailtemplate.js",
+                    "scripts/list/contract.js",
+                    "scripts/list/warranty.js",
+                    
+                    "scripts/list/dmnv.js",
+                    
+                    
+                    
+                    "scripts/list/dvcs.js",
+                    "scripts/list/dmtc.js",
+                    "scripts/list/dmdvt.js",
+                    "scripts/list/dmvt.js",
+                    "scripts/list/dmnvt.js",
+                    "scripts/list/dmkho.js",
+                    "scripts/list/dmvat.js",
+                    "scripts/list/dmnt.js",
+                    "scripts/list/dmtk.js",
+                    "scripts/list/dmkc.js",
+                    "scripts/list/dmcpmh.js",
+                    "scripts/list/cdtk.js",
+                    "scripts/list/cdkh.js",
+                    "scripts/list/cdvt.js",
+                    "scripts/list/cddt.js",
+                    "scripts/list/dmphi.js",
+                    "scripts/list/dmqct.js",
+
+                    "scripts/list/ptthanhtoan.js",
+
+                    "scripts/vc/vatvao.js",
+                    "scripts/vc/vatra.js",
+                    "scripts/vc/tdttco.js",
+                    "scripts/vc/tdttno.js",
+                    "scripts/vc/ctcpmh.js",
+
+                    "scripts/vc/pkt.js",
+                    "scripts/vc/pkc.js",
+
+                    "scripts/vc/pn1.js",
+                    "scripts/vc/pn2.js",
+                    "scripts/vc/pn3.js",
+                    "scripts/vc/pn5.js",
+                    "scripts/vc/pn9.js",
+
+                    "scripts/vc/pnk.js",
+                    "scripts/vc/pxk.js",
+                    "scripts/vc/pxc.js",
+
+                    "scripts/vc/pc1.js",
+                    "scripts/vc/pt1.js",
+
+                    "scripts/vc/hd2.js",
+                    "scripts/vc/hd1.js",
+                    "scripts/vc/hd3.js",
+                    "scripts/vc/pbl.js",
+                    "scripts/vc/so1.js",
+
+                    "scripts/rpt/search.js",
+                    "scripts/rpt/bkct.js",
+                    "scripts/rpt/scttk.js",
+                    "scripts/rpt/socaitk.js",
+                    "scripts/rpt/sochut.js",
+                    "scripts/rpt/cdpstk.js",
+                    "scripts/rpt/sonkc.js",
+                    "scripts/rpt/sonktt.js",
+                    "scripts/rpt/sonkct.js",
+                    "scripts/rpt/sonkmh.js",
+                    "scripts/rpt/sonkbh.js",
+
+                    "scripts/rpt/sctcnkh.js",
+                    "scripts/rpt/cdpskh.js",
+
+                    "scripts/rpt/sctdt.js",
+                    "scripts/rpt/cdpsdt.js",
+
+                    "scripts/rpt/bkvatvao.js",
+                    "scripts/rpt/bkvatra.js",
+                    "scripts/list/kbmtkgtgt.js",
+                    "scripts/rpt/tkgtgt.js",
+
+                    "scripts/rpt/bcdkt.js",
+                    "scripts/list/kbmbcdkt.js",
+
+                    "scripts/list/kbmkqhdkd.js",
+                    "scripts/rpt/kqhdkd.js",
+
+                    "scripts/list/kbmlctttt.js",
+                    "scripts/rpt/lctttt.js",
+
+                    "scripts/list/kbmlcttgt.js",
+                    "scripts/rpt/lcttgt.js",
+
+                    "scripts/rpt/thnxt.js",
+                    "scripts/rpt/sctvt.js",
+                    "scripts/rpt/tinhgiatb.js",
+
+                    "scripts/rpt/pttct.js",
+                    "scripts/list/rptform.js",
+                    "scripts/list/kbmpttct.js",
+                   
+                    
+                    "scripts/rpt/dtbanletheongay.js",
+                    "scripts/rpt/dtbanletheothang.js",
+                    "scripts/rpt/dtbanletheoquy.js",
+                    "scripts/rpt/dtbanletheonam.js",
+                    "scripts/rpt/dtbanletheovt.js",
+                    "scripts/rpt/dtbanletheokh.js",
+                    "scripts/rpt/dtbanletheonv.js",
+                    "scripts/rpt/ctbanle.js",
+                    "scripts/rpt/hangbanbitralai.js",
+                    "scripts/rpt/cthangbanbitralai.js",
+                    "scripts/rpt/tonghopbanhang.js",
+                    "scripts/rpt/chitietthutientheohoadon.js",
+                    "scripts/rpt/chitietchitientheohoadon.js",
+                    "scripts/rpt/hoadonbanhangtheohantt.js",
+                    "scripts/rpt/phanbothutienchohoadon.js",
+                    
+                    
+                    "scripts/rpt/ctmuahang.js",
+                    "scripts/rpt/tonghopmuahang.js",
+                    "scripts/rpt/tonghoptralaihang.js",
+                    "scripts/rpt/cttralaihang.js",
+                    "scripts/rpt/hoadonmuahangtheohantt.js",
+                    "scripts/rpt/phanbochitienchohoadon.js",
+
+                    "scripts/list/dmbp.js",
+                    "scripts/list/dmdt.js",
+                    "scripts/list/dmloaits.js",
+                    "scripts/list/dmtanggiamts.js",
+                    "scripts/list/dmnguonvon.js",
+                    "scripts/vc/qts.js",
+                    "scripts/list/qtsdieuchinh.js",
+                    "scripts/rpt/tinhkhauhaots.js",
+                    "scripts/list/hspbts.js",
+                    "scripts/list/dckhauhaots.js",
+                    "scripts/vc/pkh.js",
+
+                    "scripts/rpt/bangtinhkhauhao.js",
+                    "scripts/rpt/sotaisan.js",
+                    "scripts/rpt/chitiettaisan.js",
+                    
+                    
+                    "scripts/sys/client.min.js",
+                    "scripts/sys/directives.min.js"
+                    
+                    
+                ],
+                "output": "app.min.js",
+                "generateMap": false,
+                "mangle": true,
+                "isolate": false
+            }
+        ]
+    }
+}

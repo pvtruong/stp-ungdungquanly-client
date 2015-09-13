@@ -1,0 +1,65 @@
+﻿<stpvoucherheader></stpvoucherheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-hover table-bordered">
+		<tr><th class="text-center"><input type="checkbox" ng-model="selectionAll"></th>
+			<th><a ng-click="reverse=!reverse;order('so_ct',reverse)">Số chứng từ</a></th>
+			<th><a ng-click="reverse=!reverse;order('ngay_ct',reverse)">Ngày chứng từ</a></th>
+			<th><a ng-click="reverse=!reverse;order('ten_kh',reverse)">Khách hàng</a></th>
+			<th><a ng-click="reverse=!reverse;order('dien_giai',reverse)">Diễn giải</a></th>
+			<th><a ng-click="reverse=!reverse;order('t_sl',reverse)">Số lượng</a></th>
+			<th><a ng-click="reverse=!reverse;order('t_tien',reverse)">Tiền hàng</a></th>
+			<th><a ng-click="reverse=!reverse;order('t_ck',reverse)">Tiền CK</a></th>
+			<th><a ng-click="reverse=!reverse;order('t_thue',reverse)">VAT</a></th>
+			<th><a ng-click="reverse=!reverse;order('t_tt',reverse)">Tổng thanh toán</a></th>
+			<th><a ng-click="reverse=!reverse;order('t_tien_xuat',reverse)">Tiền vốn</a></th>
+			<th><a ng-click="reverse=!reverse;order('ten_nv',reverse)">Nhân viên</a></th>
+			<th><a ng-click="reverse=!reverse;order('ten_dvcs',reverse)">Đơn vị cơ sở</a></th>
+		</tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div>{{ r.so_ct }}</div>
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div>{{ r.ngay_ct|date:'dd/MM/yyyy'}}</div>
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div>{{r.ten_kh}}</div>
+				<div style="font-size:12px"><i>{{r.ma_kh}}</i></div>
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.dien_giai}}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_sl|number:0 }}
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_tien|number:0 }}
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_ck|number:0 }}
+			</td>
+			
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_thue|number:0 }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_tt|number:0 }}
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_tien_xuat|number:0 }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.ten_nv}}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.ten_dvcs}}
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

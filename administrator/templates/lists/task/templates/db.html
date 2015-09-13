@@ -1,0 +1,97 @@
+<div class="panel panel-default tasks-widget">
+	<div class="panel-heading row" style="padding:3px">
+		<div class="panel-title col-xs-4">
+			<i class="fa fa-check"></i> Công việc
+		</div>	
+		<div class="actions col-xs-8 text-right">
+			<div class="btn-group">
+				<a class="btn btn-default  btn-sm" href="#task/add">
+					 Mới
+				</a>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-default btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					Lọc <i class="fa fa-angle-down"></i>
+				</a>
+				<div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
+					<label><input type="checkbox" ng-model="options.my_job"/> Chỉ công việc của tôi</label>
+					<label><input type="checkbox" ng-model="options.overdue"/> Chỉ công việc quá hạn</label>
+					<label><input type="checkbox" ng-model="options.progress_0"/> Chưa thực hiện</label>
+					<label><input type="checkbox"  ng-model="options.progress_1"/> Đang thực hiện</label>
+					<label><input type="checkbox"  ng-model="options.progress_2"/> Hoàn thoàn</label>
+					<label><input type="checkbox"  ng-model="options.progress_3"/> Tạm dừng</label>
+					<label><input type="checkbox"  ng-model="options.progress_4"/> Chờ</label>
+				</div>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-default  btn-sm" ng-click="dscv=[];filter({})">
+					 <i class="fa fa-refresh"></i>
+				</a>
+			</div>
+		</div>
+	
+	</div>
+	<div class="panel-body">
+		<div class="task-content">
+			<div class="scroll-body task-db" slimscroll="{slimscrollOption: 10}"  data-always-visible="1" data-rail-visible1="1">
+				<div ng-if="!dscv || dscv.length==0">Không có công việc mới nào</div>
+				<ul class="task-list">
+					<li ng-repeat="task in dscv|orderBy:'-date_created'"  class="animate-repeat">
+						<div class="task-title" ng-click="viewTask(task)" style="cursor:pointer">
+							<div class="media">
+							  <div class="pull-left">
+								<img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}/api/avatar?email={{task.phu_trach}}&access_token={{token}}'  title ="Người phụ trách: {{task.phu_trach}}"/>
+							  </div>
+							  <div class="media-body">
+									<b>{{task.ten_cv}}</b>
+									<span class="task-bell" ng-if="task.reminder">
+										<i class="fa fa-bell-o"></i>
+									</span>
+									&nbsp;
+									<span style="color:white;background-color:red" ng-if="task.is_new">
+										&nbsp;mới&nbsp;
+									</span>
+									&nbsp;
+									<span class="label label-sm label-info" ng-if="task.progress==0">Chưa thực hiện</span>
+									<span class="label label-sm label-primary"  ng-if="task.progress==1">Đang thực hiện</span>
+									<span class="label label-sm label-success"  ng-if="task.progress==2">Hoàn thành</span>
+									<span class="label label-sm label-danger"  ng-if="task.progress==3">Tạm dừng</span>
+									<span class="label label-sm label-warning"  ng-if="task.progress==4">Chờ</span>
+									<div parse-text="task.mieu_ta" limit="50"></div>
+							  </div>
+							</div>	
+						</div>
+						<div class="task-config">
+							<div class="task-config-btn btn-group">
+								<a class="btn btn-xs default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+								<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu pull-right">
+									
+									<li>
+										<a ng-click="complete(task)">
+										<i class="fa fa-check"></i> Hoàn thành </a>
+									</li>
+									<li>
+										<a href="#task/edit/{{task._id}}">
+										<i class="fa fa-pencil"></i> Sửa </a>
+									</li>
+									<li>
+										<a ng-click="cancel(task)">
+										<i class="fa fa-trash-o"></i> Hủy </a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>		
+				</ul>
+			</div>
+		</div>
+		<div class="task-footer">
+			<div class="btn-arrow-link pull-right">
+					<a href="#task">Xem tất cả các công việc</a>
+					<i class="icon-arrow-right"></i>
+				</div>
+		</div>
+	</div>
+</div>

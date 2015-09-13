@@ -1,0 +1,40 @@
+﻿<stpvoucherheader></stpvoucherheader>
+<div class="table-responsive"  style="overflow: auto">
+	<table class ="table table-striped table-hover table-bordered" >
+		<tr><th class="text-center"><input type="checkbox" ng-model="selectionAll"></th><th>Chứng từ</th><th>Nhà cung cấp</th><th>Diễn giải</th><th>Tiền phí</th><th>VAT</th><th>Tổng thanh toán</th><th>Đơn vị cơ sở</th></tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div>{{ r.so_ct }}</div>
+				<div>{{ r.ngay_ct|date:'dd/MM/yyyy'}}</div>
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div>{{r.ten_kh}}</div>
+				<div style="font-size:12px"><i>{{r.ma_kh}}</i></div>
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.dien_giai}}
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_cp|number:0 }}
+			</td>
+	
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_thue_vao|number:0 }}
+			</td>
+			
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.t_tt|number:0 }}
+			</td>
+			
+		
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{ r.ten_dvcs}}
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

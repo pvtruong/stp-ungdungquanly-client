@@ -1,0 +1,59 @@
+﻿<div class="portlet box green-haze tasks-widget">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-mail"></i>Email mới
+		</div>
+		<div class="tools" ng-show="false">
+			<a href="" class="reload">
+			</a>
+		</div>
+		<div class="actions">
+			<div class="btn-group">
+			</div>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="task-content">
+			<div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="1">
+				<ul class="task-list">
+					<li ng-repeat="email in emails">
+						<div class="task-title">
+							{{email.subject}}
+							
+							<span class="label label-sm label-info" >email.from[0].name</span>
+							
+							
+						</div>
+						<div class="task-config">
+							<div class="task-config-btn btn-group">
+								<a class="btn btn-xs default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+								<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu pull-right">
+									<li>
+										<a ng-click="reply(email)">
+										<i class="fa fa-check"></i> Trả lời </a>
+									</li>
+									<li>
+										<a href="#mailreceived/view/{{email._id}}">
+										<i class="fa fa-pencil"></i> Sửa </a>
+									</li>
+									<li>
+										<a ng-click="delete(email)">
+										<i class="fa fa-trash-o"></i> Xóa </a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>		
+				</ul>
+			</div>
+		</div>
+		<div class="task-footer">
+			<div class="btn-arrow-link pull-right">
+					<a href="#mailbox">Xem hộp thư</a>
+					<i class="icon-arrow-right"></i>
+				</div>
+		</div>
+	</div>
+</div>

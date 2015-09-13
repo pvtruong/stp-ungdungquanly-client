@@ -1,0 +1,17 @@
+﻿<div class="modal-header">
+	<header-dialog-select title="Mẫu"></header-dialog-select>
+ </div>
+ <div class="modal-body">
+	<div class="table-responsive">
+		<table  class ="table table-striped table-bordered">
+			<tr ng-repeat ="item in items">
+				<td  style ='cursor:pointer' ng-click="select(item)">
+					{{item.rptform_name}}
+				</td>
+				<td class="text-center" style="width:80px">
+					<a href="#kbmpttct?id_rptform={{item._id}}" target="_blank" class="btn btn-xs btn-default">Khai báo chỉ tiêu<a>
+				</td>
+			</tr>
+		</table>
+	</div>
+ </div>

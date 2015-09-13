@@ -1,0 +1,22 @@
+﻿<stplistheader btnadd='show:false'></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Email</th><th>Tên</th><th>Tình trạng</th><th>Danh sách công ty</th></tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{r.email}}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{r.name}}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				{{r.status?'Đang hoạt động':'Đã khóa'}}
+			</td>
+			<td>
+				<a href="#apps/{{r.email}}">Danh sách công ty</a>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

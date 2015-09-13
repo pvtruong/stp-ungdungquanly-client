@@ -1,0 +1,106 @@
+<div class='container-fluid'>
+	<list-view-header header-title='ten_hd'>	
+		<li role="presentation" class="divider"></li>
+		<li>
+			<a class='dropdown-header'  ng-click="addCustomer()">Thêm khách hàng</a>
+			<a class='dropdown-header'  ng-click="addContact()">Thêm Liên lạc</a>
+		</li>	
+	</list-view-header>
+	<tabset class="col-sm-12">
+		<tab heading='Chi tiết'>
+			<form class='form-horizontal'>
+			<fieldset>
+				<legend>Thông tin chi tiết</legend>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Số hợp đồng:</label>
+					<div class='col-sm-10 field-label'>{{data.so_hd}}</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Tên hợp đồng:</label>
+					<div class='col-sm-10 field-label'>{{data.ten_hd}}</div>
+				</div>
+				<div class='form-group' ng-show="data.ngay_hd">
+					<label class='col-sm-2 control-label'>Ngày ký:</label>
+					<div class='col-sm-10 field-label'>{{data.ngay_hd|date:'dd/MM/yyyy'}}</div>
+				</div>
+				<div class='form-group' ng-show="data.tien">
+					<label class='col-sm-2 control-label'>Giá trị hợp đồng:</label>
+					<div class='col-sm-10 field-label'>{{data.tien_nt|number:0}} {{data.ma_nt}}</div>
+				</div>
+				<div class='form-group' ng-show="data.ngay_th">
+					<label class='col-sm-2 control-label '>Ngày thực hiện:</label>
+					<div class='col-sm-10 field-label'>{{data.ngay_th|date:'dd/MM/yyyy'}}</div>
+				</div>
+				<div class='form-group' ng-show="data.ngay_nt">
+					<label class='col-sm-2 control-label '>Ngày nghiệm thu:</label>
+					<div class='col-sm-10 field-label'>{{data.ngay_nt|date:'dd/MM/yyyy'}}</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Phụ trách:</label>
+					<div class='col-sm-10 field-label'><a ng-click="openProfile(data.phu_trach)">{{data.phu_trach}}</a></div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Trạng thái:</label>
+					<div class='col-sm-10 field-label'>
+						<div class="dropdown">
+						   <span ng-show='data.progress==0'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-info dropdown-toggle'>Chưa thực hiện</span>
+						  <span ng-show='data.progress==1'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-primary dropdown-toggle'>Đang thực hiện</span>
+						  <span ng-show='data.progress==2'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-success dropdown-toggle'>Hoàn thành</span>
+						  <span ng-show='data.progress==3'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-danger dropdown-toggle'>Tạm dừng</span>
+						  <span ng-show='data.progress==4'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-warning dropdown-toggle'>Đang chờ</span>
+						
+							
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+							<li role="presentation" ng-show='data.progress!=2'><a role="menuitem" tabindex="-1" ng-click="update({progress:2})">Hoàn thành</a></li>
+							<li role="presentation" ng-show='data.progress!=1'><a role="menuitem" tabindex="-1" ng-click="update({progress:1})">Đang thực hiện</a></li>
+							<li role="presentation" ng-show='data.progress!=3'><a role="menuitem" tabindex="-1" ng-click="update({progress:3})">Tạm dừng</a></li>
+							<li role="presentation" ng-show='data.progress!=4'><a role="menuitem" tabindex="-1" ng-click="update({progress:4})">Chờ</a></li>
+							<li role="presentation" ng-show='data.progress!=0'><a role="menuitem" tabindex="-1" ng-click="update({progress:0})">Chưa thực hiện</a></li>
+						  </ul>
+						</div>
+					</div>
+				</div>
+				<div class='form-group' ng-show="data.ten_kh">
+					<label class='col-sm-2 control-label'>Khách hàng:</label>
+					<div class='col-sm-10 field-label'><a href="#dmkh/view/{{data.id_kh}}?redirect={{location}}">{{data.ten_kh}}</a></div>
+				</div>
+				<div class='form-group' ng-show="data.mieu_ta">
+					<label class='col-sm-2 control-label'>Nội dung:</label>
+					<div class='col-sm-10 field-label'><span parse-html="data.mieu_ta"></span></div>
+				</div>
+				<div class='form-group' ng-show="data.date_created">
+					<label class='col-sm-2 control-label'>Ngày tạo:</label>
+					<div class='col-sm-10 field-label'>{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Liên kết</legend>
+				<div>
+					<stp-link link="data" collection='contract' collections-link="lienhe:'ten_lien_he,dien_thoai,email',dmkh:'ten_kh,dia_chi,dien_thoai,email'"></stp-link>
+				</div>
+			</fieldset>
+			</form>
+			<br/>
+			<file link='data'></file>
+			<br/>
+			<comment link='data' user='user' title="{{data.ten_hd}}"></comment>
+			
+		</tab>
+		
+		<tab heading="Công việc">
+			<task link='data' collection='contract' default-values="id_dt:'{{data._id}}',ten_hd:'{{data.ten_hd}}'"></task>
+		</tab>
+		<tab heading="Bảo hành">
+			<warranty link='data'></warranty>
+		</tab>
+		<tab heading="Ghi chú">
+			<note link='data'></note>
+		</tab>
+		<tab heading="Chứng từ">
+			<bkct condition="ma_hd:'{{data.so_hd}}'" run="data.so_hd"></bkct>
+		</tab>
+		<tab heading="Lịch sử">
+			<history link='data' module='contract'></history>
+		</tab>
+	</tabset>
+</div>

@@ -1,0 +1,318 @@
+﻿.tab-content{
+	background-color:white;
+	padding:5px 5px 5px 5px;
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+}
+.modal-content{
+	padding-top:15px!important
+}
+.container-fluid {
+  padding-right: 0px!important;
+  padding-left: 0px!important;
+}
+.ng-isolate-scope{
+	/*padding:0px!important;*/
+}
+.header-view{
+	border:1px solid #ddd;
+	padding:10px 0 10px 0;
+	margin-bottom:1px;
+	background-color:#f9f9f9;
+}
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 0px!important;
+  padding-left: 0px!important;
+}
+form .col-xs-1, form .col-sm-1, form .col-md-1, form .col-lg-1, form .col-xs-2, form .col-sm-2, form .col-md-2, form .col-lg-2, form .col-xs-3, form .col-sm-3, form .col-md-3, form .col-lg-3, form .col-xs-4, form .col-sm-4, form .col-md-4, form .col-lg-4, form .col-xs-5, form .col-sm-5, form .col-md-5, form .col-lg-5, form .col-xs-6, form .col-sm-6, form .col-md-6, form .col-lg-6, form .col-xs-7, form .col-sm-7, form .col-md-7, form .col-lg-7, form .col-xs-8, form .col-sm-8, form .col-md-8, form .col-lg-8, form .col-xs-9, form .col-sm-9, form .col-md-9, form .col-lg-9, form .col-xs-10, form .col-sm-10, form .col-md-10, form .col-lg-10, form .col-xs-11, form .col-sm-11, form .col-md-11, form .col-lg-11, form .col-xs-12, form .col-sm-12, form .col-md-12, form .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 1px!important;
+  padding-left: 1px!important;
+}
+.row {
+  margin-right: 0px!important;
+  margin-left: 0px!important;
+}
+.form-horizontal .form-group {
+  margin-right: 0px!important;
+  margin-left: 0px!important;
+  margin-bottom:3px!important;
+}
+.navbar{
+	border-radius:0px;
+	margin-bottom: -1px;
+}
+.form-input {
+	padding:0px;
+	border:1px solid #ddd;
+}
+.header-input{
+	border-bottom:1px solid #ddd;
+	padding:10px 10px 10px 10px;
+	margin-bottom:15px;
+	background-color:#f9f9f9;
+}
+.header-form{
+    font-size: 18px;
+}
+.modal-body {
+  padding: 0px!important;
+}
+.field-label{
+	padding-top: 10px;
+	white-space:nowrap;
+}
+.total{
+	background-color:#DFF3F5!important
+}
+.pagination, .carousel,a, .panel-title a { cursor: pointer; }
+
+.panel-default > .panel-heading {
+    background-color: #f9f9f9!important;
+}
+
+.panel-default {
+    border:1px solid  #ddd
+}
+
+.required{
+	color:red;
+}
+.table-responsive{
+	overflow: auto;
+}
+th{
+	
+	text-align:center;
+	background-color:#f9f9f9;
+	
+}
+label,.cbold{
+	font-weight:bold;
+}
+.ta-editor.ta-html, .ta-scroll-window.form-control{
+	min-height: 150px!important;
+}
+.ta-scroll-window .ta-bind {
+    min-height: 150px!important;
+}
+.cnormal{
+	font-weight:normal;
+}
+.cerror{
+	color:red
+}
+/*report*/
+.table-report{
+	background-color:white;
+	border:1px solid #ddd;
+	padding-left:5px;
+	padding-right:0px!important;
+}
+.condition-report{
+	background-color:white;
+	border:1px solid #ddd;
+	padding-left:5px!important
+}
+/* bootstrap hack: fix content width inside hidden tabs */
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+	display: block;     /* undo display:none          */
+	height: 0;          /* height:0 is also invisible */ 
+	overflow-y: hidden; /* no-overflow                */
+	overflow-x: hidden; /* no-overflow                */
+}
+.tab-content > .active,
+.pill-content > .active {
+	height: auto;       /* let the content decide it  */
+} /* bootstrap hack end */
+
+/*--nhung tinh nang chua xong*/
+.cdxd{
+	color:#BABFBF
+}
+.so1-1, .so1-1 td{
+	color:red;
+}
+.so1-2, .so1-2 td{
+	color:brown;
+}
+.so1-3, .so1-3 td{
+	color:blue;
+}
+.so1-4, .so1-4 td{
+	color:green;
+}
+.so1-5, .so1-5 td{
+	color:silver
+}
+.sub-page-title{
+	font-size:18px
+}
+.task-db{
+	height: 305px
+}
+@media (max-width: 991px) {
+	.task-db{
+		height: auto;
+	}
+}
+@media (max-width: 767px) {
+	.current-app{
+		display:none
+	}
+	.sub-page-title{
+		display:none
+	}
+	.nav-record{
+		display:none
+	}
+	.disable-small-screen{
+		display:none
+	}
+}
+/*format footer*/
+#footer {
+	background-color: #f5f5f5;
+  }
+/*overlay*/
+.full-page-overlay{
+	position:fixed;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.6);
+	z-index:90; 
+	width:100%;height:100%;
+}
+.spin{
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+	font-size:18px;
+	color:white
+}
+/*data loader*/
+@-moz-keyframes throbber-loader {
+  0% {
+    background: #dde2e7;
+  }
+  10% {
+    background: #6b9dc8;
+  }
+  40% {
+    background: #dde2e7;
+  }
+}
+@-webkit-keyframes throbber-loader {
+  0% {
+    background: #dde2e7;
+  }
+  10% {
+    background: #6b9dc8;
+  }
+  40% {
+    background: #dde2e7;
+  }
+}
+@keyframes throbber-loader {
+  0% {
+    background: #dde2e7;
+  }
+  10% {
+    background: #6b9dc8;
+  }
+  40% {
+    background: #dde2e7;
+  }
+}
+/* :not(:required) hides these rules from IE9 and below */
+.throbber-loader:not(:required) {
+  -moz-animation: throbber-loader 2000ms 300ms infinite ease-out;
+  -webkit-animation: throbber-loader 2000ms 300ms infinite ease-out;
+  animation: throbber-loader 2000ms 300ms infinite ease-out;
+  background: #dde2e7;
+  display: inline-block;
+  position: relative;
+  text-indent: -9999px;
+  width: 0.9em;
+  height: 1.5em;
+  margin: 0 1.6em;
+}
+.throbber-loader:not(:required):before, .throbber-loader:not(:required):after {
+  background: #dde2e7;
+  content: '\x200B';
+  display: inline-block;
+  width: 0.9em;
+  height: 1.5em;
+  position: absolute;
+  top: 0;
+}
+.throbber-loader:not(:required):before {
+  -moz-animation: throbber-loader 2000ms 150ms infinite ease-out;
+  -webkit-animation: throbber-loader 2000ms 150ms infinite ease-out;
+  animation: throbber-loader 2000ms 150ms infinite ease-out;
+  left: -1.6em;
+}
+.throbber-loader:not(:required):after {
+  -moz-animation: throbber-loader 2000ms 450ms infinite ease-out;
+  -webkit-animation: throbber-loader 2000ms 450ms infinite ease-out;
+  animation: throbber-loader 2000ms 450ms infinite ease-out;
+  right: -1.6em;
+}
+/*ngrepeat
+tr.ng-enter,
+tr.ng-move {
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all;
+  transition: 1s linear all;
+  position:relative;
+}
+
+tr.ng-enter {
+  left:-10px;
+  opacity:0;
+}
+tr.ng-enter.ng-enter-active {
+  left:0;
+  opacity:1;
+}
+
+tr.ng-leave {
+  left:0;
+  opacity:1;
+}
+
+tr.ng-move {
+  opacity:0.5;
+}
+tr.ng-move.ng-move-active {
+  opacity:1;
+}*/
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:100px;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:200px;
+}

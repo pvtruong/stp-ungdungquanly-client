@@ -1,0 +1,48 @@
+﻿
+<nav class="navbar navbar-default">
+	<div>
+		<div>
+			<div class="navbar-brand">
+				{{title}} <span ng-if="sub_title"> : {{sub_title}}</span> 
+				<a ng-click="unlike()" ng-if="isLike"  style='color:#F2BF16' title="Bỏ khỏi mục hay sử dụng"><i class="fa fa-star"></i></a>
+				<a ng-click="like()" ng-if="!isLike"  style='color:silver' title="Thêm vào mục hay sử dụng"><i class="fa fa-star"></i></a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group"  ng-if="boxSearch">
+				  <div class="input-group">
+						<input type='text' ng-model="condition" ng-keyup="searchKeyup($event)" class="form-control" placeholder="Tìm..."/>
+						<span class='btn  input-group-addon'  ng-click="search(condition)">Tìm</span>
+				  </div>
+				</div>
+				<div class="btn-group"  ng-if="boxSearch">
+					<a class="btn btn-default  dropdown-toggle" data-toggle="dropdown">{{filter_title?filter_title:'Tất cả'}} <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li   role="presentation">
+							<a role="menuitem" ng-click="changeFilter({title:'Tất cả'})">Tất cả</a>
+						</li>
+						<li  role="presentation">
+							<a role="menuitem" ng-click="changeFilter({filter:{follow:1},title:'Đang theo dõi'})">Đang theo dõi</a>
+						</li>
+						
+						<span ng-transclude></span>
+						
+					  </ul>
+				</div>
+				
+				<a  class="btn btn-default  navbar-btn" ng-click="btn1_click()" ng-if='btn1_show'  title="{{btn1_title}}">{{btn1_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-click="btn2_click()" ng-if='btn2_show'  title="{{btn2_title}}">{{btn2_text}}</a>
+				<a  class="btn btn-danger  navbar-btn" ng-click="add()"  ng-if='add_show' title ="Ctrl+M">{{add_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-disabled="isUnSelected()" ng-click ="delete()"  ng-show='delete_show' title ="Ctrl+D">{{delete_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-if='btn3_show' title="{{btn3_title}}">{{btn3_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-if='btn4_show'  title="{{btn4_title}}">{{btn4_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-if='btn5_show'  title="{{btn5_title}}">{{btn5_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-click="import()" ng-if='import_show'>{{import_text}}</a>
+				<a  class="btn btn-default  navbar-btn" ng-click="options()" ng-if='options_show'>{{options_text}}</a>
+			
+			  </form>
+			
+		</div>
+	</div>
+</nav>

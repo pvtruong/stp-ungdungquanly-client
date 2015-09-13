@@ -1,0 +1,42 @@
+﻿<div class="modal-body">
+	<div class="container-fluid">
+		<form name="form" novalidate class ="css-form form-horizontal form-input" >
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label>Thời gian gửi</label>
+					<div>
+						<select ng-model='data.send_type' class="form-control">
+							<option value='0'>Ngay bây giờ</option>
+							<option value='1'>Chọn một thời gian cụ thể</option>
+						</select>
+					</div>
+					<div ng-show='data.send_type==1'>
+						<br/>
+						<ng-datepicker ng-model='data.schedule'></ng-datepicker>
+						<div>
+							<timepicker ng-model="data.schedule"  hour-step="1" minute-step="1" show-meridian="true"></timepicker>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label>Lặp lại</label>
+					<select class='form-control' ng-model='data.repeat'>
+						<option value='0'>Không lặp lại</option>
+						<option value='1'>Hàng ngày</option>
+						<option value='2'>Hàng tháng</option>
+						<option value='3'>Hàng quý</option>
+						<option value='4'>Hàng năm</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<a class="btn btn-md btn-primary" ng-click="save()">Hẹn lịch gửi</a>
+					<a class="btn btn-md btn-default" ng-click="cancel()">Hủy</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

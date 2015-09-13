@@ -1,0 +1,47 @@
+<ol class="breadcrumb">
+  <li><a href="#/comment">Nhận xét, Góp ý</a></li>
+  <li class="active">{{data.title|limitTo:50}}</li>
+</ol>
+<h3>
+	{{data.title}}
+	<small>
+		<br/>
+		<br/>
+		Đã tạo bởi {{data.user_created}} lúc {{data.date_created|date:'hh:mm dd/MM/yyyy'}}
+	</small>
+</h3>
+<div class="media" ng-repeat="r in replies|orderBy:'date_created'" style='border:1px dotted silver;padding:5px;border-radius:2px' ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0'>
+  <div class="pull-left">
+	<a title ="{{r.user_created}}">
+	  <img class="media-object" style='width:60px;height:60px' ng-src='{{server_url}}/api/avatar?email={{r.user_created}}&access_token={{token}}' ng-click="openProfile(r.user_created)">
+	</a>
+  </div>
+  <div class="media-body">
+	<p parse-html='r.content'></p>
+	<div style='border-top:1px dotted silver' class="help-block">
+		<small> lúc {{r.date_created|date:'HH:mm dd/MM/yyyy'}} bởi {{r.user_created}}</small>
+		<span  ng-show='(r.user_created==user.email || user.admin) && r.hover==1'>
+			<img src='images/mini-edit.png' ng-click='quickedit(r)' title='Sửa'>
+			<img src='images/mini-delete.png' ng-click='deleteReply(r)' ng-show='r.is_reply' title='Xóa trả lời này'>
+			<img  src='images/mini-delete.png' ng-click='delete(r._id)' ng-show='!r.is_reply' title='Xóa chủ đề này'>
+		</span>
+	</div>
+  </div>
+</div>
+<hr/>
+<form name="form" novalidate class ="form-horizontal" >
+<fieldset>
+	<div class='form-group'>
+		<div class='col-sm-12'>
+			<div text-angular ta-toolbar="[['bold', 'italics', 'underline',  'ul', 'ol'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+      ['html', 'insertImage','insertLink', 'insertVideo'],['insertName','insertAddress']]" ng-model="content"></div>
+		</div>
+	</div>
+	<div class='form-group'>
+		<div class='col-sm-12'>
+			<a class='btn btn-primary btn-md' ng-click='reply()' ng-disabled='!content'>Gửi</a>
+		</div>
+	</div>
+</fieldset>
+</form>

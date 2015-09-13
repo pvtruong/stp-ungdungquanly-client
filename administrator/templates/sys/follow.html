@@ -1,0 +1,11 @@
+﻿<fieldset>
+	<legend>Theo dõi</legend>
+	<div class="form-group" ng-repeat='item in follows'>
+		<div class="field-label" style="padding-left:10px" >
+			<a href='#{{item.collection_name}}/view/{{item.obj._id}}?redirect=back' style="text-decoration:none"><img ng-src='images/menu-{{item.collection_name}}.png' style="width:16px;height:16px"> {{item.obj.title}}</a>
+		</div>
+	</div>
+	<div ng-if="!follows || follows.length==0">
+		Chưa có đối tượng nào được theo dõi
+	</div>
+</fieldset>

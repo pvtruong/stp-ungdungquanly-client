@@ -1,0 +1,16 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th>#</th><th>Tên nhóm</th></tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				
+					{{ r.group_name }}
+				
+				
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

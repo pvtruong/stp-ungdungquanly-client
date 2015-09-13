@@ -1,0 +1,49 @@
+<div class="row" ng-hide="isSelected()">
+	<div class="col-sm-8">
+		<div class="input-group">
+			<input type='text' ng-model="condition.txtsearch" ng-keyup="searchKeyup($event)" class="form-control" placeholder="Tìm email..."/>
+			<span class='btn input-group-addon'  ng-click="search()">Tìm</span>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<ng-selector header-text="Chọn một tài khoản"
+			module="mailaccount" fields="_id,username,fullname" field-model="_id" field-label="fullname"
+			options="item._id as (item.username?item.fullname + '<' + item.username +'>':item.fullname) for item in items"
+			ng-model="condition.account_id" label="fullname" ng-change="search()">
+		</ng-selector>
+	</div>
+</div>
+<div>
+	<a class="btn btn-md btn-default" ng-show="isSelected()" ng-click="deleteSelected()">Xóa</a>
+</div>
+<br/>
+<table class ="table table-bordered">
+	<tr>
+		<td style="width:20px">
+			<input type="checkbox" ng-model="isSelectAll" ng-click="selectAll()">
+		</td>
+		<th style="text-align:left">Danh sách email đã gửi</th>
+	</tr>
+	<tr ng-repeat="r in mailsents|orderBy:'-date_created'" ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0'>
+		<td style="width:20px">
+			<input type="checkbox" ng-model="r.sel">
+		</td>
+		<td>
+				<div class='row'>
+					<div class="col-sm-3">
+						<div><a href="#mailschedule/add?to=[{address:'{{r.to[0].address}}',name:'{{r.to[0].name}}'}]&redirect={{location}}">{{r.to[0].name}}</a></div>
+						<small>{{r.date_created|date:"dd/MM/yyyy HH:mm:ss"}}</small>
+					</div>
+					<div class='col-sm-8' style='cursor:pointer' ng-click='viewmailsent(r)'>
+						<div ng-class="r.read?'cnormal':'cbold'">{{ r.subject }}  <i ng-show="r.attachments" class="glyphicon glyphicon-paperclip"></i></div>
+						<div><small><span  parse-html="r.small_text">{{r.small_text}}</span></small></div>
+					</div>
+					<div ng-show='r.hover==1' class="col-sm-1 text-right">
+						<img src='images/mini-delete.png' class="btn btn-sm btn-default" ng-click='deletemailsent(r)' title ='Xóa email này'>
+					</div>
+				</div>
+			
+		</td>
+	</tr>
+</table>
+<ng-page-fx condition = 'query' list ='mailsents' service="service" limit="{{limit}}" fields="{{fields}}" start="start" current-page='{{current_page}}' page-changed="pageChanged($page)"></ng-page-fx>

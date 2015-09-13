@@ -1,0 +1,58 @@
+<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên quyển chứng từ <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model='data.ten_qct' ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã chứng từ <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-2">
+			<!--<input type="text" style="text-transform:uppercase" class="form-control" ng-model='data.ma_ct' ng-required ="true">-->
+            <select class="form-control" ng-model="data.ma_ct" ng-required="true" ng-options="m.path as m.header for m in modules|orderBy:'header'">
+            </select>
+			
+		</div>
+		<label class="control-label col-sm-2">Trường <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-2">
+			<input type="text"  class="form-control" ng-model='data.field' ng-required ="true">
+			
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tiền tố </label>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" ng-model='data.tien_to' >
+			
+		</div>
+		
+		<label class="control-label col-sm-2">Hậu tố </label>
+		<div class="col-sm-2">
+			<input type="text" class="form-control" ng-model='data.hau_to' >
+			
+		</div>
+		
+		
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Số hiện tại <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-2">
+			<input type="text" format='number'  class="form-control" ng-model='data.so_ht' ng-required ="true">
+			
+		</div>
+		<label class="control-label col-sm-2">Số tối đa </label>
+		<div class="col-sm-2">
+			<input type="text" format='number' class="form-control" ng-model='data.den_so' >
+			
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

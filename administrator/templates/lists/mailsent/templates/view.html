@@ -1,0 +1,46 @@
+<h3 class="page-title">Hộp thư đi</h3>
+<div class='container-fluid'>
+	<div class="row">
+		<div class="col-sm-8">
+			<div ng-show="data.from[0].name!=data.from[0].address">Từ <a>{{data.from[0].name}}<{{data.from[0].address}}></a></div>
+			<div ng-show="data.from[0].name==data.from[0].address">Từ <a>{{data.from[0].name}}</a></div>
+			
+			<div>Tới 
+				<a ng-repeat="to in data.to" href="#mailschedule/add?to=[{name:'{{to.name}}',address:'to.address'}]">
+					<span ng-show="to.name">{{to.name}}<{{to.address}}></span>
+					<span ng-show="!to.name">{{to.address}}</span>
+				</a>
+			</div>
+			
+			
+			<span>{{data.date_created|date:'HH:mm dd/MM/yyyy'}}</span>
+		</div>
+		<div class="col-sm-4 text-right">
+			<a class='btn btn-sm btn-default' ng-click="back()">Quay lại</a>
+			<a class='btn btn-sm btn-default' ng-click ="delete(data._id)" >Xóa</a>
+		</div>
+	</div>
+	<div  style="background-color:white;padding:10px">
+		<fieldset>
+			<legend>
+				{{data.subject}}
+			</legend>
+			<p parse-html="data.mail.html"></p>
+			<div ng-show="data.attachments">
+				<hr/>
+				File đính kèm:
+				<div ng-repeat ="att in data.attachments">
+					<a href="{{server_url}}/api/attachments/{{data._id}}/{{att.contentId}}?access_token={{token}}">
+					{{att.fileName}}
+					</a>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	<fieldset>
+		<legend>Liên kết</legend>
+		<div>
+			<stp-link link="data" collection='mailsent' collections-link="lienhe:'ten_lien_he,dien_thoai,email',dmkh:'ten_kh,dia_chi,dien_thoai,email',dmdt:'ten_dt',contract:'so_hd,ten_hd',task:'ten_cv'"></stp-link>
+		</div>
+	</fieldset>
+</div>

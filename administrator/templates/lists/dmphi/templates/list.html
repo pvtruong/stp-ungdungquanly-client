@@ -1,0 +1,14 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th class="text-center" width='50px'><input type="checkbox" ng-model="selectionAll"/></th><th>Phí</th></tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div><b>{{ r.ten_phi }}</b></div>
+				<div><i>{{ r.ma_phi}}</i></div>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

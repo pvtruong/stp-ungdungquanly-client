@@ -1,0 +1,21 @@
+﻿<form class='form-horizontal'>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Thêm liên kết</label>
+		<div class="col-sm-6">
+			<input type='text' class='form-control' placeholder="Liên kết với..." ng-model='textSearch' typeahead-min-length='3' typeahead="item.title for item in search($viewValue,10)" typeahead-on-select = "getItem($item, $model, $label)">
+			<span id="helpBlock" class="help-block">Có thể liên kết với: {{collectionsTitleString}}</span>
+		</div>
+	</div>
+
+	<div class="form-group" ng-repeat='item in link.links'>
+		<label class="col-sm-2 control-label">
+			{{getHeaderCollection(item)}}:
+		</label>
+		<div class="col-sm-10 field-label"  ng-mouseover='item.hover=1' ng-mouseleave='item.hover=0'>
+			<a href='#{{item.collection_obj}}/view/{{item.obj._id}}?redirect={{location}}'><img ng-src='images/menu-{{item.collection_obj}}.png' style="width:16px;height:16px"> {{item.title}}</a>
+			<a href='#{{item.collection_obj}}/edit/{{item.obj._id}}?redirect={{location}}' ng-show='item.hover==1' class="btn btn-default btn-xs"><img src="images/mini-edit.png"></a>
+			<a ng-click='unLink(item)'  ng-show='item.hover==1' class="btn btn-default btn-xs"><img src="images/mini-delete.png"></a>
+		</div>
+		
+	</div>
+</div>

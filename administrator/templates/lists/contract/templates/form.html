@@ -1,0 +1,107 @@
+<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Số hợp đồng <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<input type="text" style="text-transform:uppercase" class="form-control" ng-model='data.so_hd' ng-required="true">
+		</div>
+		<label class="control-label col-sm-2">Ngày ký</label>
+		<div class="col-sm-4">
+			<ng-datepicker ng-model='data.ngay_hd'></ng-datepicker>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên hợp đồng <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" ng-model='data.ten_hd' ng-required="true">
+		</div>
+		<label class="control-label col-sm-2">Khách hàng  <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<ng-typeahead 
+				module='dmkh' fields='_id,ten_kh' field-model='ten_kh' field-label='_id'
+				ng-model='data.ten_kh' label='data.id_kh' ng-required='true'>
+			</ng-typeahead>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Nhóm hợp đồng</label>
+		<div class="col-sm-4">
+			<ng-selector
+				module="group" fields="_id,group_name" field-model="_id" field-label = "group_name"
+				condition ="group_type:'CONTRACT'"  ng-model='data.nh_hd' default-values="group_type:'CONTRACT'">
+			</ng-selector>
+		</div>
+		<label class="control-label col-sm-2">Người phụ trách <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<select ng-model="data.phu_trach" ng-options="r.email as r.name for r in members" ng-required="true" class="form-control">
+				
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Ngày thực hiện</label>
+		<div class="col-sm-4">
+			<ng-datepicker ng-model='data.ngay_th'></ng-datepicker>
+		</div>
+		<label class="control-label col-sm-2">Ngày nghiệm thu</label>
+		<div class="col-sm-4">
+			<ng-datepicker ng-model='data.ngay_nt'></ng-datepicker>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Giá trị hợp đồng</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" format='number' ng-model='data.tien_nt' ng-required="true">
+		</div>
+		<div class="col-sm-2">
+			<ng-selector 
+				module='dmnt' fields ='ma_nt,ten_nt' field-model='ma_nt' field-label='ten_nt'
+				ng-model="data.ma_nt" ng-required="true">
+			</ng-selector>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Trạng thái</label>
+		<div class="col-sm-10 btn-toolbar">
+			<div class='btn-group'>
+				<button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='0'>Chưa thực hiện</button>
+				<button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='1'>Đang thực hiện</button>
+				<button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='2'>Hoàn thành</button>
+			</div>
+			<div class='btn-group'>
+				<button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='3'>Tạm đừng</button>
+				<button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='4'>Đang chờ</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Nội dung</label>
+		<div class="col-sm-10">
+			<div text-angular ta-toolbar="[['bold', 'italics', 'underline',  'ul', 'ol'],
+			  ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+			  ['html', 'insertImage','insertLink', 'insertVideo']]" ng-model="data.mieu_ta"></div>
+				</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Có giá trị với</label>
+		<div class="col-sm-10">
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="0"/> Mọi người</label><br/>
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="1"/> Chỉ với người tạo</label><br/>
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to'  value="2"/> Những người sau</label><br/>
+			<select ng-show='data.visible_to==2' multiple ng-model="data.visible_to_users" ng-options="r.email as r.name for r in members" class="form-control">
+				
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

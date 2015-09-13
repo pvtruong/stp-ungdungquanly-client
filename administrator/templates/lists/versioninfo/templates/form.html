@@ -1,0 +1,47 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-md-3">OS <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.os' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">App <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.app' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Tiêu đề <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.title' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Phiên bản chính (Major) <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text" format='number'  class="form-control" ng-model='data.major' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Phiên bản phụ (minor) <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text" format='number'  class="form-control" ng-model='data.minor' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Miêu tả</label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.description'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Url <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.url' ng-required='true'>
+		</div>
+	</div>
+
+	<footer-form-input></footer-form-input>
+</form>

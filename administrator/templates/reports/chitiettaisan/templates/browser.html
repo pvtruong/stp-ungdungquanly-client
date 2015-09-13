@@ -1,0 +1,79 @@
+﻿<rpt-header></rpt-header>
+<div class="row">
+	<div class="col-md-3 condition-report"   ng-show='condition_show'>
+		<form name='form' novalidate class='form-horizontal'>
+			<fieldset><legend>Điều kiện lọc</legend>
+			<div class='form-group'>
+				<label class='control-label'>Loại</label>
+				<div >
+					<select ng-model="condition.ma_gd" class="form-control" ng-options ="gd.ma_gd as gd.ten for gd in gds" ng-required="true">
+					</select>
+					
+				</div>
+
+			</div>
+			<div class='form-group'>
+				<label class='control-label'>Tháng</label>
+				<div >
+					<select ng-model="condition.thang" class="form-control" ng-options ="thang for thang in thangs" ng-required="true">
+					</select>
+					
+				</div>
+
+			</div>
+			<div class='form-group'>
+				
+				<label class='control-label'>Năm</label>
+				<div >
+					<select ng-model="condition.nam" class="form-control" ng-options ="nam for nam in nams" ng-required="true">
+					</select>
+				</div>
+			</div>
+
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>Xem</a>
+				<a class="btn btn-default" ng-click='print()'  ng-disabled='!data' ng-show='btnprint_show'>In</a>
+				<a class="btn btn-default" ng-click='exportExcel()' ng-show='btnexcel_show'>Xuất excel</a>
+			</div>
+			</fieldset>
+		</form>
+		
+		
+	</div>
+	<div ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"   id ='exportable'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Tên tài sản</th>
+				<th>Số thẻ tài sản</th>
+				<th>Nguyên giá</th>
+				<th>Ngày tăng</th>
+				<th>Số kỳ khấu hao</th>
+				<th>Đã khấu hao</th>
+				<th>Giá trị còn lại</th>
+			</tr>
+			<tr ng-repeat='r in data' style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r._id)' ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					{{r.ten_ts}}
+				</td>
+				<td>
+					{{r.so_the_ts}}
+				</td>
+				<td>
+					{{r.ngay_tang|date:'dd/MM/yyyy'}}
+				</td>
+				<td>
+					{{r.nguyen_gia|number:0}}
+				</td>
+				<td>
+					{{r.so_ky_kh|number:0}}
+				</td>
+				<td>
+					{{r.gia_tri_kh_luy_ke|number:0}}
+				</td>
+				<td>
+					{{r.gia_tri_con_lai|number:0}}
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

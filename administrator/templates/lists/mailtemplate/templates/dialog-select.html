@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+	<header-dialog-select title="Chọn một email mẫu"></header-dialog-select>
+ </div>
+ <div class="modal-body">
+	<div class="table-responsive">
+		<table  class ="table table-striped table-bordered">
+			<tr ng-repeat ="item in items" style ='cursor:pointer' ng-click="select(item)">
+				<td>
+					<div><b>{{item.name}}</b></div>
+					<div><i>{{item.subject}}</i></div>
+				</td>
+				
+			</tr>
+		</table>
+	</div>
+ </div>

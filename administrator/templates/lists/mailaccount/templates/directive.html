@@ -1,0 +1,30 @@
+﻿<table class ="table table-bordered">
+	<tr>
+		<th style='text-align:left'>
+			Quản lý tài khoản email
+		</th>
+		<th style="width:100px">
+			<a class="btn btn-default btn-sm" ng-click="addmailaccount()">Thêm tài khoản</a>
+		</th>
+	</tr>
+	<tr ng-repeat="r in mailaccounts" ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0'>
+		<td  colspan='2'   style='cursor:pointer'>
+				<div class='row'>
+					<div class='col-sm-7'>
+						<a ng-click="editmailaccount(r)">{{r.fullname}}<{{ r.username }}></a>
+						<div>
+							<small ng-class="r.error?'cerror':''"><i>{{r.status_string}}</i></small>
+						</div>
+					</div>
+					<div class='col-sm-5 text-right'>
+						<span ng-show='r.hover==1'>
+							<a class="btn btn-xs btn-success"  ng-click='connect(r)' ng-if="!r.status_code || r.status_code==-1" ng-hide="r.status_code==9">Kết nối</a>
+							<a class="btn btn-xs btn-danger"  ng-click='disconnect(r)' ng-if="r.status_code==1" ng-hide="r.status_code==9">Ngắt kết nối</a>
+							<a class="btn btn-xs btn-default"  ng-click='editmailaccount(r)'><img src='images/mini-edit.png' title='Sửa' ></a>
+							<a class="btn btn-xs btn-default"  ng-click='deletemailaccount(r)'><img src='images/mini-delete.png' title ='Xóa'></a>
+						</span>
+					</div>
+				</div>
+		</td>
+	</tr>
+</table>

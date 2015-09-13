@@ -1,0 +1,43 @@
+﻿<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input" >
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Đơn vị cơ sở  <span class="required">*</span></label>
+			<div class="col-sm-4">
+				<ng-selector ng-model='data.ma_dvcs' ng-required='true'
+					options ="item._id as item.ten_dvcs for item in items" 
+					module='dvcs' fields='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'></ng-selector>
+			</div>
+			<label class="control-label col-sm-2">Kho <span class="required">*</span></label>
+			<div class ="col-sm-4">
+				<ng-typeahead ng-model='data.ten_kho' ng-required='true' 
+					module='dmkho' fields='ma_kho,ten_kho' field-model='ten_kho' field-label='ma_kho' label='data.ma_kho' >
+				</ng-typeahead>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Vật tư  <span class="required">*</span></label>
+			<div class ="col-sm-4">
+				<ng-typeahead ng-model='data.ten_vt' ng-required='true' 
+					module='dmvt' fields='ma_vt,ten_vt' field-model='ten_vt' field-label='ma_vt' label='data.ma_vt' >
+				</ng-typeahead>
+			</div>
+			
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tồn đầu</label>
+			<div class="col-sm-4">
+				<input  type="text" format="number" class="form-control"  ng-model="data.ton00"/>
+			</div>
+		
+			<label class="control-label col-sm-2">Dư đầu</label>
+			<div class="col-sm-4">
+				<input  type="text" format="number" class="form-control"  ng-model="data.du00"/>
+			</div>
+			
+		</div>
+		<footer-form-input></footer-form-input>
+	</form>
+</div>

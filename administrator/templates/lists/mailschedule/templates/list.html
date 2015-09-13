@@ -1,0 +1,21 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			
+			<td    style='cursor:pointer' ng-click='view(r._id)'>
+				<div ng-class="r.read?'cnormal':'cbold'">{{ r.subject }}  <i ng-show="r.attachments" class="glyphicon glyphicon-paperclip"></i></div>
+				<div><small><span  parse-html="r.small_text">{{r.small_text}}</span></small></div>
+				<small>Gửi bởi tài khoản <a href="#mailsent/add?to=[{name:'{{r.from[0].name}}',address:'{{r.from[0].address}}'}]">{{r.from[0].name}}</a> </small>
+				
+			</td>
+			<td   style='width:50px'>
+				
+					<a class='btn btn-default btn-xs' ng-click='edit(r._id)'>Sửa</a>
+				
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

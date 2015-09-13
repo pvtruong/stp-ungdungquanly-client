@@ -1,0 +1,119 @@
+<rpt-header></rpt-header>
+<div class="row">
+	<form name='form' novalidate class='form-horizontal col-sm-3 condition-report' ng-show="condition_show">
+		<fieldset><legend>Điều kiện lọc</legend>
+			<div class='form-group'>
+				<label>Từ ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+				</div>
+				
+				
+			</div>
+			<div class='form-group'>
+				
+				<label>Đến ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Số chứng từ</label>
+				<div >
+					<input type='text' class='form-control' ng-model='condition.so_ct'/>
+				</div>
+			
+			
+			</div>
+			<div class='form-group'>
+				<label>Tài khoản</label>
+				<div>
+					<ng-typeahead 
+						module ="dmtk" fields ="tk,ten_tk" field-model="tk" field-label="ten_tk"
+						ng-model='condition.tk' label="condition.ten_tk">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Tài khoản đối ứng</label>
+				<div>
+					<ng-typeahead 
+						module ="dmtk" fields ="tk,ten_tk" field-model="tk" field-label="ten_tk"
+						ng-model='condition.tk_du' label="condition.ten_tk_du">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Khách hàng</label>
+				<div>
+					<ng-typeahead 
+						module ="dmkh" fields ="ma_kh,ten_kh" field-model="ten_kh" field-label="ma_kh"
+						ng-model='condition.ten_kh' label="condition.ma_kh">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Vụ việc, dự án</label>
+				<div>
+					<ng-typeahead 
+						module ="dmdt" fields ="ma_dt,ten_dt" field-model="ten_dt" field-label="ma_dt"
+						ng-model='condition.ten_dt' label="condition.ma_dt">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Hợp đồng</label>
+				<div>
+					<ng-typeahead 
+						module ="contract" fields ="so_hd,ten_hd" field-model="ten_hd" field-label="so_hd"
+						ng-model='condition.ten_hd' label="condition.ma_hd">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Mục phí</label>
+				<div>
+					<ng-typeahead 
+						module ="dmphi" fields ="ma_phi,ten_phi" field-model="ten_phi" field-label="ma_phi"
+						ng-model='condition.ten_phi' label="condition.ma_phi">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Nhân viên</label>
+				<div>
+					<ng-typeahead 
+						module ="dmnv" fields ="ma_nv,ten_nv" field-model="ten_nv" field-label="ma_nv"
+						ng-model='condition.ten_nv' label="condition.ma_nv">
+					</ng-typeahead>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Diễn giải</label>
+				<div>
+					<input type='text' class='form-control' ng-model='condition.dien_giai'/>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Đơn vị cơ sở</label>
+				<div>
+					 <ng-selector
+						module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+						options ="item._id as item.ten_dvcs for item in items"
+						ng-model='condition.ma_dvcs' empty-yn='true'>
+					</ng-selector>
+				</div>
+			
+			</div>
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>Xem</a>
+				<a class="btn btn-default" ng-click='print()'  ng-disabled='!data' ng-show='btnprint_show'>In</a>
+				<a class="btn btn-default" ng-click='exportExcel()' ng-show='btnexcel_show'>Xuất excel</a>
+			</div>
+		</fieldset>
+	</form>
+	<div ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"  id ='exportable'>
+		<bkct-view></bkct-view>
+	</div>
+	
+</div>

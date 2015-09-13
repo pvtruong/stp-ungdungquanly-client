@@ -1,0 +1,43 @@
+﻿<stplistheader btnadd="show:false" btn1="text:'Thêm file',click:function(){addFile()}"></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-bordered">
+		<tr><th width='50px'>#</th><th style='text-align:left'>Files</th></tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px'> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td>
+				<div ng-show="r.file.extension!='png' && r.file.extension!='jpg' && r.file.extension!='doc' && r.file.extension!='docx' && r.file.extension!='xls' && r.file.extension!='xlsx' && r.file.extension!='pdf'">
+					<i class="fa fa-file-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='doc' || r.file.extension=='docx'" target="_blank">
+					<i class="fa fa-file-word-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='pdf'" target="_blank">
+					<i class="fa fa-file-pdf-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='xlsx' || r.file.extension=='xls'">
+					<i class="fa fa-file-excel-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='png' || r.file.extension=='jpg'">
+					<i class="fa fa-file-photo-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

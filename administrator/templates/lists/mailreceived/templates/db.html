@@ -1,0 +1,62 @@
+<div class="panel panel-default tasks-widget">
+	<div class="panel-heading row" style="padding:3px">
+		<div class="panel-title col-xs-8">
+			<i class="glyphicon glyphicon-envelope"></i> Email
+		</div>
+	
+		
+		<div class="actions col-xs-4 text-right">
+			<div class="btn-group">
+				<a class="btn btn-default btn-sm" ng-click="mailreceiveds=[];filter({})">
+					 <i class="fa fa-refresh"></i>
+				</a>
+			</div>
+		</div>
+	
+	</div>
+	<div class="panel-body">
+		<div class="task-content">
+			<div class="scroll-body  task-db" slimscroll="{slimscrollOption: 10}" data-always-visible="1" data-rail-visible1="1">
+				<div ng-if="!mailreceiveds || mailreceiveds.length==0">Không có emai mới nào</div>
+				<ul class="task-list">
+					<li ng-repeat="mail in mailreceiveds|orderBy:'-date_created'" class="animate-repeat">
+						<div class="task-title" ng-click="viewMail(mail)"   ng-swipe-right ="markRead(mail)"  ng-swipe-left ="delete(mail)" style="cursor:pointer">
+								<b>{{mail.subject}}</b> <span ng-if="mail.is_new"  style="font-size:10px;color:white;background-color:red"> Mới </span>
+								<div>{{mail.small_text}}</div>
+								<div><small>Từ <a href="#mailschedule/add?to={{mail.from|json}}">{{mail.from[0].name}}</a> ngày {{mail.date_created|date:'HH:mm dd/MM/yy'}}</small></div>
+								
+						</div>
+						<div class="task-config">
+							<div class="task-config-btn btn-group">
+								<a class="btn btn-xs default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+								<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu pull-right">
+									<li>
+										<a ng-click="createContact(mail)">Thêm liên lạc </a>
+									</li>
+									<li>
+										<a ng-click="createTask(mail)">Thêm công việc </a>
+									</li>
+									<li>
+										<a ng-click="markRead(mail)">Đánh dấu đã đọc </a>
+									</li>
+									<li>
+										<a ng-click="delete(mail)">Xóa </a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>		
+				</ul>
+			</div>
+			
+		</div>
+		<div class="task-footer">
+			<div class="btn-arrow-link pull-right">
+					<a href="#mailbox">Xem hộp thư</a>
+					<i class="icon-arrow-right"></i>
+				</div>
+		</div>
+	</div>
+</div>

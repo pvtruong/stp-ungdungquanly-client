@@ -1,0 +1,201 @@
+﻿
+<h2>{{data.name}} <button class='btn btn-xs btn-primary'ng-click='edit()'>Chỉnh sửa</button></h2>
+<hr/>
+<form class ="css-form form-horizontal form-input">
+<tabset>
+	<tab heading='Thông tin chính'>
+		<div class='row'>
+			<div class='col-sm-6'>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Tên công ty/cửa hàng </label>
+					<div class="col-sm-8">
+						<input type="text" name ='name'  class="form-control" readonly  ng-model='data.name' ng-required>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">ID </label>
+					<div class="col-sm-8">
+						<input type="text" name ='name'  class="form-control" readonly  ng-model='data._id' ng-required>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Địa chỉ </label>
+					<div class="col-sm-8">
+						<input type="text" name ='address'   class="form-control" readonly  ng-model='data.address' ng-required='true'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Quận huyện</label>
+					<div class="col-sm-8">
+						<input type="text" name ='city'   class="form-control" readonly  ng-model='data.city'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Tỉnh thành  </label>
+					<div class="col-sm-8">
+						<input type="text" name ='city'   class="form-control" readonly  ng-model='data.province'>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Điện thoại </label>
+					<div class="col-sm-8">
+						<input type="text"   class="form-control" readonly  ng-model='data.phone' ng-required='true'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Email </label>
+					<div class="col-sm-8">
+						<input type="email"   class="form-control" readonly  ng-model='data.email' ng-required='true'>
+					
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Giám đốc</label>
+					<div class="col-sm-8">
+						<input type="text"  class="form-control" readonly  ng-model='data.giam_doc'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Kế toán trưởng</label>
+					<div class="col-sm-8">
+						<input type="text"  class="form-control" readonly  ng-model='data.ke_toan_truong'>
+					
+					</div>
+				</div>
+			</div>
+			<div class ='col-sm-6'>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Ngày đầu năm tài chính  </label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control" readonly  ng-value='data.ngay_dn|date:"dd/MM/yyyy"'>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Ngày sử dụng chương trình  </label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control" readonly  ng-value='data.ngay_ky1|date:"dd/MM/yyyy"'>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Ngày khóa sổ  </label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control" readonly  ng-value='data.ngay_ks|date:"dd/MM/yyyy"'>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Người nộp thuế</label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control" readonly  ng-model='data.nguoi_nop_thue'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Mã số thuế</label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control" readonly  ng-model='data.ma_so_thue'>
+					
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-6">Logo</label>
+					<div class="col-sm-6">
+						<img ng-src="{{server_url}}{{data.logo}}" style="width:128px;height:128px"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</tab>
+	<tab heading='Giới thiệu về công ty'>
+		
+		<div class="form-group">
+			<label>Giới thiệu về công ty/cửa hàng</label>
+			<div parse-html="data.gioi_thieu"></div>
+			<div ng-if="!data.gioi_thieu"> Chưa cập nhật</div>
+		</div>
+		<div class="form-group">
+			<label>Ngành kinh doanh</label>
+			<div parse-html="data.nganh_nghe"></div>
+			<div ng-if="!data.nganh_nghe"> Chưa cập nhật</div>
+		</div>
+	</tab>
+	<tab heading='Quản lý các ổ đĩa cloud'>
+		
+		<div class="form-group ">
+			<div class="col-sm-4 text-center">
+				<a ng-click="auth_google()"><img src="images/google_drive_folder_icon.png" style="width:64px;height:64px"></a>
+				<div>{{data.google_drive_refresh_token?'Đã liên kết với tài khoản '+ data.google_drive_email:'Chưa liên kết'}}</div>
+				<div><a ng-if="data.google_drive_refresh_token" style="color:red" ng-click="delete_google_drive()">Xóa liên kết</a></div>
+			</div>
+		</div>
+		
+	</tab>
+	<tab heading='Bán hàng online'>
+		<div class="form-group">
+			<div class='checkbox'>
+				<label><input type='checkbox' ng-model='data.sale_online' disabled/> Bán hàng online</label>
+			</div>
+		</div>
+		<div class="form-group" ng-if='data.sale_online'>
+			<label>Trang bán hàng</label>
+			<div>
+				<input type="text" class="form-control" readonly  ng-model='data.site_name'>
+			</div>
+		</div>
+		<div class="form-group" ng-if='data.sale_online'>
+			<label>Từ khóa để SEO</label>
+			<div>
+				<textarea class="form-control" readonly  ng-model='data.keywords'></textarea>
+			</div>
+		</div>
+		<div class="form-group"  ng-if='data.sale_online'>
+			<label>Chính sách vận chuyển</label>
+			<div>
+				<textarea  class="form-control" readonly  ng-model='data.van_chuyen'></textarea>
+			</div>
+		</div>
+		<div class="form-group"  ng-if='data.sale_online'>
+			<label>Chính sách bảo hàng</label>
+			<div>
+				<textarea class="form-control" readonly  ng-model='data.bao_hanh'></textarea>
+			</div>
+		</div>
+		<div class="form-group"  ng-if='data.sale_online'>
+			<div>
+				<a href='#ptthanhtoan' target="_blank">Phương thức thanh toán</a>
+			</div>
+			
+		</div>
+	
+	</tab>
+	<tab heading='Quản lý người dùng và phân quyền'>
+		
+		<table class='table table-bordered'>
+			<tr>
+				<th class="text-left">Tên</th><th style='width:100px' class='text-center'>Quản trị</th><th style='width:150px' class='text-center'>Phân quyền</th>
+			</tr>
+			<tr ng-repeat='r in data.participants'>
+				<td>
+					<img ng-src='{{server_url}}{{r.picture}}' style='width:30px;height:30px'/> {{r.name}}
+				</td>
+				
+				<td class='text-center'>
+					<input type='checkbox' ng-model='r.admin' ng-disabled='true'/>
+				</td>
+				<td  class='text-center' >
+					<a href="#assign/{{data._id}}/{{r.email}}" ng-show ='!r.admin && data.user_created ==current_user.email'>Phân quyền</button>
+				</td>
+			</tr>
+		</table>
+
+	</tab>
+			
+</tabset>
+<div class="text-center" style="padding:10px"><button class="btn btn-danger" ng-click="open(data)">Mở công ty này</button></div>
+</form>

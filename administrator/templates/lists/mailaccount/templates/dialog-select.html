@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+	<header-dialog-select title="Chọn một tài khoản"></header-dialog-select>
+ </div>
+ <div class="modal-body">
+	<div class="table-responsive">
+		<table  class ="table table-striped table-bordered">
+			<tr ng-repeat ="item in items" style ='cursor:pointer' ng-click="select(item)">
+				<td>
+					<div><b>{{item.fullname}}</b></div>
+					<div><i>{{item.username}}</i></div>
+				</td>
+				
+			</tr>
+		</table>
+	</div>
+ </div>

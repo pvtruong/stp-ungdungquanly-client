@@ -1,0 +1,43 @@
+﻿
+	<fieldset>
+		<legend>Ý kiến <span class="label label-info">{{ comments.length }}</span></legend>
+		<div>
+			<ul class="media-list">
+				<li class="media" ng-repeat="r in comments" ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0' style="border-bottom:1px solid #ddd">
+					<div class="pull-left">
+						<img style="width:32px;height:32px" ng-click='openProfile(r.user_created)' class="media-object img-circle" ng-src='{{server_url}}/api/avatar?email={{r.user_created}}&access_token={{token}}'/>
+					</div>
+					<div class="media-body">
+						<strong><a ng-click='openProfile(r.user_created)'>{{r.user_created}}</a></strong>
+						
+						<span ng-if='(user.admin || user.email==r.user_created) && r.hover==1'>
+							<a class="btn btn-default btn-xs" ng-click='editComment(r)' title='Sửa nhận xét này'><img src='images/mini-edit.png'></a>
+							<a class="btn btn-default btn-xs"  ng-click='deleteComment(r)' title ='Xóa nhận xét này'><img src='images/mini-delete.png'></a>
+						</span>
+						<div class="pull-right"> {{r.date_created|date:'HH:mm'}} ngày {{r.date_created|date:'dd/MM/yyyy'}}</div>
+						
+						<p parse-html="r.content"></p>
+						
+						
+					</div>
+				</li>
+			</ul>
+			<form name="formcomment" novalidate class ="form-horizontal" >
+				
+					<h3> Viết ý kiến</h3>
+					<div class='form-group'>
+						<div class='col-sm-12'>
+							<textcomplete members='members' message='content'></textcomplete>
+						</div>
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-6'>
+							 
+							  <a class='btn btn-default btn-md' ng-click='sendComment(content)' ng-disabled='!content'>Gửi</a>
+						</div>
+						
+					</div>
+				
+			</form>
+		</div>
+	</fieldset>

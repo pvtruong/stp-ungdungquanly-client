@@ -1,0 +1,137 @@
+﻿<rpt-header btnprint="show:false" btnexcel="show:false" btnok="text:'Lấy phiếu thu'"></rpt-header>
+<div class="row">
+	<div class="col-md-3 condition-report"   ng-show='condition_show'>
+		<form name='form' novalidate class='form-horizontal'>
+			<fieldset><legend>Điều kiện lọc</legend>
+			<div class='form-group'>
+				<label>Từ ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Đến ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			
+			<div class='form-group'>
+				<label>Khách hàng</label>
+				<div>
+					<ng-typeahead
+						module="dmkh" fields="ma_kh,ten_kh" field-model="ten_kh" field-label="ma_kh"
+						ng-model='condition.ten_kh' label="condition.ma_kh">
+					</ng-typeahead>
+				</div>
+			</div>
+			
+			<div class='form-group'>
+				<label>Đơn vị cơ sở</label>
+				<div>
+					<ng-selector
+						module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+						options ="item._id as item.ten_dvcs for item in items"
+						ng-model='condition.ma_dvcs' empty-yn='true'>
+					</ng-selector>
+				</div>
+			</div>
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>{{btnok_text}}</a>
+				<a class="btn btn-default" ng-click='print()'  ng-disabled='!data' ng-show='btnprint_show'>In</a>
+				<a class="btn btn-default" ng-click='exportExcel()' ng-show='btnexcel_show'>Xuất excel</a>
+			</div>
+			</fieldset>
+		</form>
+		
+		
+	</div>
+	
+	<div  ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'">
+		<div>
+			<table class='table  table-striped  table-hover table-bordered'>
+				<tr>
+					<th>Số chứng từ</th>
+					<th>Ngày chứng từ</th>
+					<th>Khách hàng</th>
+					<th>Ngoại tệ</th>
+					<th>Tiền thu</th>
+					<th>Đã phân bổ</th>
+					<th>Còn lại</th>
+					<th></th>
+				</tr>
+				<tr ng-repeat='r in data'  style='cursor:pointer' ng-dblclick="viewVoucher(r.ma_ct,r._id)"  ng-class="r.selected?'cbold':'cnormal'">
+					<td   ng-click="select(r)">
+						{{r.so_ct}}
+					</td>
+					<td   ng-click="select(r)">
+						{{r.ngay_ct|date:'dd/MM/yyyy'}}
+					</td>
+					
+					
+					<td>
+						<a href="#dmkh/view/{{r.id_kh}}">{{r.ten_kh}}</a>
+					</td>
+					<td class="text-center"   ng-click="select(r)">
+						{{r.ma_nt}}
+					</td>
+					<td   ng-click="select(r)">
+						{{r.t_tien_nt|number}}
+					</td>
+					<td   ng-click="select(r)">
+						{{r.da_phan_bo_nt|number}}
+					</td>
+					<td   ng-click="select(r)">
+						{{r.con_lai_nt|number}}
+					</td>
+					
+					<td style="width:80px"><a class="btn btn-xs btn-danger" ng-show="invoices.length>0 && r.selected" ng-click="phanbotudong()">Phân bổ tự động</a></td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<h3>Danh sách hóa đơn</h3>
+			<table class='table  table-striped  table-hover table-bordered'>
+				<tr>
+					<th>Số hóa đơn</th>
+					<th>Ngày hóa đơn</th>
+					<th>Ngoại tệ</th>
+					<th>Tiền phải thu</th>
+					<th>Đã thu</th>
+					<th>Còn lại</th>
+					<th>Tiền phân bổ</th>
+					<th>Tiền phân bổ quy đổi</th>
+				</tr>
+				<tr ng-repeat='r in invoices' ng-dblclick="viewVoucher(r.ma_ct,r.id_hd)">
+					<td>
+						{{r.so_hd}}
+					</td>
+					<td>
+						{{r.ngay_hd|date:'dd/MM/yyyy'}}
+					</td>
+					<td class="text-center">
+						{{r.ma_nt_hd}}
+					</td>
+					<td>
+						{{r.tien_hd_nt|number}}
+					</td>
+					<td>
+						{{r.da_thanh_toan_nt|number}}
+					</td>
+					<td>
+						{{r.con_lai_nt|number}}
+					</td>
+					<td>
+						<input type="type" format="number" ng-model='r.tien_nt_alloc' ng-change="tinhthanhtoanqd(r)"/>
+						<a class="btn btn-xs btn-danger" ng-click = "allocate4invoice(r)" ng-show="r.tien_nt_alloc!=r.tien_nt">Lưu</a>
+					</td>
+					<td>
+						<input type="type" format="number" ng-model='r.thanh_toan_qd'/>
+					</td>
+					
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+</div>

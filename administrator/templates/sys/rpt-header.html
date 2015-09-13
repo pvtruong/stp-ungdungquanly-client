@@ -1,0 +1,26 @@
+﻿<nav class="navbar navbar-default"  style="padding-left:10px;padding-right:10px">
+	<div >
+		<div >
+			<div class="navbar-brand">
+				{{title}}
+				<a ng-click="unlike()" ng-if="isLike"  style='color:#F2BF16' title="Bỏ khỏi mục hay sử dụng"><i class="fa fa-star"></i></a>
+				<a ng-click="like()" ng-if="!isLike"  style='color:silver' title="Thêm vào mục hay sử dụng"><i class="fa fa-star"></i></a>
+			</div>
+		</div>
+		<div class="pull-right">
+			
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn1_click()" ng-if='btn1_show' title="{{btn1_title}}">{{btn1_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn2_click()" ng-if='btn2_show' title="{{btn2_title}}">{{btn2_text}}</button>
+			<button type="button" class="btn btn-danger  navbar-btn" ng-click='getData()' ng-disabled='form.$invalid' ng-if='btnok_show'>{{btnok_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click='print()' ng-disabled='!data' ng-if='btnprint_show'>In</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click='exportExcel()' ng-if='btnexcel_show'>Xuất excel</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-if='kbm_yn' ng-click="openKbm()">Khai báo mẫu</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-if='btn3_show'  title="{{btn3_title}}">{{btn3_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-if='btn4_show'  title="{{btn4_title}}">{{btn4_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-if='btn5_show'  title="{{btn5_title}}">{{btn5_text}}</button>
+			<button type="button" class="btn btn-default  navbar-btn" ng-click="condition_show=!condition_show" >{{condition_show?'Điều kiện lọc':'Điều kiện lọc'}}</button>
+			<span ng-transclude></span>
+		</div>
+	</div>
+</nav>
+<div class="alert alert-danger" ng-if="error">{{error}}</div>

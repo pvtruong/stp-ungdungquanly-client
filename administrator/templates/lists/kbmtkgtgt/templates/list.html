@@ -1,0 +1,40 @@
+﻿<stplistheader btn1="text:'Báo cáo',click:function(){$location.url('/tkgtgt');}"></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th  width='50px' class="text-center"><input type="checkbox" ng-model="selectionAll"/></th><th>STT</th><th>STT in</th><th>Mẫu số</th><th>Mẫu in[Tiền]</th><th>Mẫu in[Thuế]</th><th>Chỉ tiêu</th><th>Thuế suất</th><th>Tính chất</th><th>Tài khoản</th><th>Công thức</th></tr>
+		<tr ng-repeat="r in list track by r._id" ng-class="r.bold?'cbold':'cnormal'">
+			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.stt }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.stt_in }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_so }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_in_tien }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_in_thue}}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.chi_tieu }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_thue && r.ma_thue.length==0?'': r.ma_thue.join(",")  }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.ma_tc && r.ma_tc.length==0?'':r.ma_tc.join(",")}}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.tk }}
+			</td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+					{{ r.cong_thuc }}
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

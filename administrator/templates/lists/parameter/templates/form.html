@@ -1,0 +1,35 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên tham số <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<input type="text" name ='name' class="form-control" ng-model='data.name' ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Kiểu <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<select ng-model="data.type" ng-required="true" class="form-control">
+				<option value="S"> Giá trị tĩnh (Số hoặc chữ)</option>
+				<option value="W"> Đọc số</option>
+				<option value="Q"> Truy vấn</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Giá trị <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" name ='value' class="form-control" ng-model='data.value' ng-required="true">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

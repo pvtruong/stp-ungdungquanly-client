@@ -1,0 +1,87 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên khách hàng <span style='color:red' title='Tên khách hàng không được trống'>(*)</span></label>
+		<div class="col-sm-4">
+			<input type="text" name ='ten_kh' class="form-control" ng-model='data.ten_kh'  ng-required="true">
+		</div>
+		<label class="control-label col-sm-2">Mã khách hàng</label>
+		<div class="col-sm-4">
+			<input type="text" name ='ma_kh'  style="text-transform:uppercase" class="form-control" ng-model='data.ma_kh'>
+		</div>
+		
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Nhóm khách hàng</label>
+		<div class="col-sm-4">
+			<ng-selector
+				module="group" fields="_id,group_name" field-model="_id" field-label = "group_name"
+				condition ="group_type:'CUSTOMER'"  ng-model='data.nh_kh' default-values="group_type:'CUSTOMER'">
+			</ng-selector>
+		</div>
+		<label class="control-label col-sm-2">Người phụ trách</label>
+		<div class="col-sm-4">
+			<select ng-model="data.phu_trach" ng-options="r.email as r.name for r in members" class="form-control">
+				
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mã số thuế</label>
+		<div class="col-sm-4">
+			<input type="text" name ='ma_so_thue' class="form-control" ng-model='data.ma_so_thue'>
+		</div>
+		<label class="control-label col-sm-2">Địa chỉ</label>
+		<div class="col-sm-4">
+			<input type="text" name ='dia_chi' class="form-control"  ng-model='data.dia_chi'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Điện thoại</label>
+		<div class="col-sm-4">
+			<input type="text" name ='dien_thoai' class="form-control"  ng-model='data.dien_thoai'>
+		</div>
+		<label class="control-label col-sm-2">Fax</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control"  ng-model='data.fax'>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2">Email</label>
+		<div class="col-sm-4">
+			<input type="email" name ='email' class="form-control"  ng-model='data.email'>
+		</div>
+		<label class="control-label col-sm-2">Website</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control"  ng-model='data.website'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Ghi chú</label>
+		<div class="col-sm-10">
+			<textarea rows="3" class="form-control"  ng-model='data.ghi_chu'>
+			</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Có giá trị với</label>
+		<div class="col-sm-10">
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="0"/> Mọi người</label><br/>
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="1"/> Chỉ với người tạo</label><br/>
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to'  value="2"/> Những người sau</label><br/>
+			<select ng-show='data.visible_to==2' multiple ng-model="data.visible_to_users" ng-options="r.email as r.name for r in members" class="form-control">
+				
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+	
+</form>

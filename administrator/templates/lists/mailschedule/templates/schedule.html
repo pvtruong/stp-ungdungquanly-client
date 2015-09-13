@@ -1,0 +1,57 @@
+<div class="row" ng-hide="isSelected()">
+	<div class="col-sm-8">
+		<div class="input-group">
+			<input type='text' ng-model="condition.txtsearch" ng-keyup="searchKeyup($event)" class="form-control" placeholder="Tìm email..."/>
+			<span class='btn input-group-addon'  ng-click="search()">Tìm</span>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<ng-selector header-text="Chọn một tài khoản"
+			module="mailaccount" fields="_id,username,fullname" field-model="_id" field-label="fullname"
+			options="item._id as (item.username?item.fullname + '<' + item.username +'>':item.fullname) for item in items"
+			ng-model="condition.account_id" label="fullname" ng-change="search()">
+		</ng-selector>
+	</div>
+</div>
+<div>
+	<a class="btn btn-md btn-default" ng-show="isSelected()" ng-click="deleteSelected()">Xóa</a>
+</div>
+<br/>
+<table class ="table table-bordered">
+	<tr>
+		<td style="width:20px">
+			<input type="checkbox" ng-model="isSelectAll" ng-click="selectAll()">
+		</td>
+		<th style="text-align:left">Danh sách email chờ gửi</th>
+	</tr>
+	<tr ng-repeat="r in mailschedules|orderBy:'-date_created'" ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0'>
+		<td style="width:20px">
+			<input type="checkbox" ng-model="r.sel">
+		</td>
+		<td>
+				<div class='row'>
+					<div class="col-sm-3">
+						<small>Thời gian gửi <span ng-show="!r.nextRunAt">{{r.schedule|date:"dd/MM/yyyy HH:mm:ss"}}</span> <span  ng-show="r.nextRunAt">{{r.nextRunAt|date:"dd/MM/yyyy HH:mm:ss"}}</span></small>
+						<div>
+							<span ng-show='r.repeat==0'>Không lặp lại</span>
+							<span ng-show='r.repeat==1'>Lặp lại hàng ngày</span>
+							<span ng-show='r.repeat==2'>Lặp lại hàng tháng</span>
+							<span ng-show='r.repeat==3'>Lặp lại hàng quý</span>
+							<span ng-show='r.repeat==4'>Lặp lại hàng năm</span>
+						</div>
+						<small class="bg-danger" ng-show="r.error">Lỗi: {{r.error}}</small>
+					</div>
+					<div class='col-sm-8' style='cursor:pointer' ng-click='viewmailschedule(r)'>
+						<div ng-class="r.read?'cnormal':'cbold'">{{ r.subject }}</div>
+						<div><small><span  parse-html="r.small_text"></span></small></div>
+					</div>
+					<div ng-show='r.hover==1' class="col-sm-1 text-right">
+						<img src='images/mini-delete.png' class="btn btn-sm btn-default" ng-click='deletemailschedule(r)' title ='Xóa email này'>
+						<img src='images/mini-edit.png' class="btn btn-sm btn-default" ng-click='editmailschedule(r)' title ='Sửa'>
+					</div>
+				</div>
+			
+		</td>
+	</tr>
+</table>
+<ng-page-fx condition = 'query' list ='mailschedules' service="service" limit="{{limit}}" fields="{{fields}}" start="start"></ng-page-fx>

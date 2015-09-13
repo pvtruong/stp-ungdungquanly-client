@@ -1,0 +1,89 @@
+<div class="panel panel-default tasks-widget">
+	<div class="panel-heading row" style="padding:3px">
+		<div class="panel-title col-xs-4">
+			<i class="fa fa-check"></i> Đơn hàng
+		</div>
+		<div class="actions col-xs-8 text-right">
+			<div class="btn-group">
+				<a class="btn btn-default btn-sm" href="#so1/add">
+					 Mới
+				</a>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-default  btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+				Lọc <i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li>
+						<a ng-click="filter({trang_thai:1,status:true})">
+						Đặt hàng </span>
+						</a>
+					</li>
+					<li>
+						<a ng-click="filter({trang_thai:2,status:true})">
+						Xác nhận
+						</a>
+					</li>
+					<li>
+						<a ng-click="filter({trang_thai:3,status:true})">
+						Đang giao hàng
+						</a>
+					</li>
+					<li>
+						<a ng-click="filter({trang_thai:4,status:true})">
+						Đã giao hàng
+						</a>
+					</li>
+					<li>
+						<a ng-click="filter({trang_thai:5,status:true})">
+						Hủy
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<a class="btn btn-default  btn-sm" ng-click="orders=[];filter({})">
+					 <i class="fa fa-refresh"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="task-content">
+			<div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="1">
+				<table class ="table table-striped table-hover table-bordered">
+					<tr><th>Đơn hàng</th><th>Trạng thái</th><th>Khách hàng</th><th>Số lượng</th><th>Tiền hàng</th></tr>
+					<tr ng-repeat="r in orders|orderBy:'-ngay_ct'">
+						<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+							<div>Số: {{ r.so_ct }} - ngày <b>{{ r.date_created|date:'dd/MM/yyyy - lúc HH:mm:ss'}}</b></div>
+						</td>
+						<td   style='cursor:pointer;width:100px' ng-class="'so1-' + r.trang_thai" ng-click='editOrder(r._id)'>
+							<div>{{ r.ten_trang_thai }}</div>
+						</td>
+						<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+							<div>{{r.ten_kh}}</div>
+							<div style="font-size:12px"><i>{{r.ma_kh}}</i></div>
+						</td>
+						
+						<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+							{{ r.t_sl|number:0 }}
+						</td>
+						
+						<td   style='cursor:pointer' ng-click='editOrder(r._id)'>
+							{{ r.t_tien|number:0 }}
+						</td>
+						
+						
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="task-footer">
+			<div class="btn-arrow-link pull-right">
+					<a href="#so1">Xem tất cả các đơn hàng</a>
+					<i class="icon-arrow-right"></i>
+				</div>
+		</div>
+	</div>
+</div>

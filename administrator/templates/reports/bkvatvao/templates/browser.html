@@ -1,0 +1,110 @@
+<rpt-header></rpt-header>
+<div class='row'>
+	<div class="col-md-3 condition-report"    ng-show='condition_show'>
+		<form name='form' novalidate class='form-horizontal'>
+			<fieldset><legend>Điều kiện lọc</legend>
+			<div class='form-group'>
+				<label>Từ ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			
+			</div>
+			<div class='form-group'>
+				
+				
+				<label>Đến ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Tùy chọn sắp xếp</label>
+				<div>
+					<select class='form-control' ng-model='condition.sort' ng-options ='s.ma as s.text for s in sorts'>
+					
+					</select>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Đơn vị cơ sở</label>
+				<div>
+					<ng-selector
+						module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+						options ="item._id as item.ten_dvcs for item in items"
+						ng-model='condition.ma_dvcs' empty-yn='true'>
+					</ng-selector>
+				</div>
+			</div>
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>Xem</a>
+				<a class="btn btn-default" ng-click='print()'  ng-disabled='!data' ng-show='btnprint_show'>In</a>
+				<a class="btn btn-default" ng-click='exportExcel()' ng-show='btnexcel_show'>Xuất excel</a>
+			</div>
+			</fieldset>
+		</form>
+		
+		
+	</div>
+	<div ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"   id ='exportable'>
+		<table class='table  table-bordered  table-hover'>
+			<tr>
+				<th rowspan='2' class="text-center">STT</th>
+				<th colspan='2' class="text-center">Hoá đơn, chứng từ, biên lai nộp thuế</th>
+				<th rowspan='2' class="text-center">Tên người bán</th>
+				<th rowspan='2' class="text-center">Mã số thuế người bán</th>
+				<th rowspan='2' class="text-center">Mặt hàng</th>
+				<th rowspan='2' class="text-center">Doanh số mua chưa có thuế</th>
+				<th rowspan='2' class="text-center">Thuế suất</th>
+				<th rowspan='2' class="text-center">Thuế GTGT</th>
+				<th rowspan='2' class="text-center">Ghi chú</th>
+			</tr>
+			<tr>
+				
+				<th class="text-center">Số hóa đơn</th>
+				<th class="text-center">Ngày, tháng, năm phát hành</th>
+				
+				
+			</tr>
+			<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ct)' ng-class="r.bold?'cbold':'cnormal'">
+				
+				<td ng-show="r.sysorder!=1  ">{{r.stt}}</td>
+				<td  ng-show="r.sysorder==1  " colspan="9">
+					{{r.stt}}
+				</td>
+				<td ng-show="r.sysorder!=1  ">
+					{{r.so_hd}}
+				</td>
+				<td ng-show="r.sysorder!=1  " class="text-right">
+					{{r.ngay_hd|date:'dd/MM/yyyy'}}
+				</td>
+				<td ng-show="r.sysorder!=1  ">
+					{{r.ten_kh}}
+				</td>
+				<td ng-show="r.sysorder!=1  ">
+					{{r.ma_so_thue}}
+				</td>
+				<td  ng-show="r.sysorder==1  " colspan="13">
+					{{r.ten_vt}}
+				</td>
+				<td  ng-show="r.sysorder!=1  ">
+					{{r.ten_vt}}
+				</td>
+				<td ng-show="r.sysorder!=1  "  class="text-right">
+					{{r.t_tien_nt|number:0}}
+				</td>
+				<td ng-show="r.sysorder!=1  " class="text-right">
+					{{r.thue_suat|number:0}}
+				</td>
+				<td ng-show="r.sysorder!=1  " class="text-right">
+					{{r.t_thue_nt|number:0}}
+				</td>
+				<td ng-show="r.sysorder!=1  ">
+					
+				</td>
+				
+			</tr>
+		</table>
+	</div>
+
+</div>

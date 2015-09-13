@@ -1,0 +1,82 @@
+﻿<rpt-header></rpt-header>
+<div class="row">
+	<div class="col-md-3 condition-report"    ng-show='condition_show'>
+		<form name='form' novalidate class='form-horizontal'>
+			<fieldset><legend>Điều kiện lọc</legend>
+			<div class='form-group'>
+				<label >Từ ngày</label>
+				<div >
+					<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label >Đến ngày</label>
+				<div >
+					<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label>Nhân viên</label>
+				<select ng-model="data.user_created" ng-options="r.email as r.name for r in members" class="form-control">
+					<option value="">Tất cả</option>
+				</select>
+			</div>
+			<div class='form-group'>
+				<label >Đơn vị cơ sở</label>
+				<div>
+					<ng-selector
+						module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+						options ="item._id as item.ten_dvcs for item in items"
+						ng-model='condition.ma_dvcs' empty-yn='true'>
+					</ng-selector>
+				</div>
+			</div>
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>Xem</a>
+				<a class="btn btn-default" ng-click='print()'  ng-disabled='!data' ng-show='btnprint_show'>In</a>
+				<a class="btn btn-default" ng-click='exportExcel()' ng-show='btnexcel_show'>Xuất excel</a>
+			</div>
+			</fieldset>
+		</form>
+	</div>
+	<div   ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"  id ='exportable'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Mã nhân viên</th>
+				<th>Tên nhân viên</th>
+				<th>Số lượng</th>
+				<th>Tiền hàng</th>
+				<th>Chiết khấu theo sản phẩm</th>
+				<th>Chiết khấu theo hóa đơn</th>
+				<th>Doanh thu</th>
+			</tr>
+			<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='drilldown(r)' ng-class="r.bold?'cbold':'cnormal'">
+				
+				<td>
+					{{r.user_created}}
+				</td>
+				<td>
+					{{r.name}}
+				</td>
+
+				<td>
+					{{r.t_so_luong|number:2}}
+				</td>
+				<td>
+					{{r.t_tien_hang|number:0}}
+				</td>
+				<td>
+					{{r.t_tien_ck|number:0}}
+				</td>
+				<td>
+					{{r.tien_ck_hd|number:0}}
+				</td>
+				<td>
+					{{r.t_doanh_thu|number:0}}
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

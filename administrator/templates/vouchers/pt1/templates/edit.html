@@ -1,0 +1,98 @@
+<!--master form-->
+<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Mã giao dịch <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<select ng-model="data.ma_gd" class="form-control">
+					<option value="1">Phiếu thu tiền mặt</option>
+					<option value="2">Báo có (Thu chuyển khoản)</option>
+				</select>
+			</div>
+			<label class="control-label col-sm-2">Nhân viên</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmnv' fields='ma_nv,ten_nv' field-model='ten_nv' field-label='ma_nv'
+					ng-model='data.ten_nv' label='data.ma_nv'>
+				</ng-typeahead>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số chứng từ <span class='required' title="Số chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày chứng từ <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Khách hàng <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkh' fields='ma_kh,ten_kh' field-model='ten_kh' field-label='ma_kh'
+					ng-model='data.ten_kh' label='data.ma_kh' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<label class="control-label col-sm-2">Người giao dịch</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" ng-model='data.ong_ba'/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Tài khoản nợ <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-2">
+				<ng-typeahead 
+					module='dmtk' fields='tk,ten_tk' field-model='tk' field-label='ten_tk'
+					ng-model='data.tk_no' label='data.ten_tk_no' ng-required='true' condition="loai_tk:1">
+				</ng-typeahead>
+			</div>
+			<div  class="col-sm-2 field-label">{{data.ten_tk_no}}</div>
+			<label class="control-label col-sm-2">Ngoại tệ <span class='required' title="Ngoại tệ không được trống">(*)</span></label>
+			<div class="col-sm-2">
+				<ng-selector 
+					module='dmnt' fields ='ma_nt,ten_nt,ty_gia' field-model='ma_nt' field-label='ten_nt'  on-select ="data.ty_gia = $item.ty_gia"
+					ng-model="data.ma_nt" ng-required="true">
+				</ng-selector>
+			</div>
+			<div class="col-sm-2">
+				<input type="text" ng-data-loaded='isDataLoaded'  ng-disabled="data.ma_nt=='VND' || !isDataLoaded" format="number" name ='ty_gia' class="form-control" placeholder='Nhập tỷ giá' ng-model='data.ty_gia' ng-required="true"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Diễn giải</label>
+			<div class="col-sm-4">
+				<input type="text"  name ='dien_giai' class="form-control" placeholder='Nhập diễn giải' ng-model='data.dien_giai'/>
+			</div>
+			<label class="control-label col-sm-2">Đơn vị cơ sở <span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector
+					module='dvcs' fields ='_id,ten_dvcs' field-model='_id' field-label='ten_dvcs'
+					options ="item._id as item.ten_dvcs for item in items" 
+					ng-model="data.ma_dvcs" ng-required="true">
+				</ng-selector>
+			</div>
+		</div>
+		<div class="form-group">
+			<div  class="col-sm-12">
+				<!--table detail-->
+				<tabset>
+					<tab heading='Thu theo khách hàng' active ='select_thu_kh' select ="select('thu_kh')">
+						<pt1-detail-table ng-master-data='data'></pt1-detail-table>
+					</tab>
+					<tab heading='Thu theo hóa đơn' active ='select_thu_hd' select ="select('thu_hd')">
+						<ng-tdttno ng-data='data.tdttnos' ng-master-data='data'></ng-tdttno>
+					</tab>
+				</tabset>
+			</div>
+		</div>
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+

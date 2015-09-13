@@ -1,0 +1,54 @@
+﻿<table class ="table table-bordered">
+	<tr>
+		<th style='text-align:left'>
+			Quản lý tệp dữ liệu
+		</th>
+		<th style="width:100px">
+			<a class="btn btn-default btn-sm" ng-click="addfile()">Thêm file</a>
+		</th>
+	</tr>
+	<tr ng-repeat="r in files"  ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0'>
+		<td colspan='2'>
+			<div class='col-sm-7'>
+				<div ng-show="r.file.extension!='png' && r.file.extension!='jpg' && r.file.extension!='doc' && r.file.extension!='docx' && r.file.extension!='xls' && r.file.extension!='xlsx' && r.file.extension!='pdf'">
+					<i class="fa fa-file-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='doc' || r.file.extension=='docx'" target="_blank">
+					<i class="fa fa-file-word-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='pdf'" target="_blank">
+					<i class="fa fa-file-pdf-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='xlsx' || r.file.extension=='xls'">
+					<i class="fa fa-file-excel-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+				<div ng-show="r.file.extension=='png' || r.file.extension=='jpg'">
+					<i class="fa fa-file-photo-o"></i>
+					<a href='{{server_url}}/api/{{id_app}}/file/download/{{r._id}}?access_token={{token}}' target="_blank">
+						 {{ r.file.originalname }}
+					</a>
+				</div>
+			</div>
+		
+			<div class='col-sm-5 text-right'>
+				<small><a ng-click="openProfile(r.user_created)">{{ r.user_created }}</a> {{r.date_created|date:"dd/MM/yyyy HH:mm:ss"}}</small>
+				<span ng-show='r.hover==1'>
+					<img src='images/mini-delete.png' ng-click='deletefile(r)' title ='Xóa file này'>
+				</span>
+			</div>
+		</td>
+		
+	</tr>
+</table>

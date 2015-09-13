@@ -1,0 +1,29 @@
+﻿<div class="container-fluid">
+	<h3><a href='#notification'>{{title}}</a></h3>
+	<div>
+		<h4><a ng-click="openProfile(data.email_sender)">{{data.name_sender}}</a>: {{data.title}}
+			<small> lúc {{data.date_created|date:'hh:mm dd/MM/yy'}}</small>
+		</h4>
+		<p parse-html="data.content"></p>
+		
+	</div>
+	<fieldset>
+		<legend>Thông báo khác</legend>
+		<div ng-repeat="notify in notifications|orderBy:'-date_created'">
+			<div class="task-title" ng-click="viewNotification(notify)"  ng-swipe-right ="markRead(notify)"  ng-swipe-left ="delete(notify)" style="cursor:pointer">
+				<div class="media">
+				  <div class="pull-left">
+						<img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}/api/avatar?email={{notify.user_created}}&access_token={{token}}' title ="{{notify.user_created}}"/>
+				  </div>
+				  <div class="media-body">
+						<b> {{notify.title}}</b> <small ng-show="notify.is_new" style="color:white;background-color:red"> mới </small>
+						<div><small parse-text="notify.content" limit="50"></small></div>
+						<div><small>{{notify.date_created|date:'HH:mm dd/MM/yy'}}</small></div>
+				  </div>
+				</div>	
+			</div>
+		</div>
+	</fieldset>
+</div>
+
+

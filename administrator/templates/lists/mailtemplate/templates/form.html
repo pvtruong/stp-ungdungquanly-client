@@ -1,0 +1,52 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Tên <span class="required">(*)</span></label>
+					<input type="text"  class="form-control" placeholder='Nhập tên...' ng-model='data.name' ng-required='true'>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+				<label>Nhóm</label>
+					<ng-selector
+						module="group" fields="_id,group_name" field-model="_id" field-label = "group_name"
+						condition ="group_type:'MAILTEMPLATE'"  ng-model='data.nhom' default-values="group_type:'MAILTEMPLATE'">
+					</ng-selector>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Tiêu đề <span class="required">(*)</span></label>
+					<input type="text"  class="form-control" placeholder='Nhập tiêu đề...' ng-model='data.subject' ng-required='true'>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Nội dung <span class="required">(*)</span></label>
+					<div text-angular ta-toolbar="[['bold', 'italics', 'underline',  'ul', 'ol'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+      ['html', 'insertImage','insertLink', 'insertVideo'],['insertName'],['insertAddress']]" ng-model="data.mail.html"></div>
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label>Có giá trị với</label>
+					<div>
+						<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="0"/> Mọi người</label><br/>
+						<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="1"/> Chỉ với người tạo</label><br/>
+						<label><input type='radio' ng-model='data.visible_to' name='visible_to'  value="2"/> Những người sau</label><br/>
+						<select ng-show='data.visible_to==2' multiple ng-model="data.visible_to_users" ng-options="r.email as r.name for r in members" class="form-control">
+				
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+</form>

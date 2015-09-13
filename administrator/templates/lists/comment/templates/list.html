@@ -1,0 +1,28 @@
+<stplistheader btndelete="show:false" btnadd="text:'Chủ đề mới'"></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr ng-repeat="r in list track by r._id">
+			<td>
+				<div class="media">
+				  <div class="pull-left">
+					<a title ="{{r.user_created}}">
+					  <img class="media-object" style='width:60px;height:60px' ng-src='{{server_url}}/api/avatar?email={{r.user_created}}&access_token={{token}}' ng-click="openProfile(r.user_created)">
+					</a>
+				  </div>
+				  <div class="media-body" style='cursor:pointer' ng-click='view(r._id)'>
+					<h4 class="media-heading">{{r.title}}</h4>
+					<div parse-text='r.content' limit='50'></div>
+					<small> lúc {{r.date_created|date:'HH:mm dd/MM/yyyy'}} bởi {{r.user_created}}</small>
+				  </div>
+				</div>
+			</td>
+			<td style='width:80px'>
+				<div class='btn-group' style='width:80px'>
+					<a class='btn btn-success btn-xs' ng-click='edit(r._id)' ng-show='r.user_created==user.email || user.admin'>Sửa</a>
+					<a class='btn btn-danger btn-xs' ng-click='delete(r._id)' ng-show='r.user_created==user.email || user.admin'>Xóa</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

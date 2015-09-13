@@ -1,0 +1,18 @@
+﻿<stplistheader></stplistheader>
+<div class="table-responsive">
+	<table class ="table table-striped table-bordered">
+		<tr><th class="text-center" width="50px"><input type="checkbox" ng-model="selectionAll"></th><th>Quyển chứng từ</th><th>Mã chứng từ</th><th>Trường</th><th>Tiền tố</th><th>Hậu tố</th><th>Số hiện tại</th></tr>
+		<tr ng-repeat="r in list track by r._id">
+			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
+			<td   style='cursor:pointer' ng-click='edit(r._id)'>
+				<div><b>{{ r.ten_qct }}</b></div>
+			</td>
+			<td>{{ r.ma_ct}}</td>
+			<td>{{ r.field}}</td>
+			<td>{{ r.tien_to}}</td>
+			<td>{{ r.hau_to}}</td>
+			<td>{{ r.so_ht}}</td>
+		</tr>
+	</table>
+</div>
+<ng-page></ng-page>

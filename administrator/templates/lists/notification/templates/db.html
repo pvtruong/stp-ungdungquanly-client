@@ -1,0 +1,62 @@
+<div class="panel panel-default  tasks-widget">
+	<div class="panel-heading row" style="padding:3px">
+		<div class="panel-title col-xs-8">
+			<i class="fa fa-bell"></i> Thông báo
+		</div>
+		<div class="actions col-xs-4 text-right">
+			<div class="btn-group">
+				<a class="btn btn-default btn-sm" ng-click="notifies=[];filter({})">
+					 <i class="fa fa-refresh"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="task-content">
+			<div class="scroll-body  task-db" slimscroll="{slimscrollOption: 10}" data-always-visible="1" data-rail-visible1="1">
+				<div ng-if="!notifications || notifications.length==0">Không có thông báo mới nào</div>
+				<ul class="task-list">
+					<li ng-repeat="notify in notifications|orderBy:'-date_created'"  class="animate-repeat">
+						<div class="task-title" ng-click="viewNotification(notify)"  ng-swipe-right ="markRead(notify)"  ng-swipe-left ="delete(notify)" style="cursor:pointer">
+								<div class="media">
+								  <div class="pull-left">
+										<img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}/api/avatar?email={{notify.user_created}}&access_token={{token}}' title ="{{notify.user_created}}"/>
+								  </div>
+								  <div class="media-body">
+										<b> {{notify.title}}</b> <small ng-if="notify.is_new" style="color:white;background-color:red"> mới </small>
+										<div parse-text="notify.content" limit="50"></div>
+										<div><small>{{notify.date_created|date:'HH:mm dd/MM/yy'}}</small></div>
+								  </div>
+								</div>	
+								
+								
+								
+								
+						</div>
+						<div class="task-config">
+							<div class="task-config-btn btn-group">
+								<a class="btn btn-xs default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+								<i class="fa fa-cog"></i><i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu pull-right">
+									<li>
+										<a ng-click="markRead(notify)">Đánh dấu đã đọc </a>
+									</li>
+									<li>
+										<a ng-click="delete(notify)">Xóa </a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>		
+				</ul>
+			</div>
+		</div>
+		<div class="task-footer">
+			<div class="btn-arrow-link pull-right">
+					<a href="#notification">Xem tất cả các thông báo</a>
+					<i class="icon-arrow-right"></i>
+				</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+﻿
+<nav class="navbar navbar-default" style="padding-right:10px">
+	<div>
+		<div>
+			<div class="navbar-brand">
+				{{title}} <span ng-show="sub_title"> : {{sub_title}}</span>
+				<a ng-click="unlike()" ng-if="isLike"  style='color:#F2BF16' title="Bỏ khỏi mục hay sử dụng"><i class="fa fa-star"></i></a>
+				<a ng-click="like()" ng-if="!isLike"  style='color:silver' title="Thêm vào mục hay sử dụng"><i class="fa fa-star"></i></a>
+			</div>
+		</div>
+		<div class="pull-right">
+			<a  class="btn btn-default  navbar-btn" ng-click="btn1_click()" ng-if='btn1_show'>{{btn1_text}}</a>
+			<a  class="btn btn-default  navbar-btn" ng-click="btn2_click()" ng-if='btn2_show'>{{btn2_text}}</a>
+			
+			<a  class="btn btn-danger  navbar-btn" ng-click="add()" title ="Ctrl+M">Mới</a>
+			<a  class="btn btn-default  navbar-btn" ng-disabled="isUnSelected()" ng-click ="delete()"  title ="Ctrl+D">Xóa</a>
+			
+			<a  class="btn btn-default  navbar-btn" ng-click="find()">Tìm</a>
+			
+			
+			<span class="btn-group">
+			  <a class="btn btn-default  dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-expanded="true">
+				In
+				<span class="caret"></span>
+			  </a>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<li role="presentation" ng-repeat='rpt in rpts'>
+					<a role="menuitem" tabindex="-1" ng-click="print(rpt._id)" ng-show='isUnSelected()==false'>{{rpt.ten_mau_in}}</a>
+					<span class="dropdown-header" ng-show='isUnSelected()'>{{rpt.ten_mau_in}}</span>
+				</li>
+				<li role="presentation" class="dropdown-header" ng-show='!rpts || rpts.length==0'>Chưa có mẫu in</li>
+				<li role="presentation" class="divider"></li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" ng-click="rptManagement()">Khai báo mẫu in</a>
+				</li>
+			  </ul>
+			</span>
+			
+			
+			<a  class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-if='btn3_show'>{{btn3_text}}</a>
+			<a  class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-if='btn4_show'>{{btn4_text}}</a>
+			<a  class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-if='btn5_show'>{{btn5_text}}</a>
+			<a  class="btn btn-default  navbar-btn" ng-click="options()" ng-if='options_show'>{{options_text}}</a>
+			<span ng-transclude></span>
+		</div>
+	</div>
+</nav>

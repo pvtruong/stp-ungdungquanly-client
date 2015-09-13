@@ -1,0 +1,86 @@
+﻿<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<h5 class='text-center'>Năm {{condition.nam}}</h5>
+<div>
+	<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th rowspan="3">STT</th>
+				<th colspan='7'>Ghi tăng tài sản</th>
+				<th colspan='3'>Khấu hao tài sản</th>
+				<th  colspan='3'>Ghi giảm tài sản</th>
+				
+			</tr>
+			<tr>
+				<th colspan="2">Chứng từ</th>
+				<th rowspan="2">Tên, đặc điểm, ký hiệu</th>
+				<th rowspan="2">Nước sản xuất</th>
+				<th rowspan="2">Tháng năm đưa vào sử dụng</th>
+				<th rowspan="2">Số hiệu</th>
+				<th rowspan="2">Nguyên giá</th>
+				<th colspan="2">Khấu hao</th>
+				<th rowspan="2">Khấu hao đã tính đến thời điểm giảm tài sản</th>
+				<th colspan="2">Chứng từ</th>
+				<th rowspan="2">Lý do giảm</th>
+			</tr>
+			<tr>
+				<th>Số</th>
+				<th>Ngày</th>
+				<th>Tỷ lệ(%) khấu hao</th>
+				<th>Mức khấu hao</th>
+				<th>Số</th>
+				<th>Ngày</th>
+			</tr>
+			<tr ng-repeat='r in data' style='cursor:pointer' ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					<div>{{r.stt}}</div>
+				</td>
+				<td>
+					{{r.so_ct}}
+				</td>
+				<td>
+					{{r.ngay_tang|date:'dd/MM/yyyy'}}
+				</td>
+				<td>
+					{{r.ten_ts}}
+				</td>
+				<td>
+					{{r.nuoc_san_xuat}}
+				</td>
+				<td>
+					{{r.ngay_su_dung|date:'dd/MM/yyyy'}}
+				</td>
+				<td>
+					{{r.so_hieu}}
+				</td>
+				<td>
+					{{r.nguyen_gia|number:0}}
+				</td>
+				<td>
+					{{r.ty_le_kh}}
+				</td>
+				<td>
+					{{r.muc_kh|number:0}}
+				</td>
+				<td>
+					{{r.gia_tri_kh_luy_ke|number:0}}
+				</td>
+				<td>
+					{{r.so_ct_giam}}
+				</td>
+				<td>
+					{{r.ngay_giam|date:'dd/MM/yyyy'}}
+				</td>
+				<td>
+					{{r.ly_do_giam}}
+				</td>
+			</tr>
+		</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<span class='col-xs-12'>
+		<div style='float:left;width:30%;text-align:center'>Kế toán trưởng</div>
+		<div style='float:right;width:30%;text-align:center'>Người lập</div>
+	</span>
+</div>

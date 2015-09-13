@@ -1,0 +1,82 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số chứng từ <span class='required' title="Số chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày chứng từ <span class='required' title="Ngày chứng từ không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Kỳ <span class='required'>(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" format="number" class="form-control" ng-model='data.ky' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Năm <span class='required'>(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" format="number" class="form-control" ng-model='data.nam' ng-required="true"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số thẻ tài sản <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead module="qts" fiedls="so_the_ts,ten_ts,_id" field-model ="so_the_ts" field-label="_id" group ="vouchers"
+					ng-model="data.so_the_ts" ng-required="true" label="data.id_ts">
+				</ng-typeahead>
+			</div>
+			<label class="control-label col-sm-2">Kiểu điều chỉnh <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-selector 
+					module='dmtanggiamts' fields='ma_tang_giam_ts,ten_tang_giam_ts' field-model='ma_tang_giam_ts' field-label='ten_tang_giam_ts'
+					ng-model='data.ma_tang_giam_ts' ng-required='true'>
+				</ng-selector>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Nguồn vốn điều chỉnh <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmnguonvon' field-model='ten_nguon_von' field-label='ma_nguon_von' fields='ma_nguon_von,ten_nguon_von'
+					ng-model='data.ten_nguon_von'  label='data.ma_nguon_von' ng-required='true' >
+				</ng-typeahead>
+			</div>
+			<label class="control-label col-sm-2">Nguyên giá<span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="data.nguyen_gia"  ng-required="true"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			
+			
+			<label class="control-label col-sm-2">Giá trị đã khấu hao <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="data.gia_tri_da_kh"  ng-required="true"/>
+			</div>
+			<label class="control-label col-sm-2">Giá trị còn lại<span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="data.gia_tri_con_lai"  ng-required="true"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số kỳ khấu hao <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" format="number"  class="form-control" ng-model='data.so_ky_kh' ng-required="true"/>
+			</div>
+			
+			<label class="control-label col-sm-2">Giá trị khấu hao/kỳ <span class='required' title="Không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" format="number" ng-model="data.gia_tri_kh_ky"  ng-required="true"/>
+			</div>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>

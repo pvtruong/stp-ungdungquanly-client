@@ -1,0 +1,49 @@
+<div class="row" ng-hide="isSelected()">
+	<div class="col-sm-6">
+		<div class="input-group">
+			<input type='text' ng-model="condition.txtsearch" ng-keyup="searchKeyup($event)" class="form-control" placeholder="Tìm email..."/>
+			<span class='btn input-group-addon'  ng-click="search()">Tìm</span>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<ng-selector header-text="Chọn một nhóm"
+			module="group" fields="_id,group_name" field-model="_id" field-label = "group_name"
+			condition ="group_type:'MAILTEMPLATE'"  ng-model='condition.nhom' default-values="group_type:'MAILTEMPLATE'">
+			ng-change="search()">
+		</ng-selector>
+	</div>
+	<div class="col-sm-2">
+		<a class="btn btn-md btn-primary" ng-click="add()">Soạn email mẫu</a>
+	</div>
+</div>
+<div>
+	<a class="btn btn-md btn-default" ng-show="isSelected()" ng-click="deleteSelected()">Xóa</a>
+</div>
+<br/>
+<table class ="table table-bordered">
+	<tr>
+		<td style="width:20px">
+			<input type="checkbox" ng-model="isSelectAll" ng-click="selectAll()">
+		</td>
+		<th style="text-align:left">Danh sách email mẫu</th>
+	</tr>
+	<tr ng-repeat="r in mailtemplates|orderBy:'-date_created'" ng-mouseover='r.hover=1' ng-mouseleave='r.hover=0'>
+		<td style="width:20px">
+			<input type="checkbox" ng-model="r.sel">
+		</td>
+		<td>
+				<div class='row'>
+					<div style="cursor:pointer" class="col-sm-11" ng-click='editmailtemplate(r)'>
+						<div><b>{{r.name}}</b></div>
+						<small>{{ r.subject }}</small>
+					</div>
+					<div ng-show='r.hover==1' class="col-sm-1 text-right">
+						<img src='images/mini-edit.png' class="btn btn-sm btn-default" ng-click='editmailtemplate(r)' title ='Xóa email này'>
+						<img src='images/mini-delete.png' class="btn btn-sm btn-default" ng-click='deletemailtemplate(r)' title ='Xóa email này'>
+					</div>
+				</div>
+			
+		</td>
+	</tr>
+</table>
+<ng-page-fx condition = 'query' list ='mailtemplates' service="service" limit="{{limit}}" fields="{{fields}}" start="start"></ng-page-fx>

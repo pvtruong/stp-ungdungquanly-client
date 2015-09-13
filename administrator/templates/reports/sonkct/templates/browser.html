@@ -1,0 +1,92 @@
+<rpt-header></rpt-header>
+<div class="row">
+	<form name='form' novalidate class='form-horizontal col-sm-3 condition-report' ng-show="condition_show">
+		<fieldset><legend>Điều kiện lọc</legend>
+			<div class='form-group'>
+				<label>Từ ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+				</div>
+				
+				
+			</div>
+			<div class='form-group'>
+				
+				<label>Đến ngày <span class="required">*</span></label>
+				<div>
+					<ng-datepicker ng-model='condition.den_ngay' ng-required='true'></ng-datepicker>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Tài khoản nợ</label>
+				<div>
+					<input type="text" ng-model="condition.tk_no" class="form-control">
+				</div>
+			</div>
+			<div class='form-group'>
+				<label>Tài khoản có <span class="required">*</span></label>
+				<div>
+					<input type="text" ng-model="condition.tk_co" class="form-control" ng-required="true">
+				</div>
+			</div>
+			
+			<div class='form-group'>
+				<label>Đơn vị cơ sở</label>
+				<div>
+					 <ng-selector
+						module="dvcs" fields ="_id,ten_dvcs" field-model="_id" field-label="ten_dvcs"
+						options ="item._id as item.ten_dvcs for item in items"
+						ng-model='condition.ma_dvcs' empty-yn='true'>
+					</ng-selector>
+				</div>
+			
+			</div>
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid' ng-show='btnok_show'>Xem</a>
+				<a class="btn btn-default" ng-click='print()'  ng-disabled='!data' ng-show='btnprint_show'>In</a>
+				<a class="btn btn-default" ng-click='exportExcel()' ng-show='btnexcel_show'>Xuất excel</a>
+			</div>
+		</fieldset>
+	</form>
+	<div ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"  id ='exportable'>
+		<table class='table  table-striped  table-hover table-bordered'>
+			<tr>
+				<th>Ngày chứng từ</th>
+				<th>Số chứng từ</th>
+				<th>Diễn giải</th>
+				<th>Tài khoản nợ</th>
+				<th>Tài khoản có</th>
+				<th>Tiền</th>
+				<th>Mã khách hàng</th>
+				<th>Tên khách hàng</th>
+			</tr>
+			<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ct)'  ng-class="r.bold?'cbold':'cnormal'">
+				<td>
+					{{r.ngay_ct|date:'dd/MM/yyyy'}}
+				</td>
+				<td>
+					{{r.so_ct}}
+				</td>
+				<td>
+					{{r.dien_giai}}
+				</td>
+				<td>
+					{{r.tk_no}}
+				</td>
+				<td>
+					{{r.tk_co}}
+				</td>
+				<td>
+					{{r.tien|number}}
+				</td>
+				<td>
+					{{r.ma_kh_no}}
+				</td>
+				<td>
+					{{r.ten_kh_no}}
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+</div>

@@ -1,0 +1,1 @@
+var versioninfoModule = new baseInput('versioninfo','versioninfo',["os","app","title"],'Quản lý phiên bản các chương trình');

@@ -1,0 +1,82 @@
+﻿<div class="hor-menu hor-menu-light hidden-sm hidden-xs">
+	<ul class="nav navbar-nav">
+		<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+		<li ng-class="menuActive=='DASHBOARD'?'classic-menu-dropdown active':'classic-menu-dropdown'" ng-if="app_info">
+			<a ng-click="openPath('dashboard','DASHBOARD')">
+			Bảng điều khiển <span class="selected" ng-if="menuActive=='DASHBOARD'"></span>
+			</a>
+		</li>
+		<li ng-class="menuActive=='CRM'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && commands.crm.visible">
+			<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+			CRM  <span class="selected" ng-if="menuActive=='CRM'"></span> <i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu pull-left">
+				<li ng-repeat='cmd in commands.crm.input'  ng-if="cmd.visible">
+					<a ng-click="openPath(cmd.path,'CRM')"><!--<i class="fa fa-angle-right"></i>--> {{cmd.header}} <span class="bg-danger" ng-if="cmd.path=='dxd'">Đang xây dựng</span></a>
+				</li>
+			</ul>
+		</li>
+		<li ng-class="menuActive=='SALE'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && commands.sale.visible">
+			<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+			Bán hàng  <span class="selected" ng-if="menuActive=='SALE'"></span> <i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu pull-left">
+				<li ng-repeat='cmd in commands.sale.input'  ng-if="cmd.visible">
+					<a ng-click="openPath(cmd.path,'SALE')"><!--<i class="fa fa-angle-right"></i>--> {{cmd.header}} <span class="bg-danger" ng-if="cmd.path=='dxd'">Đang xây dựng</span></a>
+				</li>
+			</ul>
+		</li>
+		<!--accounting-->
+		<li ng-class="menuActive=='ACC'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && acc_visible">
+			<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+			Kế toán <span class="selected" ng-if="menuActive=='ACC'"></span><i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu pull-left">
+				
+				<li class="dropdown-submenu" ng-repeat="module in commands.acc"  ng-if="module.visible">
+					<a href="javascript:;"> {{module.module}} </a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-submenu"  ng-repeat="group in module.items"  ng-if="group.visible">
+							<a href="javascript:;">
+							{{group.group}} </a>
+							<ul class="dropdown-menu">
+								<li ng-repeat="item in group.items"  ng-if="item.visible">
+									<a ng-click="openPath(item.path,'ACC')">
+									{{item.header}}  <span class="bg-danger" ng-if="item.path=='dxd'">Đang xây dựng</span></a>
+								</li>
+							
+							</ul>
+						</li>
+		
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<!--report-->
+		<li ng-class="menuActive=='RPT'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && report_visible">
+			<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+			Báo cáo <span class="selected" ng-if="menuActive=='RPT'"></span><i class="fa fa-angle-down"></i>
+			</a>
+			<ul class="dropdown-menu pull-left">
+				
+				<li class="dropdown-submenu" ng-repeat="module in commands.report"  ng-if="module.visible">
+					<a href="javascript:;"> {{module.module}} </a>
+					<ul class="dropdown-menu">
+						<li ng-repeat="item in module.items"  ng-if="item.visible">
+							<a ng-click="openPath(item.path,'RPT')">
+							{{item.header}}  <span class="bg-danger" ng-if="item.path=='dxd'">Đang xây dựng</span></a>
+						</li>
+		
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li ng-class="menuActive=='DL'?'mega-menu-dropdown active':'mega-menu-dropdown'">
+			<a ng-click="openPath('download','DL')">Tải về <span class="selected" ng-if="menuActive=='DL'"></span></a>
+		</li>
+		<li ng-class="menuActive=='FM'?'mega-menu-dropdown active':'mega-menu-dropdown'" ng-if="user">
+			<a ng-click="openPath('comment','FM')">Góp ý <span class="selected" ng-if="menuActive=='FM'"></span></a>
+		</li>
+		
+	</ul>
+</div>

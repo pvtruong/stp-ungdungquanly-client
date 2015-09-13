@@ -1,0 +1,7 @@
+﻿<table>
+	<tr ng-repeat="row in history|orderBy:'-date_created'">
+		<td>
+			{{row.action_text}} bởi <a ng-click='openProfile(row.user_created)'>{{row.user_created}}</a> lúc {{row.date_created|date:'HH:mm'}} ngày {{row.date_created|date:'dd/MM/yyyy'}}
+		</td>
+	</tr>
+</table>

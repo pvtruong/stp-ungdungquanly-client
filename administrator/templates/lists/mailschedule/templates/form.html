@@ -1,0 +1,64 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input save-text="Hẹn lịch gửi"></header-form-input>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="form-group" ng-show="data.use_template==undefined || data.use_template==true">
+				<div class="col-md-12">
+					<label>Email mẫu</label>
+					<ng-selector 
+						header-text="Chọn một email mẫu"
+						module="mailtemplate" fields="_id,name,subject,mail" field-model="_id" field-label="name"
+						ng-model="data.id_template" label="data.name" ng-change="selectTemplate($item)">
+					</ng-selector>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Tiêu đề <span class="required">(*)</span></label>
+					<input type="text"  class="form-control" placeholder='Nhập tiêu đề...' ng-model='data.subject' ng-required='true'>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<label>Gửi từ <span class="required">(*)</span></label>
+					<ng-selector 
+						module="mailaccount" fields="_id,username,fullname" field-model="_id" field-label="fullname"
+						options="item._id as (item.username?item.fullname + '<' + item.username +'>':item.fullname) for item in items"
+						ng-model="data.account_id" label="data.fullname" ng-required="true">
+					</ng-selector>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Nội dung <span class="required">(*)</span></label>
+					<div text-angular ta-toolbar="[['bold', 'italics', 'underline',  'ul', 'ol'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+      ['html', 'insertImage','insertLink', 'insertVideo'],['insertName','insertAddress']]" ng-model="data.mail.html"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div>
+				<label>Gửi tới ({{data.to.length}}) <span class="required">(*)</span></label>
+				<ng-typeahead 
+					module="lienhe" fields="email,ten_lien_he" field-model="email" field-label="ten_lien_he"
+					condition="email:{$ne:''}"
+					placeholder="Chọn người nhận.."
+					ng-model="email" label="ten_lien_he" on-select="selectContact($item)">
+				</ng-typeahead>
+				<br/>
+				<ul class="list-group">
+					<li class="list-group-item row" ng-repeat="to in data.to">
+						<div class="col-xs-11">
+							<div>{{to.name}}</div>
+							<small>{{to.address}}</small>
+							
+						</div>
+						<div class="col-xs-1 text-right"><i ng-click="removeContact(to)" class="glyphicon glyphicon-remove"></i></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<footer-form-input save-text="Hẹn lịch gửi"></footer-form-input>
+</form>

@@ -1,0 +1,25 @@
+﻿<h3>Tải về</h3>
+<div class="table-responsive">
+	<table class ="table table-striped">
+		<tr ng-repeat="r in downloads">
+			<td>
+				<a href ='{{r.url}}' target ='_blank'>
+					<strong><i class="fa fa-download"></i> {{r.title}}</strong>
+				</a>
+				<div><strong>Phiên bản:</strong> {{r.major}}.{{r.minor}}</div>
+				<div><strong>Miêu tả:</strong> {{r.description}}</div>
+				<div><strong>Hệ điều hành:</strong> 
+					<span style='color:blue'>
+						<i class="fa fa-windows" ng-show="r.os=='WINDOWS'"></i>
+						<i class="fa fa-android" ng-show="r.os=='ANDROID'"></i>
+						<i class="fa fa-linux" ng-show="r.os=='LINUX'"></i>
+						 {{r.os|lowercase}}
+					</span>
+				</div>
+				
+				<hr/>
+			</td>
+			
+		</tr>
+	</table>
+</div>

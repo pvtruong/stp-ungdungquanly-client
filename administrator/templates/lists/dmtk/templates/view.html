@@ -1,0 +1,50 @@
+<div class='container-fluid'>
+	<list-view-header header-title='ten_tk'>			
+	</list-view-header>
+	<tabset class="col-sm-12">
+		<tab heading='Chi tiết'>
+			<form class='form-horizontal'>
+			<fieldset>
+				<legend>Thông tin chi tiết</legend>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Tài khoản:</label>
+					<div class='col-sm-10 field-label'>{{data.tk}}</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Tên tài khoản:</label>
+					<div class='col-sm-10 field-label'>{{data.ten_tk}}</div>
+				</div>
+				<div class='form-group' ng-show="data.tk_me">
+					<label class='col-sm-2 control-label'>Tài khoản mẹ:</label>
+					<div class='col-sm-10 field-label'>{{data.tk_me}}</div>
+				</div>
+				<div class='form-group' ng-show="data.ma_nt">
+					<label class='col-sm-2 control-label'>Ngoại tệ:</label>
+					<div class='col-sm-10 field-label'>{{data.ma_nt}}</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Là TK công nợ:</label>
+					<div class='col-sm-10 field-label'><input type="checkbox" ng-model='data.tk_cn' disabled='false'></div>
+				</div>
+			
+				<div class='form-group' ng-show="data.date_created">
+					<label class='col-sm-2 control-label'>Ngày tạo:</label>
+					<div class='col-sm-10 field-label'>{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+				</div>
+			</fieldset>
+			</form>
+			<br/>
+			<file link='data'></file>
+			<br/>
+			<comment link='data' user='user' title="{{data.ten_tk}}"></comment>
+			
+		</tab>
+		<tab heading="Ghi chú">
+			<note link='data'></note>
+		</tab>
+		
+		<tab heading="Lịch sử">
+			<history link='data' module='dmtk'></history>
+		</tab>
+	</tabset>
+</div>

@@ -1,0 +1,58 @@
+﻿<stplistheader btnimport="text:'Import...'"></stplistheader>
+<div class="row">
+	<div class="table-responsive col-md-10">
+		<table class ="table table-striped table-bordered">
+			<tr><th class="text-center"><input type="checkbox" ng-model="selectAll"></th><th class="text-center">Hình</th><th>Vật tư</th><th>Đơn vị tính</th><th class="text-right">Giá bán lẻ</th><th></th></tr>
+			<tr ng-repeat="r in list track by r._id">
+				<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
+				<td   style='cursor:pointer;width:80px' ng-click='view(r._id)' class="text-center">
+					
+						<img ng-src="{{server_url}}{{r.picture_thumb}}" style="width:64px;height:64px"/>
+					
+					
+				</td>
+				<td   style='cursor:pointer' ng-click='view(r._id)'>
+					
+						<b>{{ r.ten_vt }}</b>
+						<div>Mã: {{ r.ma_vt}}</div>
+				
+				</td>
+				<td   style='cursor:pointer' ng-click='view(r._id)' class="text-center">
+					
+						{{ r.ma_dvt }}
+				
+				</td>
+				<td  class="text-right">
+					
+						<input type='text' class='text-right' style='width:120px' format='number' ng-change='r.updated=false' ng-model='r.gia_ban_le'/>
+						<div style='margin-top:5px' ng-show='r.updated!=undefined && !r.updated'><a class='btn btn-xs btn-primary' ng-click='updatePrice(r)'>Cập nhật</a></div>
+				
+				</td>
+				<td style="width:120px" class="text-center">
+					<a ng-click="follow(r)" class="btn btn-default btn-sm" title='Theo dõi' ng-show='!r.follow_yn'><i class="fa fa-star"></i></a>
+					<a ng-click="follow(r)" class="btn btn-default btn-sm" title='Bỏ theo dõi' ng-show='r.follow_yn' style='color:#F2BF16'><i class="fa fa-star"></i></a>
+						
+					<a class="btn btn-sm btn-default" ng-href="#dmvt/edit/{{r._id}}?redirect=back">Sửa</a>
+				</td>
+			</tr>
+		</table>
+		<ng-page></ng-page>
+	</div>
+	<div class="col-md-2 disable-small-screen">
+		<div class="list-group">
+			<div class="list-group-item disabled"><b>Nhóm</b></div>
+			<a ng-class="ma_nvt?'list-group-item':'list-group-item active'" ng-click="searchGroup({})">Tất cả</a>
+			<div role="presentation" ng-repeat='group in groups' >
+				<a ng-class="ma_nvt==group._id?'list-group-item active':'list-group-item'" ng-click="searchGroup(group)">{{group.ten_nvt}}</a>
+			</div>
+		</div>
+		<div class="list-group">
+			<div class="list-group-item disabled"><b>Lọc nhanh</b></div>
+			<a ng-class="!type_filter?'list-group-item active':'list-group-item'" ng-click="searchType()" >Tất cả</a>
+			<a ng-class="type_filter=='hot'?'list-group-item active':'list-group-item'" ng-click="searchType('hot')" >Sản phẩm HOT</a>
+			<a ng-class="type_filter=='bestseller'?'list-group-item active':'list-group-item'" ng-click="searchType('bestseller')" >Sản phẩm bán chạy</a>
+			<a ng-class="type_filter=='banner_small'?'list-group-item active':'list-group-item'" ng-click="searchType('banner_small')" >Sản phẩm nổi bật</a>
+			<a ng-class="type_filter=='banner_large'?'list-group-item active':'list-group-item'" ng-click="searchType('banner_large')" >Slide</a>
+		</div>
+	</div>
+</div>

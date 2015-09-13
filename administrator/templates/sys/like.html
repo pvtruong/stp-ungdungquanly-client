@@ -1,0 +1,11 @@
+﻿<fieldset>
+	<legend>Hay sử dụng</legend>
+	<div class="form-group" ng-repeat='item in likes'>
+		<div class="field-label" style="padding-left:10px" >
+			<a href='#{{item.module}}' style="text-decoration:none"><i class="fa fa-angle-right"></i> {{item.module_obj.command.header}}</a>
+		</div>
+	</div>
+	<div ng-if="!likes || likes.length==0">
+		Không có tính năng nào được chọn
+	</div>
+</fieldset>

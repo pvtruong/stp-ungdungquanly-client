@@ -1,0 +1,64 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Họ và tên <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" ng-model='data.fullname'  ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Tên tài khoản <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" ng-model='data.username'  ng-required="true">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Mật khẩu <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<input type="password" class="form-control" ng-model='data.password'  ng-required="true">
+		</div>
+	</div>
+	<fieldset><legend>Máy chủ nhận mail(IMAP)</legend>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Địa chỉ máy chủ <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" ng-model='data.imap.host'  ng-required="true">
+			</div>
+			<label class="control-label col-sm-1">Cổng <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" ng-model='data.imap.port'  ng-required="true">
+			</div>
+			<div class="col-sm-3 checkbox">
+				<label><input type="checkbox" ng-model='data.imap.tls'> Bảo mật(TLS)</label>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset><legend>Máy chủ gửi mail(SMTP)</legend>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Địa chỉ máy chủ <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" ng-model='data.smtp.host'  ng-required="true">
+			</div>
+			
+			<label class="control-label col-sm-1">Cổng <span style='color:red' title='Không được trống'>(*)</span></label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" ng-model='data.smtp.port'  ng-required="true">
+			</div>
+			<div class="col-sm-3 checkbox">
+				<label><input type="checkbox" ng-model='data.smtp.ssl'> Bảo mật(SSL)</label>
+			</div>
+		</div>
+		
+	</fieldset>
+	
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-model="data.status" /> Còn sử dụng</label>
+			</div>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+	
+</form>

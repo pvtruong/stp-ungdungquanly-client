@@ -1,0 +1,24 @@
+﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Nội dung  <span style='color:red' title='Không được trống'>(*)</span></label>
+		<div class="col-sm-10">
+			<div text-angular ta-toolbar="[['bold', 'italics', 'underline',  'ul', 'ol'],
+		  ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+		  ['html', 'insertImage','insertLink', 'insertVideo']]" ng-model="data.content" required></div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Có giá trị với</label>
+		<div class="col-sm-10">
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="0"/> Mọi người</label><br/>
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to' value="1"/> Chỉ với người tạo</label><br/>
+			<label><input type='radio' ng-model='data.visible_to' name='visible_to'  value="2"/> Những người sau</label><br/>
+			<select ng-show='data.visible_to==2' multiple ng-model="data.visible_to_users" ng-options="r.email as r.name for r in members" class="form-control">
+				
+			</select>
+		</div>
+	</div>
+	<footer-form-input></footer-form-input>
+	
+</form>

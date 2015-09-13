@@ -1,0 +1,27 @@
+<div class='container-fluid'>
+	<div class="row">
+		<div class="col-sm-8 header">
+			<h3>{{sub_title?sub_title:'Hộp thư'}}</h3>
+		</div>
+		<div class="col-sm-4 text-right">
+			<a class="btn btn-md btn-danger" ng-click ="add()">Soạn email</a>
+		</div>
+	</div>
+	<tabset class="col-sm-12">
+		<tab heading='Email đã nhận'  active="tab_active_received" select ="selectTab('received')">
+			<mail-received link='current_user'></mail-received>
+		</tab>
+		<tab heading='Email đã gửi'  active="tab_active_sent"  select ="selectTab('sent')">
+			<mail-sent link='current_user'></mail-sent>
+		</tab>
+		<tab heading="Lịch gửi" active="tab_active_schedule"  select ="selectTab('schedule')">
+			<mail-schedule mail-schedule-added ='mailScheduleAdded' link='current_user'></mail-schedule>
+		</tab>
+		<tab heading="Email mẫu"  active="tab_active_template"  select ="selectTab('template')">
+			<mail-template link='current_user'></mail-template>
+		</tab>
+		<tab heading="Tài khoản"  active="tab_active_account"  select ="selectTab('account')">
+			<mail-account link='current_user'></mail-account>
+		</tab>
+	</tabset>
+</div>
