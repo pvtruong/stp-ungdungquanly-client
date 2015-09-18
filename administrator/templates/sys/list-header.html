@@ -1,4 +1,4 @@
-﻿
+
 <nav class="navbar navbar-default">
 	<div>
 		<div>
@@ -12,7 +12,7 @@
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group"  ng-if="boxSearch">
 				  <div class="input-group">
-						<input type='text' ng-model="condition" ng-keyup="searchKeyup($event)" class="form-control" placeholder="Tìm..."/>
+						<input type='text' ng-model="condition" ng-keyup="searchKeyup($event,condition)" class="form-control" placeholder="Tìm..."/>
 						<span class='btn  input-group-addon'  ng-click="search(condition)">Tìm</span>
 				  </div>
 				</div>
