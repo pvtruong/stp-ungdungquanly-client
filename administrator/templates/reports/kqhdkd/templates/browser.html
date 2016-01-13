@@ -45,7 +45,7 @@
 		</fieldset>
 	</form>
 </div>
-<div  ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"  id ='exportable'>
+<div  infinite-scroll="loadPage()" infinite-scroll-distance="3"  ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"  id ='exportable'>
 	<table class='table  table-striped  table-hover table-bordered'>
 		<tr>
 			<th>Chỉ tiêu</th>
@@ -54,21 +54,21 @@
 			<th>Kỳ trưóc</th>
 			<th>Kỳ này</th>
 		</tr>
-		<tr ng-repeat='r in data'  ng-class="r.bold?'cbold':'cnormal'">
+		<tr ng-repeat='r in data|limitTo:limit:begin'  ng-class="r.bold?'cbold':'cnormal'">
 			<td>
-				{{r.chi_tieu}}
+				{{::r.chi_tieu}}
 			</td>
 			<td>
-				{{r.ma_so}}
+				{{::r.ma_so}}
 			</td>
 			<td>
-				{{r.thuyet_minh}}
+				{{::r.thuyet_minh}}
 			</td>
 			<td>
-				{{r.ky_truoc|number:0}}
+				{{::r.ky_truoc|number:0}}
 			</td>
 			<td>
-				{{r.ky_nay|number:0}}
+				{{::r.ky_nay|number:0}}
 			</td>
 		</tr>
 	</table>

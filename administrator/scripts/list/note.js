@@ -1,4 +1,4 @@
-﻿var noteModule = new baseInput('note','note',["title"],'Ghi chú',{
+var noteModule = new baseInput('note','note',["title","content"],'Ghi chú',{
 	has_view:true
 });
 noteModule.module.directive("note",function(){

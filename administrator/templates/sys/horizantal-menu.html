@@ -1,4 +1,4 @@
-﻿<div class="hor-menu hor-menu-light hidden-sm hidden-xs">
+<div class="hor-menu hor-menu-light hidden-sm hidden-xs">
 	<ul class="nav navbar-nav">
 		<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
 		<li ng-class="menuActive=='DASHBOARD'?'classic-menu-dropdown active':'classic-menu-dropdown'" ng-if="app_info">
@@ -27,7 +27,7 @@
 			</ul>
 		</li>
 		<!--accounting-->
-		<li ng-class="menuActive=='ACC'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && acc_visible">
+		<li ng-class="menuActive=='ACC'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && commands.acc_visible">
 			<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 			Kế toán <span class="selected" ng-if="menuActive=='ACC'"></span><i class="fa fa-angle-down"></i>
 			</a>
@@ -53,7 +53,7 @@
 			</ul>
 		</li>
 		<!--report-->
-		<li ng-class="menuActive=='RPT'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && report_visible">
+		<li ng-class="menuActive=='RPT'?'classic-menu-dropdown active':'classic-menu-dropdown'"  ng-if="app_info && commands.report_visible">
 			<a data-hover="dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 			Báo cáo <span class="selected" ng-if="menuActive=='RPT'"></span><i class="fa fa-angle-down"></i>
 			</a>

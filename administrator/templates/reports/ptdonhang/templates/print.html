@@ -1,0 +1,41 @@
+<navbar-print></navbar-print>
+<div><b>{{appInfo.name}}</b></div>
+<div><i>{{appInfo.address}}</i></div>
+<h3 class='text-center'>{{title}}</h3>
+<h5 class='text-center'> Từ ngày {{condition.tu_ngay|date:'dd/MM/yyyy'}} đến ngày {{condition.den_ngay|date:'dd/MM/yyyy'}}</h5>
+<div>
+	<table class='table table-bordered'>
+		<tr>
+			<th>Chỉ tiêu</th>
+			<th>Số đơn hàng</th>
+			<th>Số đơn hàng đã phát</th>
+			<th>Số đơn hàng phát thành công</th>
+            <th>Số đơn hàng bị hủy</th>
+            <th>Số đơn hàng trả lại</th>
+		</tr>
+		<tr ng-repeat='r in data'  ng-class="r.bold?'cbold':'cnormal'">
+			
+			<td>
+				{{r.chi_tieu}}
+			</td>
+			<td>
+				{{r.don_hang|number:0}}
+			</td>
+			<td>
+				{{r.da_phat|number:0}}
+			</td>
+			<td>
+				{{r.thanh_cong|number:0}}
+			</td>
+            <td>
+				{{r.huy|number:0}}
+			</td>
+            <td>
+				{{r.tra_lai|number:0}}
+			</td>
+		</tr>
+	</table>
+</div>
+<div type='margin-top:30px' class='row'>
+	<div style='float:right;width:30%;text-align:center' class='col-xs-12'>Người lập</div>
+</div>

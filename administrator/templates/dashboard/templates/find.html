@@ -1,0 +1,66 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancelFind()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="findModalLabel">
+	   Điều kiện lọc
+	</h4>
+ </div>
+ <div class="modal-body">
+	<form name="formFind" novalidate class="css-form form-horizontal">
+		<div class="form-group" ng-if="condition.use.ngay">
+			<label class="control-label col-sm-2">Từ ngày</label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='condition.tu_ngay' ng-required='true'></ng-datepicker>
+			</div>
+			<label class="control-label col-sm-2">Đến ngày</label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='condition.den_ngay'  ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+        <div class="form-group" ng-if="condition.use.nam">
+			<label class="control-label col-sm-2">Năm</label>
+			<div class="col-sm-4">
+				<input type="number" class="form-control" ng-model="condition.nam" ng-required="true"/>
+			</div>
+			
+		</div>
+        <div class="form-group">
+			<label class="control-label col-sm-2"  ng-if="condition.use.tu_nam">Từ năm</label>
+			<div class="col-sm-4"  ng-if="condition.use.tu_nam">
+				<input type="number" class="form-control" ng-model="condition.tu_nam" ng-required="true"/>
+			</div>
+            
+            <label class="control-label col-sm-2"  ng-if="condition.use.den_nam">Đến năm</label>
+			<div class="col-sm-4"  ng-if="condition.use.den_nam">
+				<input type="number" class="form-control" ng-model="condition.den_nam" ng-required="true"/>
+			</div>
+			
+		</div>
+		
+		<div class="form-group" ng-if="condition.use.kh">
+			<label class="control-label col-sm-2">Mã khách hàng</label>
+			<div class="col-sm-4">
+				<ng-typeahead module="dmkh" fields="ma_kh,ten_kh" field-model="ma_kh" field-label="ten_kh"
+					ng-model="condition.ma_kh" label ="condition.ten_kh">
+				</ng-typeahead>
+			</div>
+			<div class="col-sm-6">{{condition.ten_kh}}</div>
+		</div>
+        <div class="form-group" ng-if="condition.use.nv">
+			<label class="control-label col-sm-2">Mã nhân viên</label>
+			<div class="col-sm-4">
+				<select ng-model="condition.user_created" ng-options="r.email as r.name for r in members" class="form-control">
+					<option value="">Tất cả</option>
+				</select>
+			</div>
+			<div class="col-sm-6">{{condition.ten_nv}}</div>
+		</div>
+		
+		
+	</form>
+ </div>
+ <div class="modal-footer">
+	<button type="button" class="btn btn-primary" ng-click="okFind()" ng-disabled='formFind.$invalid'  ng-disabled="formFind.$invalid">
+	   Nhận
+	</button>
+	<button type="button" class="btn btn-default" ng-click='cancelFind()'>Hủy</button>
+ </div>

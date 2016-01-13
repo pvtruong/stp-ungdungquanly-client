@@ -16,6 +16,8 @@
 		"angular-ui-date": "latest",
 		"ng-table":"latest",
 		"textAngular":"latest",
-		"ng-textcomplete":"latest"
+		"ng-textcomplete":"latest",
+        "angular-chart.js":"latest",
+        "Chart.js":"1.0"
     }
 }

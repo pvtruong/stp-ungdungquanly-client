@@ -47,17 +47,21 @@ fileModule.module.directive('fileUpload', function() {
     restrict: 'A',
 	scope:{
 		list:'=',
-		json:'='
+		json:'=',
+        fileUpload:'='
 	},
 	controller:['$scope','$http','$localStorage','$rootScope',function($scope,$http,$localStorage,$rootScope){
 		
 		$scope.upload = function(fileRaw,callback,data){
-			$scope.$emit("$fileUploadStart")
-			if(!data) data ={}
-			data.return ="JSON"
+			$scope.$emit("$fileUploadStart");
+			if(!data) data ={};
+			data.return ="JSON";
+            if(!$scope.fileUpload){
+                $scope.fileUpload = server_url + "/api/" + $localStorage.get('id_app') + "/file";
+            }
 			$http({
 				method: 'POST',
-				url: server_url + "/api/" + $localStorage.get('id_app') + "/file",
+				url: $scope.fileUpload,
 				headers: { 'Content-Type': undefined },
 				transformRequest: function (data) {
 					var formData = new FormData();
@@ -67,35 +71,40 @@ fileModule.module.directive('fileUpload', function() {
 						}
 					}
 					//now add all of the assigned files
-					formData.append("file", data.fileRaw);
+					formData.append($scope.name, data.fileRaw);
 					return formData;
 				},
 				data: { data: data, fileRaw: fileRaw }
 			}).
 			success(function (data, status, headers, config) {
-				$scope.$emit("$fileUploadSuccess")
+				$scope.$emit("$fileUploadSuccess",data)
 				callback(null,data)
 			}).
 			error(function (data, status, headers, config) {
-				$scope.$emit("$fileUploadError")
-				callback(data)
+				$scope.$emit("$fileUploadError",data);
+				callback(data);
 			});
 		}
 	}],
     link: function(scope, element,attrs,ctr) {
+        scope.name =attrs.name ;
+        if(!scope.name)
+           scope.name ="file";
+        
 		element.bind('change', function (event) {
 			var files = event.target.files;
 			//iterate files since 'multiple' may be specified on the element
 			async.map(files,function(file,callback){
 				scope.upload(file,function(e,rs){
 					if(e) return callback(e);
-					if(!scope.list) scope.list=[]
-					scope.list.push(rs)
-					callback()
+					if(!scope.list) scope.list=[];
+					scope.list.push(rs);
+					callback();
 				},scope.json)
 			},function(e,rs){
-				if(e) return alert(e);
-				element.val("");
+                element.val("");
+				//if(e) return alert(e);
+				
 			})                                    
 		});
 	}
@@ -227,7 +236,7 @@ fileModule.module.directive("file",function(){
 							$scope.files = files;
 						}).error(function(e){
 							if(e) $window.alert(e);
-						})
+						});
 				}
 				$scope.$watch("link",function(newValue){
 					if(newValue){
@@ -237,16 +246,20 @@ fileModule.module.directive("file",function(){
 						$scope.dataLink.url_topic = server_url + "/#" + $location.url();//$location.absUrl();
 						$scope.dataLink.title_topic = $rootScope.title_view;
 					}
-				},true)
+				},true);
+                
+                $scope.$on("$fileUploadError",function(e,error){
+                    alert(error);
+                });
 				$scope.openProfile = function(email){
-					viewProfile($modal,email)
+					viewProfile($modal,email);
 				}
 			})
 			
 		}],
 		link:function($scope,element,attrs,controller){
 			if(!attrs.link){
-				console.error("comment directive require 'link' attribute")
+				console.error("comment directive require 'link' attribute");
 			}
 			
 		}

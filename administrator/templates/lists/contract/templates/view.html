@@ -8,40 +8,55 @@
 	</list-view-header>
 	<tabset class="col-sm-12">
 		<tab heading='Chi tiết'>
-			<form class='form-horizontal'>
+			<div class='form-horizontal'>
 			<fieldset>
 				<legend>Thông tin chi tiết</legend>
 				<div class='form-group'>
 					<label class='col-sm-2 control-label'>Số hợp đồng:</label>
-					<div class='col-sm-10 field-label'>{{data.so_hd}}</div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-text="data.so_hd" onaftersave="update(data)">{{data.so_hd}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
 				<div class='form-group'>
 					<label class='col-sm-2 control-label'>Tên hợp đồng:</label>
-					<div class='col-sm-10 field-label'>{{data.ten_hd}}</div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-text="data.ten_hd" onaftersave="update(data)">{{data.ten_hd}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
-				<div class='form-group' ng-show="data.ngay_hd">
+				<div class='form-group'>
 					<label class='col-sm-2 control-label'>Ngày ký:</label>
-					<div class='col-sm-10 field-label'>{{data.ngay_hd|date:'dd/MM/yyyy'}}</div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-date="data.ngay_hd" onaftersave="update(data)">{{data.ngay_hd|date:'dd/MM/yyyy HH:mm:ss'}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
 				<div class='form-group' ng-show="data.tien">
 					<label class='col-sm-2 control-label'>Giá trị hợp đồng:</label>
-					<div class='col-sm-10 field-label'>{{data.tien_nt|number:0}} {{data.ma_nt}}</div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.tien_nt|number:0}} {{data.ma_nt}}</div>
 				</div>
-				<div class='form-group' ng-show="data.ngay_th">
+				<div class='form-group'>
 					<label class='col-sm-2 control-label '>Ngày thực hiện:</label>
-					<div class='col-sm-10 field-label'>{{data.ngay_th|date:'dd/MM/yyyy'}}</div>
+					<div class='col-sm-4 field-label' style="padding-left:10px!important">
+                        <a editable-date="data.ngay_th" onaftersave="update(data)">{{data.ngay_th|date:'dd/MM/yyyy HH:mm:ss'}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
-				<div class='form-group' ng-show="data.ngay_nt">
+				<div class='form-group'>
 					<label class='col-sm-2 control-label '>Ngày nghiệm thu:</label>
-					<div class='col-sm-10 field-label'>{{data.ngay_nt|date:'dd/MM/yyyy'}}</div>
+					<div class='col-sm-4 field-label' style="padding-left:10px!important">
+                        <a editable-date="data.ngay_nt" onaftersave="update(data)">{{data.ngay_nt|date:'dd/MM/yyyy HH:mm:ss'}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
 				<div class='form-group'>
 					<label class='col-sm-2 control-label'>Phụ trách:</label>
-					<div class='col-sm-10 field-label'><a ng-click="openProfile(data.phu_trach)">{{data.phu_trach}}</a></div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a ng-click="openProfile(data.phu_trach)">{{data.phu_trach}}</a>
+                        <a editable-select="data.phu_trach"  e-ng-options ="r.email as r.name for r in members"  onaftersave="update(data)">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                    </div>
 				</div>
 				<div class='form-group'>
 					<label class='col-sm-2 control-label'>Trạng thái:</label>
-					<div class='col-sm-10 field-label'>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
 						<div class="dropdown">
 						   <span ng-show='data.progress==0'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-info dropdown-toggle'>Chưa thực hiện</span>
 						  <span ng-show='data.progress==1'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-primary dropdown-toggle'>Đang thực hiện</span>
@@ -62,16 +77,22 @@
 				</div>
 				<div class='form-group' ng-show="data.ten_kh">
 					<label class='col-sm-2 control-label'>Khách hàng:</label>
-					<div class='col-sm-10 field-label'><a href="#dmkh/view/{{data.id_kh}}?redirect={{location}}">{{data.ten_kh}}</a></div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a href="#dmkh/view/{{data.id_kh}}?redirect={{location}}">{{data.ten_kh}}</a>
+                    </div>
 				</div>
 				<div class='form-group' ng-show="data.mieu_ta">
 					<label class='col-sm-2 control-label'>Nội dung:</label>
-					<div class='col-sm-10 field-label'><span parse-html="data.mieu_ta"></span></div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important"><span parse-html="data.mieu_ta"></span></div>
 				</div>
 				<div class='form-group' ng-show="data.date_created">
-					<label class='col-sm-2 control-label'>Ngày tạo:</label>
-					<div class='col-sm-10 field-label'>{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
-				</div>
+                    <label class='col-sm-2 control-label'>Ngày tạo:</label>
+                    <div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                </div>
+                <div class='form-group' ng-show="data.date_updated">
+                    <label class='col-sm-2 control-label'>Ngày cập nhật:</label>
+                    <div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.date_updated|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                </div>
 			</fieldset>
 			<fieldset>
 				<legend>Liên kết</legend>
@@ -79,7 +100,7 @@
 					<stp-link link="data" collection='contract' collections-link="lienhe:'ten_lien_he,dien_thoai,email',dmkh:'ten_kh,dia_chi,dien_thoai,email'"></stp-link>
 				</div>
 			</fieldset>
-			</form>
+			</div>
 			<br/>
 			<file link='data'></file>
 			<br/>

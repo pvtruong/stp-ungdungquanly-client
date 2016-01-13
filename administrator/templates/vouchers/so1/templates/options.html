@@ -1,4 +1,4 @@
-﻿<div class="modal-header">
+<div class="modal-header">
 	<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
 	<h4 class="modal-title" id="findModalLabel">
 	   Tùy chọn
@@ -13,6 +13,19 @@
 					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
 					placeholder="Nhập tk hoặc tên tk..."
 					ng-model='options.tk_tien' condition="loai_tk:1" label='options.ten_tk_tien' ng-required='true'>
+				</ng-typeahead>
+			</div>
+			<div class='col-sm-6'>
+				{{options.ten_tk_tien}}
+			</div>
+		</div>
+        <div class="form-group">
+			<label class="control-label col-sm-2">TK tiền đang chuyển</label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmtk' field-model='tk' field-label='ten_tk' fields='tk,ten_tk'
+					placeholder="Nhập tk hoặc tên tk..."
+					ng-model='options.tk_tien_dc' condition="loai_tk:1" label='options.ten_tk_tien_dc'>
 				</ng-typeahead>
 			</div>
 			<div class='col-sm-6'>

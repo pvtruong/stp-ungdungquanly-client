@@ -1,0 +1,128 @@
+<div class='container-fluid'>
+	<list-view-header header-title='ten_nd'>	
+		<li role="presentation" class="divider"></li>
+		<li>
+			<a class='dropdown-header'  ng-click="addCustomer()">Thêm chủ đất</a>
+			<a class='dropdown-header'  ng-click="addContact()">Thêm Liên lạc</a>
+		</li>	
+	</list-view-header>
+	<tabset class="col-sm-12">
+		<tab heading='Chi tiết'>
+			<div class='form-horizontal'>
+			<fieldset>
+				<legend>Thông tin chi tiết</legend>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Tiêu đề:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-text="data.ten_nd" onaftersave="update(data)">{{data.ten_nd}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Tỉnh thành:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        {{data.tinh_thanh}}
+                    </div>
+				</div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Quận huyện:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        {{data.quan_huyen}}
+                    </div>
+				</div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Số tờ:</label>
+					<div class='col-sm-1 field-label' style="padding-left:10px!important">
+                        {{data.so_to}}
+                    </div>
+                    <label class='col-sm-1 control-label'>Số thửa:</label>
+					<div class='col-sm-3 field-label' style="padding-left:10px!important">
+                        {{data.so_thua}}
+                    </div>
+				</div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Diện tích (ngang x dài):</label>
+					<div class='col-sm-6 field-label' style="padding-left:10px!important">
+                        {{data.chieu_ngang}} x {{data.chieu_dai}}
+                    </div>
+                   
+				</div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Giá bán:</label>
+					<div class='col-sm-6 field-label' style="padding-left:10px!important">
+                        {{data.gia_ban|number:0}}
+                    </div>
+                   
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Phụ trách:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a ng-click="openProfile(data.phu_trach)">{{data.phu_trach}}</a>
+                        <a editable-select="data.phu_trach"  e-ng-options ="r.email as r.name for r in members"  onaftersave="update(data)">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                    </div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Trạng thái:</label>
+					<div class='col-sm-10 field-label'  style="padding-left:10px!important">
+						<div class="dropdown">
+						   <span ng-show='data.progress==0'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-info dropdown-toggle'>Đang bán</span>
+						  <span ng-show='data.progress==1'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-primary dropdown-toggle'>Bán gấp</span>
+						  <span ng-show='data.progress==2'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-success dropdown-toggle'>Ngừng bán</span>
+						  <span ng-show='data.progress==3'  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" class='btn btn-xs btn-danger dropdown-toggle'>Đã bán</span>
+						  
+							
+						  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+							<li role="presentation" ng-show='data.progress!=0'><a role="menuitem" tabindex="-1" ng-click="update({progress:0})">Đang bán</a></li>
+							<li role="presentation" ng-show='data.progress!=1'><a role="menuitem" tabindex="-1" ng-click="update({progress:1})">Bán gấp</a></li>
+                            <li role="presentation" ng-show='data.progress!=2'><a role="menuitem" tabindex="-1" ng-click="update({progress:2})">Ngừng bán</a></li>
+							<li role="presentation" ng-show='data.progress!=3'><a role="menuitem" tabindex="-1" ng-click="update({progress:3})">Đã bán</a></li>
+						  </ul>
+						</div>
+					</div>
+				</div>
+				<div class='form-group' ng-show="data.ten_kh">
+					<label class='col-sm-2 control-label'>Chủ đất:</label>
+					<div class='col-sm-10 field-label'  style="padding-left:10px!important"><a href="#dmkh/view/{{data.id_kh}}?redirect={{location}}">{{data.ten_kh}}</a></div>
+				</div>
+				<div class='form-group' ng-show="data.mieu_ta">
+					<label class='col-sm-2 control-label'>Miêu tả:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important"><span parse-html="data.mieu_ta"></span></div>
+				</div>
+				<div class='form-group' ng-show="data.date_created">
+                    <label class='col-sm-2 control-label'>Ngày tạo:</label>
+                    <div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                </div>
+                <div class='form-group' ng-show="data.date_updated">
+                    <label class='col-sm-2 control-label'>Ngày cập nhật:</label>
+                    <div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.date_updated|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                </div>
+			</fieldset>
+			<fieldset>
+				<legend>Liên kết</legend>
+				<div>
+					<stp-link link="data" collection='dmdt' collections-link="lienhe:'ten_lien_he,dien_thoai,email',dmkh:'ten_kh,dia_chi,dien_thoai,email'"></stp-link>
+				</div>
+			</fieldset>
+			</div>
+			<br/>
+			<file link='data'></file>
+			<br/>
+			<comment link='data' user='user' title="{{data.ten_nd}}"></comment>
+			
+		</tab>
+		<tab heading="Công việc">
+			<task link='data' collection='dmdt' default-values="id_nd:'{{data._id}}',ten_nd:'{{data.ten_nd}}'"></task>
+		</tab>
+		<tab heading="Ghi chú">
+			<note link='data'></note>
+		</tab>
+		<!--<tab heading="Chứng từ">
+			<bkct condition="ma_nd:'{{data._id}}'" run="data._id"></bkct>
+		</tab>
+        -->
+		<tab heading="Lịch sử">
+			<history link='data' module='dmdt'></history>
+		</tab>
+	</tabset>
+</div>

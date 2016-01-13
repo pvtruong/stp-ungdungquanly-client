@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-md-offset-4 col-md-3 condition-report">
+		<form name='form' novalidate class='form-horizontal'>
+			<fieldset><legend>Điều kiện kết chuyển</legend>
+			
+			<div class='form-group'>
+				<label class='control-label'>Từ năm</label>
+				<div >
+					<select ng-model="condition.nam" class="form-control" ng-options ="nam for nam in nams" ng-required="true" ng-change="namChanged()">
+					</select>
+				</div>
+			</div>
+            <div class='form-group'>
+				<label class='control-label'>Sang năm</label>
+				<div >
+					<input type="text" ng-model="condition.sang_nam" class="form-control" ng-readonly="true">
+				</div>
+			</div>
+			
+			<div class='form-group text-left'>
+				<a class="btn btn-danger" ng-click='getData()' ng-disabled='form.$invalid'>Kết chuyển</a>
+			</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

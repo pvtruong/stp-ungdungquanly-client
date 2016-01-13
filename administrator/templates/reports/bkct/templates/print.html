@@ -1,4 +1,4 @@
-﻿<navbar-print></navbar-print>
+<navbar-print></navbar-print>
 <div><b>{{appInfo.name}}</b></div>
 <div><i>{{appInfo.address}}</i></div>
 <h3 class='text-center'>{{title}}</h3>
@@ -16,28 +16,28 @@
 			</tr>
 			<tr ng-repeat='r in data'  ng-class="r.bold?'cbold':'cnormal'">
 				<td>
-					{{r.ngay_ct|date:'dd/MM/yyyy'}}
+					{{::r.ngay_ct|date:'dd/MM/yyyy'}}
 				</td>
 				<td>
-					{{r.so_ct}}
+					{{::r.so_ct}}
 				</td>
 				<td>
-					{{r.dien_giai}}
+					{{::r.dien_giai}}
 				</td>
 				<td>
-					{{r.tk_no}}
+					{{::r.tk_no}}
 				</td>
 				<td>
-					{{r.tk_co}}
+					{{::r.tk_co}}
 				</td>
 				<td style='text-align:right'>
-					{{r.tien|number}}
+					{{::r.tien|number}}
 				</td>
 				<td>
-					{{r.ma_kh_no}}
+					{{::r.ma_kh_no}}
 				</td>
 				<td>
-					{{r.ma_kh_co}}
+					{{::r.ma_kh_co}}
 				</td>
 			</tr>
 		</table>

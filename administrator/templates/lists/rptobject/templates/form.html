@@ -1,0 +1,41 @@
+<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+	<div class="form-group">
+		<label class="control-label col-md-3">Mã báo cáo <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.code_rpt' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Mã <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.ma_obj' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Tên <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"  class="form-control" ng-model='data.ten_obj' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Model <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"   class="form-control" ng-model='data.model_obj' ng-required='true'>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Trường giá trị <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"   class="form-control" ng-model='data.value_field' ng-required='true'>
+		</div>
+	</div>
+    <div class="form-group">
+		<label class="control-label col-md-3">Trường tên <span class="required">(*)</span></label>
+		<div class="col-md-9">
+			<input type="text"   class="form-control" ng-model='data.header_field' ng-required='true'>
+		</div>
+	</div>
+
+	<footer-form-input></footer-form-input>
+</form>

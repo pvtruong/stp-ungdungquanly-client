@@ -1,4 +1,4 @@
-﻿<rpt-header></rpt-header>
+<rpt-header></rpt-header>
 <div class="row">
 <div class="col-md-3 condition-report"    ng-show='condition_show'>
 	<form name='form' novalidate class='form-horizontal'>
@@ -46,30 +46,30 @@
 		<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='drilldown(r)' ng-class="r.bold?'cbold':'cnormal'">
 			
 			<td>
-				{{r.quy}}
+				{{::r.quy}}
 			</td>
 			
 
 			<td>
-				{{r.t_so_luong|number:2}}
+				{{::r.t_so_luong|number:2}}
 			</td>
 			<td>
-				{{r.t_tien_hang|number:0}}
+				{{::r.t_tien_hang|number:0}}
 			</td>
 			<td>
-				{{r.t_tien_ck|number:0}}
+				{{::r.t_tien_ck|number:0}}
 			</td>
 			<td>
-				{{r.tien_ck_hd|number:0}}
+				{{::r.tien_ck_hd|number:0}}
 			</td>
 			<td>
-				{{r.t_doanh_thu|number:0}}
+				{{::r.t_doanh_thu|number:0}}
 			</td>
 			<td>
-				{{r.t_tien_xuat|number:0}}
+				{{::r.t_tien_xuat|number:0}}
 			</td>
 			<td>
-				{{r.t_lai|number:0}}
+				{{::r.t_lai|number:0}}
 			</td>
 			
 		</tr>

@@ -1,3 +1,4 @@
+//["ma_kh","ten_kh","dia_chi","dien_thoai","fax","email"]
 var dmkhModule = new baseInput('dmkh','customer',["ma_kh","ten_kh","dia_chi","dien_thoai","fax","email"],'Khách hàng',{
 	has_view:true,
 	onView:function($scope,options){
@@ -8,6 +9,12 @@ var dmkhModule = new baseInput('dmkh','customer',["ma_kh","ten_kh","dia_chi","di
 			},{id_kh:$scope.data._id,ten_kh:$scope.data.ten_kh})
 		}
 	},
+    onAdd:function($scope,options){
+        $scope.data.phu_trach = options.$rootScope.user.email;
+        $scope.data.visible_to =1;
+        $scope.data.kh_yn =true;
+        $scope.data.ncc_yn =false;
+    },
 	onLoading:function($scope,options){
 		$scope.advCondition ={}
 		options.$rootScope.nextTick(function(){
@@ -91,7 +98,7 @@ var dmkhModule = new baseInput('dmkh','customer',["ma_kh","ten_kh","dia_chi","di
 				delete $scope.filter.nh_kh
 			}
 			if($scope.advCondition.ten_kh){
-				$scope.filter.$or =[{ten_kh:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{ma_kh:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{dien_thoai:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{email:{$regex:$scope.advCondition.ten_kh,$options:'i'}}]
+				$scope.filter.$or =[{ten_kh:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{ma_kh:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{dien_thoai:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{phu_trach:{$regex:$scope.advCondition.ten_kh,$options:'i'}},{email:{$regex:$scope.advCondition.ten_kh,$options:'i'}}]
 			}else{
 				delete $scope.filter.$or
 			}

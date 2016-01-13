@@ -1,4 +1,4 @@
-var taskModule = new baseInput('task','task',["ten_cv","mieu_ta"],'Công việc',{
+var taskModule = new baseInput('task','task',["ten_cv","mieu_ta","location","phu_trach"],'Công việc',{
 	has_view:true,
 	onAdd:function($scope,options){
 		$scope.data.phu_trach = options.$rootScope.user.email;
@@ -7,12 +7,33 @@ var taskModule = new baseInput('task','task',["ten_cv","mieu_ta"],'Công việc'
 		$scope.data.repeat =0;
 		$scope.data.priority =1;
 		$scope.data.progress =0;
+        $scope.data.visible_to =1;
+        
+        $scope.repeats =[
+            {id:0,name:'Không lặp lại'},
+            {id:1,name:'Hàng ngày'},
+            {id:2,name:'Hàng tháng'},
+            {id:3,name:'Hàng quý'},
+            {id:4,name:'Hàng năm'}
+        ]
 	},
 	onEdit:function($scope,options){
-		
+		$scope.repeats =[
+            {id:0,name:'Không lặp lại'},
+            {id:1,name:'Hàng ngày'},
+            {id:2,name:'Hàng tháng'},
+            {id:3,name:'Hàng quý'},
+            {id:4,name:'Hàng năm'}
+        ]
 	},
 	onView:function($scope,options){
 		$scope.data.attendInfos =[]
+        if($scope.data.start_date){
+            $scope.data.start_date= new Date($scope.data.start_date);
+        }
+        if($scope.data.due_date){
+            $scope.data.due_date= new Date($scope.data.due_date);
+        }
 		if($scope.data.attends){
 			$scope.data.attends.forEach(function(attend){
 				var m = _.find(options.$rootScope.members,function(m){
@@ -153,7 +174,7 @@ var taskModule = new baseInput('task','task',["ten_cv","mieu_ta"],'Công việc'
 			}
 			//
 			if($scope.advCondition.ten_cv){
-				$scope.filter.$or =[{ten_cv:{$regex:$scope.advCondition.ten_cv,$options:'i'}},{mieu_ta:{$regex:$scope.advCondition.ten_cv,$options:'i'}},{location:{$regex:$scope.advCondition.ten_cv,$options:'i'}}]
+				$scope.filter.$or =[{ten_cv:{$regex:$scope.advCondition.ten_cv,$options:'i'}},{mieu_ta:{$regex:$scope.advCondition.ten_cv,$options:'i'}},{location:{$regex:$scope.advCondition.ten_cv,$options:'i'}},{phu_trach:{$regex:$scope.advCondition.ten_cv,$options:'i'}}];
 			}else{
 				delete $scope.filter.$or
 			}

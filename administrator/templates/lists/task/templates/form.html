@@ -1,4 +1,4 @@
-﻿<form name="form" novalidate class ="css-form form-horizontal form-input" >
+<form name="form" novalidate class ="css-form form-horizontal form-input" >
 	<header-form-input></header-form-input>
 	<div class="form-group">
 		<label class="control-label col-sm-2">Tên công việc <span style='color:red' title='Không được trống'>(*)</span></label>
@@ -49,12 +49,7 @@
 	<div class="form-group" ng-show="data.reminder">
 		<label class="control-label col-sm-2">Lặp lại</label>
 		<div class="col-sm-4">
-			<select class='form-control' ng-model='data.repeat'>
-				<option value='0'>Không lặp lại</option>
-				<option value='1'>Hàng ngày</option>
-				<option value='2'>Hàng tháng</option>
-				<option value='3'>Hàng quý</option>
-				<option value='4'>Hàng năm</option>
+			<select class='form-control' ng-model='data.repeat' ng-options ="r.id as r.name for r in repeats">
 			</select>
 		</div>
 	</div>

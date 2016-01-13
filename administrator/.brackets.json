@@ -6,13 +6,13 @@
                     
                     
                     "scripts/sys/appInfo.min.js",
-                    "scripts/sys/baseInput.min.js",
-                    "scripts/sys/baseRpt.min.js",
-                    "scripts/sys/baseVoucher.min.js",
-                    "scripts/sys/baseService.min.js",
+                    "scripts/sys/baseInput.js",
+                    "scripts/sys/baseRpt.js",
+                    "scripts/sys/baseVoucher.js",
+                    "scripts/sys/baseService.js",
                     
-                    "scripts/sys/login.min.js",
-                    "scripts/sys/dashboard.min.js",
+                    "scripts/sys/login.js",
+                    "scripts/sys/dashboard.js",
                     
                     "scripts/list/app.js",
                     
@@ -25,13 +25,16 @@
                     "scripts/list/parameter.js",
                     "scripts/list/comment.js",
                     "scripts/list/versioninfo.js",
+                    "scripts/list/rptobject.js",
                     
                    
                     "scripts/list/dmkh.js",
                     "scripts/list/lienhe.js",
                     "scripts/list/note.js",
                     "scripts/list/task.js",
+                    "scripts/list/opportunity.js",
                     "scripts/list/group.js",
+                    "scripts/list/reason.js",
                     "scripts/list/file.js",
                     "scripts/list/mailaccount.js",
                     "scripts/list/mailreceived.js",
@@ -43,11 +46,14 @@
                     
                     "scripts/list/dmnv.js",
                     
+                    "scripts/list/nhadat.js",
+                    
                     
                     
                     "scripts/list/dvcs.js",
                     "scripts/list/dmtc.js",
                     "scripts/list/dmdvt.js",
+                    "scripts/list/dmqddvt.js",
                     "scripts/list/dmvt.js",
                     "scripts/list/dmnvt.js",
                     "scripts/list/dmkho.js",
@@ -92,6 +98,8 @@
                     "scripts/vc/hd3.js",
                     "scripts/vc/pbl.js",
                     "scripts/vc/so1.js",
+                    
+                    "scripts/rpt/baocaokhachhang.js",
 
                     "scripts/rpt/search.js",
                     "scripts/rpt/bkct.js",
@@ -131,8 +139,13 @@
                     "scripts/rpt/thnxt.js",
                     "scripts/rpt/sctvt.js",
                     "scripts/rpt/tinhgiatb.js",
+                    
+                    "scripts/rpt/kcsns.js",
 
                     "scripts/rpt/pttct.js",
+                    "scripts/rpt/pttctkho.js",
+                    "scripts/rpt/ptbitralai.js",
+                    "scripts/rpt/ptdonhang.js",
                     "scripts/list/rptform.js",
                     "scripts/list/kbmpttct.js",
                    
@@ -178,8 +191,8 @@
                     "scripts/rpt/chitiettaisan.js",
                     
                     
-                    "scripts/sys/client.min.js",
-                    "scripts/sys/directives.min.js"
+                    "scripts/sys/client.js",
+                    "scripts/sys/directives.js"
                     
                     
                 ],

@@ -60,13 +60,16 @@
 		</tr>
 		<tr ng-repeat="r in list track by r._id">
 			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
-			<td   style='cursor:pointer' ng-click='view(r._id)'>
-				<div>
-					<img style="width:32px;height:32px" class="img-circle" ng-src='{{server_url}}/api/avatar?email={{r.phu_trach}}&access_token={{token}}'  title ="Người phụ trách: {{r.phu_trach}}"/>
+			<td   style='min-width:300px'>
+				<div style='cursor:pointer;min-width:300px' ng-click='view(r._id)'>
 					<b> {{ r.ten_cv }}</b>
+                    <div></div><small parse-text="r.mieu_ta" limit="50"></small></div>
+                    <div ng-show="r.location"><small>Tại: {{r.location}}</small></div>
 				</div>
-				<small parse-text="r.mieu_ta" limit="50"></small>
-				<div ng-show="r.location"><small>Tại: {{r.location}}</small></div>
+                Phụ trách: 
+                <a editable-select="r.phu_trach"  e-ng-options ="r.email as r.name for r in members"  onaftersave="update(r)">
+                    {{r.phu_trach}} <i class="fa fa-pencil-square-o"></i>
+                </a>
 			</td>
 			<td style='cursor:pointer' ng-click='view(r._id)'>
 					<div ng-show='r.priority==1'><span style="color:red; width:20px">!!!</span> Cao</div>

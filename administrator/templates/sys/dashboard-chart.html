@@ -1,0 +1,60 @@
+<div class="panel panel-default tasks-widget">
+    <div class="panel-heading row" style="padding:3px">
+        <div class="panel-title col-xs-4">
+            <i class="fa fa-check"></i> {{ten_bao_cao}}
+        </div>	
+        <div class="actions col-xs-8 text-right">
+
+            <div class="btn-group">
+                    <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        Chọn loại báo cáo<i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+
+                        <li ng-if ="dtbanletheothang_visible">
+                            <a ng-click="dtbanletheothang()"> Báo cáo doanh thu theo tháng </a>
+                        </li>
+                        <li ng-if ="dtbanletheoquy_visible">
+                            <a ng-click="dtbanletheoquy()"> Báo cáo doanh thu theo quý </a>
+                        </li>
+                        <li ng-if ="dtbanletheonam_visible">
+                            <a ng-click="dtbanletheonam()"> Báo cáo doanh thu theo năm </a>
+                        </li>
+                        <li  ng-if ="dtbanletheonv_visible">
+                            <a ng-click="dtbanletheonv()"> Báo cáo doanh thu theo nhân viên </a>
+                        </li>
+                    </ul>
+            </div>
+            <div class="btn-group">
+                    <a class="btn btn-sm default" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        {{type}}<i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+
+                        <li ng-repeat="type_chart in type_charts">
+                            <a ng-click="selectType(type_chart)"> {{type_chart}} </a>
+                        </li>
+
+                    </ul>
+            </div>
+
+            <div class="btn-group">
+                <a class="btn btn-default  btn-sm" ng-click="dkloc()">
+                     Điều kiện lọc
+                </a>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-default  btn-sm" ng-click="refresh()">
+                     <i class="fa fa-refresh"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-body">
+        <canvas id="line" class="chart-base" chart-type="type" chart-data="data"
+          chart-labels="labels" chart-legend="true" chart-series="series"
+          chart-click="onClick" >
+        </canvas>
+    </div>
+</div>

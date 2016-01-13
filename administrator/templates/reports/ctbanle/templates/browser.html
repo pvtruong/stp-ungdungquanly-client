@@ -35,7 +35,7 @@
 	
 	
 </div>
-<div  ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"    id ='exportable'>
+<div infinite-scroll="loadPage()" infinite-scroll-distance="3"   ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"    id ='exportable'>
 	<table class='table  table-striped  table-hover table-bordered'>
 		<tr>
 			<th>Ngày</th>
@@ -50,38 +50,38 @@
 			<th>Tiền lãi</th>
 			
 		</tr>
-		<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ct)' ng-class="r.bold?'cbold':'cnormal'">
+		<tr ng-repeat='r in data|limitTo:limit:begin'  style='cursor:pointer'  ng-click='viewVoucher(r.ma_ct,r.id_ct)' ng-class="r.bold?'cbold':'cnormal'">
 			
 			<td>
-				{{r.ngay_ct|date:'dd/MM/yyyy'}}
+				{{::r.ngay_ct|date:'dd/MM/yyyy'}}
 			</td>
 			<td>
-				{{r.so_ct}}
+				{{::r.so_ct}}
 			</td>
 			<td>
-				{{r.ma_vt}}
+				{{::r.ma_vt}}
 			</td>
 			<td>
-				{{r.ten_vt}}
+				{{::r.ten_vt}}
 			</td>
 
 			<td>
-				{{r.sl_xuat|number:2}}
+				{{::r.sl_xuat|number:2}}
 			</td>
 			<td>
-				{{r.tien|number:0}}
+				{{::r.tien|number:0}}
 			</td>
 			<td>
-				{{r.tien_ck|number:0}}
+				{{::r.tien_ck|number:0}}
 			</td>
 			<td>
-				{{r.doanh_thu|number:0}}
+				{{::r.doanh_thu|number:0}}
 			</td>
 			<td>
-				{{r.tien_xuat|number:0}}
+				{{::r.tien_xuat|number:0}}
 			</td>
 			<td>
-				{{r.lai|number:0}}
+				{{::r.lai|number:0}}
 			</td>
 			
 		</tr>

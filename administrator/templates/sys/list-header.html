@@ -38,7 +38,8 @@
 				<a  class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-if='btn3_show' title="{{btn3_title}}">{{btn3_text}}</a>
 				<a  class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-if='btn4_show'  title="{{btn4_title}}">{{btn4_text}}</a>
 				<a  class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-if='btn5_show'  title="{{btn5_title}}">{{btn5_text}}</a>
-				<a  class="btn btn-default  navbar-btn" ng-click="import()" ng-if='import_show'>{{import_text}}</a>
+				<a  class="btn btn-default  navbar-btn disable-small-screen" ng-click="importhtml5()" ng-if='import_show'>{{import_text?import_text:'Nhập từ excel'}}</a>
+                <a  class="btn btn-default  navbar-btn disable-small-screen" ng-click="export2excel()" ng-if='export_show'>Xuất ra excel</a>
 				<a  class="btn btn-default  navbar-btn" ng-click="options()" ng-if='options_show'>{{options_text}}</a>
 			
 			  </form>

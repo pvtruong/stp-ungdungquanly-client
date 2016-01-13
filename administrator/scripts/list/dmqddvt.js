@@ -1,0 +1,1 @@
+var dmqddvtModule = new baseInput('dmqddvt','dmqddvt',["ma_vt","ma_dvt"],'Danh mục quy đổi đơn vị tính');

@@ -2,54 +2,89 @@
 	<list-view-header header-title='ten_kh'>
 		<li role="presentation" class="divider"></li>
 		<li>
-			<a class='dropdown-header'  ng-click="addContact()">Thêm liên lạc</a>
+			<a class='dropdown-header'  ng-click="addContact()">Thêm liên hệ</a>
 		</li>
 	</list-view-header>
 	<tabset class="col-sm-12">
 		<tab heading='Chi tiết'>
-			<form class='form-horizontal'>
+			<div class='form-horizontal'>
 			<fieldset>
 				<legend>Thông tin chi tiết</legend>
-				<div class='form-group'>
-					<label class='col-sm-2 control-label'>Tên khách hàng:</label>
-					<div class='col-sm-10 field-label'>{{data.ten_kh}}</div>
-				</div>
-				<div class='form-group' ng-show="data.dia_chi">
-					<label class='col-sm-2 control-label'>Địa chỉ:</label>
-					<div class='col-sm-10 field-label'>{{data.dia_chi}}</div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Mã khách hàng: </label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-text="data.ma_kh" onaftersave="update(data)">{{data.ma_kh}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
 				<div class='form-group'>
-					<label class='col-sm-2 control-label'>Điện thoại:</label>
-					<div class="col-sm-10">
-						<span class='field-label'  ng-show="data.dien_thoai"><a href="tel:{{data.dien_thoai}}"><i class="glyphicon glyphicon-phone-alt"></i> {{data.dien_thoai}}</a></span>
-					
-						<label class='control-label'  ng-show="data.email"> - Email:</label>
-						<span class='field-label'  ng-show="data.email">
-							<a href="#mailschedule/add?to=[{name:'{{data.ten_kh}}',address:'{{data.email}}'}]&redirect={{location}}">
-								<i class="glyphicon glyphicon-envelope"></i> {{ data.email }}
-							</a>
-						</span>
-						
-						<label class='control-label'  ng-show="data.fax"> - Fax:</label>
-						<span class='field-label'  ng-show="data.fax">{{data.fax}}</span>
+					<label class='col-sm-2 control-label'>Tên khách hàng: </label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-text="data.ten_kh" onaftersave="update(data)">{{data.ten_kh}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Địa chỉ: </label>
+                    <div class='col-sm-10 field-label' style="padding-left:10px!important" >
+                       <a editable-text="data.dia_chi"  onaftersave="update(data)">{{data.dia_chi}} <i class="fa fa-pencil-square-o"></i></a> / 
+                       <a editable-select="data.tinh_thanh"  e-ng-options ="r as r for r in province"  onaftersave="update(data)">{{data.tinh_thanh}} <i class="fa fa-pencil-square-o"></i> </a>
+                    </div>
+				</div>
+				<div class='form-group' >
+					<label class='col-sm-2 control-label'>Điện thoại: </label>
+					<div class="col-sm-10  field-label" style="padding-left:10px!important">
+                        <a editable-text="data.dien_thoai" onaftersave="update(data)">{{data.dien_thoai}} <i class="fa fa-pencil-square-o"></i></a>
 					</div>
 				</div>
-				<div class='form-group' ng-show="data.website">
-					<label class='col-sm-2 control-label'>Website:</label>
-					<div class='col-sm-10 field-label'><a href="{{data.website.indexOf('http')>=0?data.website:'http://' + data.website}}">{{data.website}}</a></div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Email: </label>
+					<div class="col-sm-10  field-label" style="padding-left:10px!important">
+						<a ng-show='data.email' href="#mailschedule/add?to=[{name:'{{data.ten_kh}}',address:'{{data.email}}'}]&redirect={{location}}">
+								{{ data.email }}
+				        </a>
+                        <a editable-email="data.email" onaftersave="update(data)"><i class="fa fa-pencil-square-o"></i></a>
+					
+					</div>
+				</div>
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Fax: </label>
+					<div class="col-sm-10  field-label" style="padding-left:10px!important">
+                        <a editable-text="data.fax" onaftersave="update(data)">{{data.fax}} <i class="fa fa-pencil-square-o"></i></a>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Website: </label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a href="{{data.website.indexOf('http')>=0?data.website:'http://' + data.website}}">{{data.website}}</a> 
+                        <a editable-text="data.website" onaftersave="update(data)"><i class="fa fa-pencil-square-o"></i></a></div>
 				</div>
 				<div class='form-group' ng-show="data.ma_so_thue">
-					<label class='col-sm-2 control-label'>Mã số thuế:</label>
-					<div class='col-sm-10 field-label'>{{data.ma_so_thue}}</div>
+					<label class='col-sm-2 control-label'>Mã số thuế: </label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-text="data.ma_so_thue" onaftersave="update(data)">{{data.ma_so_thue}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
 				</div>
-				
-				<div class='form-group' ng-show="data.date_created">
+                <div class='form-group'>
+					<label class='col-sm-2 control-label'>Phụ trách:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a ng-click="openProfile(data.phu_trach)">{{data.phu_trach}}</a>
+                        <a editable-select="data.phu_trach"  e-ng-options ="r.email as r.name for r in members"  onaftersave="update(data)">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                    </div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>Ghi chú: </label>
+                    <div class='col-sm-10 field-label' style="padding-left:10px!important">
+                        <a editable-textarea="data.ghi_chu" e-cols="30" e-rows="5" onaftersave="update(data)">{{data.ghi_chu}} <i class="fa fa-pencil-square-o"></i></a>
+                    </div>
+				</div>
+                <div class='form-group' ng-show="data.date_created">
 					<label class='col-sm-2 control-label'>Ngày tạo:</label>
-					<div class='col-sm-10 field-label'>{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.date_created|date:'dd/MM/yyyy HH:mm:ss'}}</div>
 				</div>
-				<div class='form-group' ng-show="data.ghi_chu">
-					<label class='col-sm-2 control-label'>Ghi chú:</label>
-					<div class='col-sm-10 field-label'>{{data.ghi_chu}}</div>
+                <div class='form-group' ng-show="data.date_updated">
+					<label class='col-sm-2 control-label'>Ngày cập nhật:</label>
+					<div class='col-sm-10 field-label' style="padding-left:10px!important">{{data.date_updated|date:'dd/MM/yyyy HH:mm:ss'}}</div>
 				</div>
 			</fieldset>
 			<fieldset>
@@ -58,7 +93,7 @@
 					<stp-link link="data" collection='dmkh' collections-link="lienhe:'ten_lien_he,dien_thoai,email',dmkh:'ten_kh,dia_chi,dien_thoai,email'"></stp-link>
 				</div>
 			</fieldset>
-			</form>
+			</div>
 			<br/>
 			<file link='data'></file>
 			<br/>
@@ -72,8 +107,10 @@
 		<tab heading="Ghi chú">
 			<note link='data'></note>
 		</tab>
-		
-		<tab heading="Vụ việc, công trình">
+		<tab heading="Cơ hội">
+			<opportunity link='data' collection='dmkh' default-values="id_kh:'{{data._id}}',ten_kh:'{{data.ten_kh}}'"></opportunity>
+		</tab>
+		<tab heading="Dự án">
 			<dmdt link='data' collection='dmkh' default-values="id_kh:'{{data._id}}',ten_kh:'{{data.ten_kh}}'"></dmdt>
 		</tab>
 		

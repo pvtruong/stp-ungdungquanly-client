@@ -1,0 +1,35 @@
+<div class="modal-header">
+	<button type="button" class="close" ng-click ='cancel()' aria-hidden="true"> &times;</button>
+	<h4 class="modal-title" id="findModalLabel">
+	   Nhập từ excel
+       <br/><small><a href="{{template}}">Tải tệp mẫu</a></small>
+	</h4>
+    <div  file-upload-progress>
+		<div class="throbber-loader"></div>
+		<br/>
+	 </div>
+ </div> 
+<div class="modal-body">
+	<div class='container' style="padding:20px">
+        <div style="padding-bottom:20px">
+            <input type="file"  name ="xlsx" ng-model="xlsx" file-upload="action + '?update=' + update"/>
+            
+        </div>
+        <div  style="padding-bottom:20px">
+            <input type='checkbox' ng-model='update'/> Cập nhật nếu dữ liệu đã tồn tại
+        </div>
+        
+        <div ng-if="error">
+            <div style="color:red">Đã có lỗi khi import</div>
+            <div class="table-responsive" style="max-width: 850px; height: 300px;overflow: scroll;" parse-html="error">
+            
+            </div>
+        </div>
+        
+        
+    </div>
+    
+ </div>
+
+
+

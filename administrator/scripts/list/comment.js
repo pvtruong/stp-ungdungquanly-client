@@ -1,4 +1,4 @@
-var commentModule = new baseInput('comment','comment',["content","title"],'Nhận xét, góp ý',{
+var commentModule = new baseInput('comment','comment',["title","content"],'Nhận xét, góp ý',{
 	has_view:true,
 	onCondition:function(condition,value){
 		condition.is_reply = false;

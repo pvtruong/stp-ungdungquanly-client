@@ -1,195 +1,82 @@
-﻿<h3>Phân quyền<small> cho {{email}}</small></h3>
+<h3>Phân quyền<small> cho {{email}}</small></h3>
+<div class="row">
+    <div class="col-md-3">
+        <ul>
+            <li>
+                <a ng-click="selectItems(commands.crm.input,'CRM')">CRM</a>
+            </li>
+            <li>
+                <a ng-click="selectItems(commands.sale.input,'Bán hàng')">Bán hàng</a>
+            </li>
+            <li>
+                <span>Kế toán</span>
+                <ul>
+                    <li ng-repeat="cmd in commands.acc">
+                        <span>{{cmd.module}}</span>
+                        <ul>
+                            <li ng-repeat="group in cmd.items">
+                                <a ng-click="selectItems(group.items,'Kế toán - ' + cmd.module + ' - ' + group.group)">{{group.group}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span>Báo cáo</span>
+                <ul>
+                    <li ng-repeat="cmd in commands.report">
+                        <a ng-click="selectItems(cmd.items,'Báo cáo - ' + cmd.module)">{{cmd.module}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <h3>{{group_title}}</h3>
+        <div class="table-responsive">
+            <table class='table table-bordered'>
+                <tr>
+                    <th style='width:20px' class="text-center">Chọn</th>
+                    <th style='width:200px'>
+                        Chức năng
+                    </th>
+                    <th class='text-center' style='width:50px'>
+                        Xem
+                    </th>
+                    <th class='text-center' style='width:50px'>
+                        Thêm mới
+                    </th>
+                    <th class='text-center' style='width:50px'>
+                        Cập nhật
+                    </th>
+                    <th class='text-center' style='width:50px'>
+                        Xóa
+                    </th>
+                </tr>
+                <tr ng-repeat="item in items" ng-show="item.type!='P'">
+                    <td style='width:20px' class="text-center"><input type="checkbox" ng-model="item.sel"  ng-change="selectAllRight(item)"></td>
+                    <td style='width:200px'>
+                        {{item.header}}
+                    </td>
+                    <td class='text-center'  style='width:50px'>
+                        <input type='checkbox' ng-model='item.view' ng-change='change(item,"view")'/>
+                    </td>
+                    <td class='text-center'  style='width:50px'>
+                        <input type='checkbox' ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.add'  ng-change='change(item,"add")'/>
+                    </td>
+                    <td class='text-center'  style='width:50px'>
+                        <input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.update'  ng-change='change(item,"update")'/>
+                    </td>
+                    <td class='text-center'  style='width:50px'>
+                        <input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.delete'  ng-change='change(item,"delete")'/>
+                    </td>
+                </tr>
 
-<fieldset><legend>Quan hệ khách hàng</legend>
-	<div class="table-responsive">
-		<table class='table table-bordered'>
-			<tr>
-				<th style='width:20px' class="text-center">Chọn</th>
-				<th style='width:200px'>
-					Chức năng
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xem
-				</th>
-				<th class='text-center' style='width:50px'>
-					Thêm mới
-				</th>
-				<th class='text-center' style='width:50px'>
-					Cập nhật
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xóa
-				</th>
-			</tr>
-			<tr ng-repeat="item in commands.crm.input" ng-show="item.type!='P'">
-				<td style='width:20px' class="text-center"><input type="checkbox" ng-model="item.sel"  ng-change="selectAllRight(item)"></td>
-				<td style='width:200px'>
-					{{item.header}}
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-model='item.view' ng-change='change(item,"view")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.add'  ng-change='change(item,"add")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.update'  ng-change='change(item,"update")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.delete'  ng-change='change(item,"delete")'/>
-				</td>
-			</tr>
-			
-		</table>
-	</div>
-</fieldset>
-<fieldset><legend>Bán hàng</legend>
-	<div class="table-responsive">
-		<table class='table table-bordered'>
-			<tr>
-				<th style='width:20px' class="text-center">Chọn</th>
-				<th style='width:200px'>
-					Chức năng
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xem
-				</th>
-				<th class='text-center' style='width:50px'>
-					Thêm mới
-				</th>
-				<th class='text-center' style='width:50px'>
-					Cập nhật
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xóa
-				</th>
-			</tr>
-			<tr ng-repeat="item in commands.sale.input" ng-show="item.type!='P'">
-				<td style='width:20px' class="text-center"><input type="checkbox" ng-model="item.sel"  ng-change="selectAllRight(item)"></td>
-				<td style='width:200px'>
-					{{item.header}}
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-model='item.view' ng-change='change(item,"view")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.add'  ng-change='change(item,"add")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.update'  ng-change='change(item,"update")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.delete'  ng-change='change(item,"delete")'/>
-				</td>
-			</tr>
-			
-		</table>
-	</div>
-</fieldset>
-<fieldset><legend>Kế toán</legend>
-	<div class="row">
-		<div class='col-sm-6'>
-			<select class='form-control' ng-model='module' ng-options ='cmd as cmd.module for cmd in commands.acc' ng-change ="group = module.items[0]"><select>
-		</div>
-		<div class='col-sm-6'>
-			<select class='form-control'  ng-model='group' ng-options ='group as group.group for group in module.items'><select>
-		</div>
-	</div>
-	<br/>
-	<div class="table-responsive">
-		<table class='table table-bordered'>
-			<tr>
-				<th style='width:20px' class="text-center">Chọn</th>
-				<th style='width:200px'>
-					Chức năng
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xem
-				</th>
-				<th class='text-center' style='width:50px'>
-					Thêm mới
-				</th>
-				<th class='text-center' style='width:50px'>
-					Cập nhật
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xóa
-				</th>
-			</tr>
-			<tr ng-repeat='item in group.items' ng-show="item.type!='P'">
-				<td style='width:20px' class="text-center"><input type="checkbox" ng-model="item.sel"  ng-change="selectAllRight(item)"></td>
-				<td style='width:200px'>
-					{{item.header}}
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-model='item.view' ng-change='change(item,"view")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.add'  ng-change='change(item,"add")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.update'  ng-change='change(item,"update")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.delete'  ng-change='change(item,"delete")'/>
-				</td>
-			</tr>
-			
-		</table>
-	</div>
-</fieldset>
+            </table>
+        </div>
+    </div>
+</div>
 
-<fieldset><legend>Báo cáo</legend>
-	<div class="row">
-		<div class='col-sm-6'>
-			<select class='form-control' ng-model='module_rpt' ng-options ='cmd as cmd.module for cmd in commands.report' ng-change ="group_rpt = module_rpt.items[0]"><select>
-		</div>
-	</div>
-	<br/>
-	<div class="table-responsive">
-		<table class='table table-bordered'>
-			<tr>
-				<th style='width:20px' class="text-center">Chọn</th>
-				<th style='width:200px'>
-					Chức năng
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xem
-				</th>
-				<!--<th class='text-center' style='width:50px'>
-					Thêm mới
-				</th>
-				<th class='text-center' style='width:50px'>
-					Cập nhật
-				</th>
-				<th class='text-center' style='width:50px'>
-					Xóa
-				</th>
-				-->
-			</tr>
-			<tr ng-repeat='item in module_rpt.items' ng-show="item.type!='P'">
-				<td style='width:20px' class="text-center"><input type="checkbox" ng-model="item.sel" ng-change="selectAllRight(item)"></td>
-				<td style='width:200px'>
-					{{item.header}}
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-model='item.view' ng-change='change(item,"view")'/>
-				</td>
-				<!--<td class='text-center'  style='width:50px'>
-					<input type='checkbox' ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.add'  ng-change='change(item,"add")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.update'  ng-change='change(item,"update")'/>
-				</td>
-				<td class='text-center'  style='width:50px'>
-					<input type='checkbox'  ng-hide='!(item.type=="V" || item.type=="L")' ng-model='item.delete'  ng-change='change(item,"delete")'/>
-				</td>
-				-->
-			</tr>
-			
-		</table>
-	</div>
-</fieldset>
 
 
 

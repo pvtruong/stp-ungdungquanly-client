@@ -1,0 +1,45 @@
+<form class='form-horizontal'>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Thêm liên kết</label>
+		<div class="col-sm-4">
+			<input type='text' class='form-control' ng-model='textSearch' typeahead-min-length='3' typeahead="item.title for item in search($viewValue,10)" typeahead-on-select = "getItem($item, $model, $label)">
+		</div>
+		<div class="col-sm-6 text-right">
+			<a class='btn btn-md btn-default' ng-click="add()">Thêm cơ hội mới</a>
+		</div>
+	</div>
+</div>
+<table class ="table table-striped table-bordered">
+	<tr><th>Tên cơ hội</th><th>Nội dung</th><th>Ngày kết thúc</th><th>Trạng thái</th><th></th></tr>
+	<tr ng-repeat="r in list">
+		<td   style='cursor:pointer' ng-click='view(r.obj)'>
+			
+				{{ r.obj.ten_co_hoi }}
+			
+		</td>
+		<td style='cursor:pointer' ng-click='view(r.obj)'>
+				{{ r.obj.mieu_ta }}
+		</td>
+		<td   style='cursor:pointer' ng-click='view(r.obj)'>
+			
+				{{ r.obj.ngay_het_han|date:'dd/MM/yyyy' }}
+			
+		</td>
+		
+		<td   style='cursor:pointer' ng-click='view(r.obj)'>
+			
+				<span ng-show='r.obj.status_opp==0' class='bg-info'>Đang theo dõi</span>
+				<span ng-show='r.obj.status_opp==1' class='bg-primary'>Thành công</span>
+				<span ng-show='r.obj.status_opp==2' class='bg-success'>Thất bại</span>
+				<span ng-show='r.obj.status_opp==3' class='bg-danger'>Tạm dừng</span>
+				<span ng-show='r.obj.status_opp==4' class='bg-warning'>Quên</span>
+			
+		</td>
+		<td   style='width:150px'>
+			<div class='btn-group'>
+				<a class='btn btn-default btn-xs' ng-click='edit(r.obj)'>Sửa</a>
+				<a class='btn btn-danger btn-xs' ng-click='unLink(r)'>xóa liên kết</a>
+			</div>
+		</td>
+	</tr>
+</table>

@@ -1,4 +1,4 @@
-﻿var lienheModule = new baseInput('lienhe','lienhe',["ten_lien_he","dia_chi","dien_thoai","fax","email"],'Danh bạ',{
+var lienheModule = new baseInput('lienhe','lienhe',["ten_lien_he","dia_chi","dien_thoai","email"],'Liên hệ',{
 		has_view:true,
 		onLoading:function($scope,options){
 			options.$rootScope.nextTick(function(){

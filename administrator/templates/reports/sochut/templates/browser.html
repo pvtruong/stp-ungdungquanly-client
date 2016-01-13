@@ -1,4 +1,4 @@
-﻿<rpt-header></rpt-header>
+<rpt-header></rpt-header>
 
 <div class="row">
 	<div class="col-md-3 condition-report"   ng-show='condition_show'>
@@ -45,7 +45,7 @@
 		</form>
 	
 	</div>
-	<div ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"   id ='exportable'>
+	<div infinite-scroll="loadPage()" infinite-scroll-distance="3"  ng-class="condition_show?'table-responsive col-sm-9 table-report':'table-responsive col-sm-12 table-report'"   id ='exportable'>
 		<table class='table  table-striped  table-hover table-bordered'>
 			<tr>
 				<th>Tài khoản đối ứng</th>
@@ -54,20 +54,20 @@
 				<th>Phát sinh có</th>
 				
 			</tr>
-			<tr ng-repeat='r in data'  style='cursor:pointer'  ng-click='drilldown(r)' ng-class="r.bold?'cbold':'cnormal'">
+			<tr ng-repeat='r in data|limitTo:limit:begin'  style='cursor:pointer'  ng-click='drilldown(r)' ng-class="r.bold?'cbold':'cnormal'">
 				
 				<td>
-					{{r.tk_du}}
+					{{::r.tk_du}}
 				</td>
 
 				<td>
-					{{r.ten_tk_du}}
+					{{::r.ten_tk_du}}
 				</td>
 				<td>
-					{{r.ps_no|number:0}}
+					{{::r.ps_no|number:0}}
 				</td>
 				<td>
-					{{r.ps_co|number:0}}
+					{{::r.ps_co|number:0}}
 				</td>
 				
 			</tr>

@@ -1,7 +1,7 @@
-﻿<stplistheader></stplistheader>
+<stplistheader></stplistheader>
 <div class="table-responsive">
 	<table class ="table table-striped table-bordered">
-		<tr><th class="text-center"><input type="checkbox" ng-model="selectionAll"></th><th>Tài khoản</th><th>Tên tài khoản</th><th>Ngoại tệ</th><th>Tài khoản mẹ</th><th class="text-center">TK công nợ</th><th></th></tr>
+		<tr><th class="text-center"><input type="checkbox" ng-model="selectionAll"></th><th>Tài khoản</th><th>Tên tài khoản</th><th>Ngoại tệ</th><th>Tài khoản mẹ</th><th class="text-center">TK công nợ</th><th>Loại tài khoản</th><th></th></tr>
 		<tr ng-repeat="r in list track by r._id">
 			<td width='50px' class="text-center"> <input type="checkbox" ng-model="r.sel"/> </td>
 			<td  style='cursor:pointer' ng-click='view(r._id)'>
@@ -23,6 +23,10 @@
 			</td>
 			<td class="text-center"  style='cursor:pointer' ng-click='view(r._id)'>
 				<input type='checkbox' ng-model="r.tk_cn" disabled="false"/>
+			</td>
+            <td  style='cursor:pointer' ng-click='view(r._id)'>
+					{{ r.loai_tk }}
+				
 			</td>
 			<td style="width:120px">
 				<a ng-click="follow(r)" class="btn btn-default btn-sm" title='Theo dõi' ng-show='!r.follow_yn'><i class="fa fa-star"></i></a>

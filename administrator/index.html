@@ -18,6 +18,8 @@
 <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 <link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
 <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="libs/angular-xeditable/dist/css/xeditable.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="libs/angular-chart.js/dist/angular-chart.css">
 <link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
 <link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
@@ -62,14 +64,14 @@
 		<!-- END HORIZANTAL MENU -->
 		<!-- BEGIN HEADER SEARCH BOX -->
 		<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-		<form class="search-form">
+		<div class="search-form">
 			<div class="input-group">
 				<input type="text"   ng-readonly="!app_info" class="form-control" placeholder="Tìm..." ng-model='searchword' ng-keyup="searchAllKeyup($event,searchword)">
 				<span class="input-group-btn">
-					<a  href='#search/{{searchword}}' ng-disabled='!searchword' class="btn submit"><i class="icon-magnifier"></i></a>
+					<a  ng-click="searchAll(searchword)" ng-disabled='!searchword' class="btn submit"><i class="icon-magnifier"></i></a>
 				</span>
 			</div>
-		</form>
+		</div>
 		<!-- END HEADER SEARCH BOX -->
 		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
@@ -124,18 +126,18 @@
 				</ul>
 			</li>
 			
-			<li ng-class="menuActive=='ACC'?'active':''"  ng-show="app_info">
+			<li ng-class="menuActive=='ACC'?'active':''"  ng-show="app_info && commands.acc_visible">
 				<a href="javascript:;">
 				Kế toán <span class="arrow">
 				</span>
 				</a>
 				<ul class="sub-menu">
-					<li ng-repeat="module in commands.acc">
+					<li ng-repeat="module in commands.acc" ng-if="module.visible">
 						<a href="javascript:;">
 						{{module.module}} <span class="arrow"></span>
 						</a>
 						<ul class="sub-menu">
-							<li ng-repeat="group in module.items">
+							<li ng-repeat="group in module.items" ng-if="group.visible">
 								<a href="javascript:;">
 									{{group.group}} <span class="arrow"></span>
 								</a>
@@ -151,13 +153,13 @@
 					</li>
 				</ul>
 			</li>
-			<li ng-class="menuActive=='RPT'?'active':''"  ng-show="app_info">
+			<li ng-class="menuActive=='RPT'?'active':''"  ng-if="app_info && commands.report_visible">
 				<a href="javascript:;">
 				Báo cáo <span class="arrow">
 				</span>
 				</a>
 				<ul class="sub-menu">
-					<li ng-repeat="module in commands.report">
+					<li ng-repeat="module in commands.report" ng-if="module.visible">
 						<a href="javascript:;">
 						{{module.module}} <span class="arrow"></span>
 						</a>
@@ -220,13 +222,24 @@
 
 <script src="libs/SocketIO.js"></script>
 
+
 <script src="libs/angular/angular.min.js"></script>
 <script src="libs/angular-locale_vi-vn.js"></script>
 <script src="libs/angular-cookies/angular-cookies.min.js"></script>
 <script src="libs/angular-route/angular-route.min.js"></script>
 <script src="libs/ui-bootstrap.min.js"></script>
+<script src="libs/checklist-model.js"></script>
+<script src="libs/angular-xeditable/dist/js/xeditable.min.js"></script>
 
 <script src="libs/angular-animate/angular-animate.min.js"></script>
+
+<script src="libs/Chart.js/Chart.min.js"></script>
+<script src="libs/angular-chart.js/dist/angular-chart.js"></script>
+<script src="libs/ng-infinite-scroll.min.js"></script>
+    
+<!--<script src="libs/react/build/react.min.js"></script>
+<script src="libs/react/build/react-dom.min.js"></script>-->
+
 <!--<script src="libs/angular-touch/angular-touch.min.js"></script>-->
 <!--<script src="libs/angular-sanitize/angular-sanitize.min.js"></script>-->
 <script src="libs/slimscroll.js"></script>
@@ -235,11 +248,19 @@
 <script src="libs/async/lib/async.js"></script>
 <script src="libs/scrollglue.js"></script>
 
+
 <script src="libs/ng-textcomplete/ng-textcomplete.min.js"></script>
 <!--text editor-->
 <script src='libs/textAngular/dist/textAngular-rangy.min.js'></script>
 <script src='libs/textAngular/dist/textAngular.min.js'></script>
 <script src='libs/textAngular/dist/textAngular-sanitize.min.js'></script>
+    
+<script src="libs/webshim/js-webshim/minified/polyfiller.js"></script>
+<script>
+    webshims.setOptions('forms-ext', { datepicker: { dateFormat: 'dd/mm/yy' } });
+    webshims.activeLang('en-AU');
+    webshims.polyfill('forms forms-ext');
+</script>
 <!--chart
 	<script src="libs/highstock.js"></script>
 	<script src="libs/highcharts-ng-master/dist/highcharts-ng.min.js"></script>

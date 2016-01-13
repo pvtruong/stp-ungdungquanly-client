@@ -1,4 +1,4 @@
-﻿
+
 <nav class="navbar navbar-default" style="padding-right:10px">
 	<div>
 		<div>
@@ -15,7 +15,7 @@
 			<a  class="btn btn-danger  navbar-btn" ng-click="add()" title ="Ctrl+M">Mới</a>
 			<a  class="btn btn-default  navbar-btn" ng-disabled="isUnSelected()" ng-click ="delete()"  title ="Ctrl+D">Xóa</a>
 			
-			<a  class="btn btn-default  navbar-btn" ng-click="find()">Tìm</a>
+			
 			
 			
 			<span class="btn-group">
@@ -35,11 +35,16 @@
 				</li>
 			  </ul>
 			</span>
+            
+            <a  class="btn btn-default  navbar-btn disable-small-screen" ng-click="updateSoCt()">Đánh lại số chứng từ</a>
+            
+            <a  class="btn btn-default  navbar-btn" ng-click="find()">Tìm</a>
 			
 			
 			<a  class="btn btn-default  navbar-btn" ng-click="btn3_click()" ng-if='btn3_show'>{{btn3_text}}</a>
 			<a  class="btn btn-default  navbar-btn" ng-click="btn4_click()" ng-if='btn4_show'>{{btn4_text}}</a>
 			<a  class="btn btn-default  navbar-btn" ng-click="btn5_click()" ng-if='btn5_show'>{{btn5_text}}</a>
+            <a  class="btn btn-default  navbar-btn disable-small-screen" ng-click="importhtml5()" ng-if='import_show'>{{import_text?import_text:'Nhập từ excel'}}</a>
 			<a  class="btn btn-default  navbar-btn" ng-click="options()" ng-if='options_show'>{{options_text}}</a>
 			<span ng-transclude></span>
 		</div>

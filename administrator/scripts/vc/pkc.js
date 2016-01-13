@@ -29,7 +29,7 @@ pkcModule.watchDetail = function(scope){
 			scope.ngMasterData.ngay_ct = new Date(scope.ngMasterData.ngay_ct);
 		}
 		scope.ngMasterData.details = [];
-		var url =server_url + "/api/" + id_app + "/rp-getdk4pkc?id_ct=" + scope.ngMasterData._id;
+		var url =server_url + "/api/" + id_app + "/getdk4pkc?id_ct=" + scope.ngMasterData._id;
 		url += "&thang=" + scope.ngMasterData.ngay_ct.getMonth().toString();
 		url += "&nam=" + scope.ngMasterData.ngay_ct.getFullYear().toString();
 		if(scope.ngMasterData.kc_dvcs){

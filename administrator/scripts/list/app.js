@@ -39,14 +39,14 @@ onView:function($scope,options){
 		
 	}
 	$scope.auth_google = function(){
-		var w =options.$window.open(server_url + "/auth/google_drive" ,"Google authentication",'height=400,width=400');
+		var w =options.$window.open(server_url + "/auth/google" ,"Google authentication",'height=400,width=400');
 		var interval = options.$interval(function(){
 			try{
 				if(w.location.href && w.location.href.indexOf("/auth/google/callback")){
 					if(w.document.body.innerHTML && w.document.body.innerHTML.indexOf("access_token")>=0){
 						
 						var user = JSON.parse(w.document.title);
-						$scope.update({google_drive_email:user.email,google_drive_token:user.access_token,google_drive_refresh_token:user.refresh_token},function(e,rs){
+                        $scope.update({google_drive_email:user.email,google_drive_token:user.access_token,google_drive_refresh_token:user.refresh_token},function(e,rs){
 							if(e) return alert(e);
 							$scope.data.google_drive_refresh_token = access_token;
 						});
@@ -56,7 +56,7 @@ onView:function($scope,options){
 					}
 				}
 			}catch(e){
-				console.log(e)
+				//console.log(e)
 			}
 			
 		},500);
@@ -75,10 +75,7 @@ appModule.defaultValues = {
 	ngay_ky1:new Date(2015,0,1)
 }
 appModule.module.controller("initApp",["$scope","$window","$interval","$http",function($scope,$window,$interval,$http){
-	$http.get(server_url + "/public/province").success(function(province){
-		$scope.province = province;
-	});
-	
+
 }]);
 appModule.init = function($scope,$controller){
 	$controller("initApp",{$scope:$scope});
@@ -224,6 +221,21 @@ appModule.module.controller("assignController",["$scope","$rootScope","$routePar
 					item.id_app = id_app;
 					item.email = email;
 				})
+                //SALE
+				commands.sale.input.forEach(function(item){
+					item.module = item.module?item.module:item.path
+					var rs = _.find(result,function(r){
+						return r.module == item.module;
+					});
+					if(rs){
+						for(var k in rs){
+							item[k] = rs[k];
+						}
+					}
+					//
+					item.id_app = id_app;
+					item.email = email;
+				})
 				//ACC
 				commands.acc.forEach(function(module){
 					var groups = module.items;
@@ -293,6 +305,10 @@ appModule.module.controller("assignController",["$scope","$rootScope","$routePar
 					item.view = item.sel;
 					$scope.change(item)
 				}
+                $scope.selectItems = function(items,group_title){
+                    $scope.items = items;
+                    $scope.group_title = group_title;
+                }
 			}).error(function(error){
 				console.log(url);
 			});

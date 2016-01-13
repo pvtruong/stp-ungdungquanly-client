@@ -1,0 +1,130 @@
+<form name="form" novalidate class ="css-form form-horizontal form-input" >
+	<header-form-input></header-form-input>
+    <div class="form-group">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label class="control-label col-sm-3">Tiêu đề <span style='color:red' title='Không được trống'>(*)</span></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model='data.ten_nd' ng-required="true">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Tỉnh/thành<span class='required' title="Không được trống">(*)</span></label>
+                <div class="col-sm-9">
+                    <select ng-model='data.tinh_thanh' class='form-control' ng-required='true'>
+                            <option ng-repeat='tt in province'  ng-value='tt'>{{tt}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Quận/huyện<span class='required' title="Không được trống">(*)</span></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" ng-model="data.quan_huyen" ng-required ="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Số tờ</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" ng-model="data.so_to"/>
+                </div>
+                 <label class="control-label col-sm-2">Số thửa</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" ng-model="data.so_thua"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Diện tích(ngang x dài) <span style='color:red' title='Không được trống'>(*)</span></label>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-5"><input type="text" class="form-control" format="number" ng-model='data.chieu_ngang' ng-required="true"></div>
+                        <div class="col-sm-2 text-center">x</div>
+                       <div class="col-sm-5"><input type="text" class="form-control" format="number" ng-model='data.chieu_dai' ng-required="true"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Loại nhà đất</label>
+                <div class="col-sm-9">
+                    <ng-selector
+                        module="group" fields="_id,group_name" field-model="_id" field-label = "group_name"
+                        condition ="group_type:'NHADAT'"  ng-model='data.nh_nd' default-values="group_type:'NHADAT'">
+                    </ng-selector>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Giá bán <span style='color:red' title='Không được trống'>(*)</span></label>
+                <div class="col-sm-3">
+                    <input type="text" format="number" class="form-control" ng-model='data.gia_ban' ng-required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Người phụ trách <span style='color:red' title='Không được trống'>(*)</span></label>
+                <div class="col-sm-9">
+                    <select ng-model="data.phu_trach" ng-options="r.email as r.name for r in members" ng-required="true" class="form-control">
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Trạng thái</label>
+                <div class="col-sm-9 btn-toolbar">
+                    <div class='btn-group'>
+                        <button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='0'>Đang bán</button>
+                        <button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='1'>Bán gấp</button>
+                        <button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='2'>Tạm ngưng</button>
+                    </div>
+                    <div class='btn-group'>
+                        <button class='btn btn-default btn-sm' ng-model='data.progress' btn-radio='3'>Đã bán</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Chủ đất</label>
+                <div class="col-sm-9">
+                    <ng-typeahead 
+                        module='dmkh' fields='_id,ten_kh' field-model='ten_kh' field-label='_id'
+                        ng-model='data.ten_kh' label='data.id_kh'>
+                    </ng-typeahead>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Miêu tả</label>
+                <div class="col-sm-9">
+                    <div text-angular ta-toolbar="[['bold', 'italics', 'underline',  'ul', 'ol'],
+                      ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent'],
+                      ['html', 'insertImage','insertLink', 'insertVideo']]" ng-model="data.mieu_ta"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3">Có giá trị với</label>
+                <div class="col-sm-9">
+                    <label><input type='radio' ng-model='data.visible_to' name='visible_to' value="0"/> Mọi người</label><br/>
+                    <label><input type='radio' ng-model='data.visible_to' name='visible_to' value="1"/> Chỉ với người tạo</label><br/>
+                    <label><input type='radio' ng-model='data.visible_to' name='visible_to'  value="2"/> Những người sau</label><br/>
+                    <select ng-show='data.visible_to==2' multiple ng-model="data.visible_to_users" ng-options="r.email as r.name for r in members" class="form-control">
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <fieldset><legend>Hình ảnh</legend>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-8">
+						<img ng-src="{{server_url}}{{data.picture_thumb}}" style="width:256px;height:256px"/>
+                        <br/><br/>
+                        <input type="file" image-upload  model ='data.picture' model-thumb='data.picture_thumb'/>
+                        <br/>
+                    </div>
+                    
+                </div>
+                
+            </fieldset>
+        </div>
+    </div>
+	<footer-form-input></footer-form-input>
+</form>

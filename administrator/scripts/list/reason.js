@@ -1,0 +1,1 @@
+var reasonModule = new baseInput('reason','reason',["reason_name"],'Lý do');

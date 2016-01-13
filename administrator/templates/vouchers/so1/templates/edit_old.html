@@ -1,0 +1,244 @@
+<!--master form-->
+<div>
+	<form name="form" novalidate class ="css-form form-horizontal form-input">
+		<header-form-input></header-form-input>
+        <br/>
+        <div class="form-group">
+            <div class="col-sm-1" >
+                
+            </div>
+            <div class="col-sm-1 text-center order-status order-status-active" ng-click ="data.trang_thai='1'">
+                Đặt hàng
+            </div>
+            <div class="col-sm-1 order-status-box-line" >
+                <div class="order-status-line"></div>
+            </div>
+            <div ng-class="data.trang_thai>=2?'col-sm-1 text-center order-status order-status-active':'col-sm-1 text-center order-status'"  ng-click ="data.trang_thai='2'">
+                Xác nhận
+            </div>
+            <div class="col-sm-1 order-status-box-line" >
+                <div class="order-status-line"></div>
+            </div>
+            <div ng-class="data.trang_thai>=3?'col-sm-1 text-center order-status order-status-active':'col-sm-1 text-center order-status'"  ng-click ="data.trang_thai='3'">
+                Giao hàng
+            </div>
+            <div class="col-sm-1 order-status-box-line" >
+                <div class="order-status-line"></div>
+            </div>
+            <div ng-class="data.trang_thai>=4?'col-sm-1 text-center order-status order-status-active':'col-sm-1 text-center order-status'"  ng-click ="data.trang_thai='4'">
+                Hoàn thành
+            </div>
+            <div class="col-sm-1 order-status-box-line" >
+                <div class="order-status-line"></div>
+            </div>
+            <div ng-class="data.trang_thai>=5?'col-sm-1 text-center order-status order-status-active':'col-sm-1 text-center order-status'"  ng-click ="data.trang_thai='5'">
+                Hủy
+            </div>
+            <div class="col-sm-1" >
+                
+            </div>
+            
+        </div>
+        <hr/>
+		<div class="form-group">
+			<label class="control-label col-sm-2">Số đơn hàng </label>
+			<div class="col-sm-4">
+				<input type="text" style='text-transform:uppercase' name ='so_ct' class="form-control" ng-model='data.so_ct' />
+			</div>
+			
+			<label class="control-label col-sm-2">Ngày <span class='required' >(*)</span></label>
+			<div class="col-sm-4">
+				<ng-datepicker ng-model='data.ngay_ct' ng-required='true'></ng-datepicker>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">Kho xuất <span ng-show="data.trang_thai=='3' || data.trang_thai=='4'" class='required' >(*)</span></label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkho' fields='ma_kho,ten_kho' field-model='ten_kho' field-label='ma_kho'
+					ng-model='data.ten_kho' label='data.ma_kho' ng-required-q="(data.trang_thai=='3' || data.trang_thai=='4')  && !data.ma_kho">
+				</ng-typeahead>
+			</div>
+			<label class="control-label col-sm-2">Khách hàng </label>
+			<div class="col-sm-4">
+				<ng-typeahead 
+					module='dmkh' fields='ma_kh,ten_kh' field-model='ten_kh' field-label='ma_kh'
+					ng-model='data.ten_kh' label='data.ma_kh'>
+				</ng-typeahead>
+			</div>
+			
+		</div>
+	
+		<div class="form-group">
+			<label class="control-label col-sm-2">Diễn giải</label>
+			<div class="col-sm-4">
+				<input type="text"  name ='dien_giai' class="form-control" ng-model='data.dien_giai'/>
+			</div>
+			<label class="control-label col-sm-2">Trạng thái<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+			<div class="col-sm-4">
+				<select class='form-control' ng-model='data.trang_thai'>
+					<option value='1'>Đặt hàng</option>
+					<option value='2'>Xác nhận</option>
+					<option value='3'>Đang giao hàng</option>
+					<option value='4'>Đã giao hàng</option>
+					<option value='5'>Hủy</option>
+				</select>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<div class="col-sm-12">
+			<!--table detail-->
+			<tabset>
+				<tab heading='Danh sach sản phẩm'>
+					<so1-detail-table ng-master-data='data'></so1-detail-table>
+				</tab>
+				<tab heading="Chiết khấu theo hóa đơn">
+					<div class="form-group">
+						<label class="control-label col-sm-2">Tỷ lệ CK</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" format="number" ng-model="data.ty_le_ck_hd"/>
+						</div>
+
+						<label class="control-label col-sm-2">Tiền CK</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" format="number" ng-model="data.tien_ck_hd"/>
+						</div>
+					</div>
+				</tab>
+				<tab heading="Địa chỉ giao hàng">
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Tên người nhận<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.ten_nguoi_nhan"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Điện thoại<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="data.dien_thoai"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Email<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="data.email"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Địa chỉ<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.dia_chi"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Xã/phường<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.xa_phuong"/>
+						</div>
+					</div>
+					<div class="form-group">
+                        <label class="control-label col-sm-2">Tỉnh/thành<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<select ng-model='data.tinh_thanh' class='form-control' ng-required='true'>
+									<option ng-repeat='tt in province'  ng-value='tt'>{{tt}}</option>
+				            </select>
+						</div>
+                        
+						<label class="control-label col-sm-2">Quận/huyện<span class='required' title="Đơn vị cơ sở không được trống">(*)</span></label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" ng-model="data.quan_huyen"/>
+						</div>
+					</div>
+					
+				</tab>
+				<tab heading="Phương thức thanh toán">
+					<div class="form-group">
+						<label class="control-label col-sm-2">Phương thức thanh toán <span class="required">*</span></label>
+						<div class="col-sm-10">
+							<ng-selector
+								module="ptthanhtoan" fields="_id,ten" field-model="_id" field-label = "ten"
+								ng-model='data.pt_thanh_toan' ng-required="true">
+							</ng-selector>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ghi chú</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" ng-model="data.note_payment"></textarea>
+						</div>
+					</div>
+				</tab>
+                <tab heading="Phương thức giao hàng">
+					<div class="form-group">
+						<label class="control-label col-sm-2">Phương thức giao hàng </label>
+						<div class="col-sm-10">
+							<select ng-model="data.pt_giao_hang" class="form-control">
+                                <option value="1">Tự giao</option>
+                                <option value="2">Thông qua dịch vụ giao hàng</option>
+                            </select>
+						</div>
+					</div>
+                    <div class="form-group" ng-if= "data.pt_giao_hang=='2'">
+						<label class="control-label col-sm-2">Dịch vụ giao hàng</label>
+						<div class="col-sm-10">
+							<!--<select ng-model="data.dich_vu_giao_hang" class="form-control">
+                                <option value="1">Dịch vụ giao hàng 1</option>
+                                <option value="2">Dịch vụ giao hàng 2</option>
+                            </select>-->
+                            <ng-typeahead 
+                                module='dmkh' fields='ma_kh,ten_kh' field-model='ten_kh' field-label='ma_kh' condition ="ncc_yn:true"
+                                ng-model='data.ten_dich_vu_giao_hang' label='data.dich_vu_giao_hang'>
+                            </ng-typeahead>
+						</div>
+					</div>
+                    
+                    <div class="form-group">
+						<label class="control-label col-sm-2">Trạng thái giao hàng</label>
+						<div class="col-sm-10">
+							<select ng-model="data.trang_thai_giao_hang" class="form-control">
+                                <option value="1" ng-if= "data.pt_giao_hang=='1'">Thành công</option>
+                                <option value="2" ng-if= "data.pt_giao_hang=='1'">Thất bại</option>
+                                <option value="3" ng-if= "data.pt_giao_hang=='1'">Phát lần 2</option>
+                                
+                                <option value="6" ng-if= "data.pt_giao_hang=='2'">Chưa được phát</option>
+                                <option value="7" ng-if= "data.pt_giao_hang=='2'">Chưa có thông tin phát</option>
+                                <option value="8" ng-if= "data.pt_giao_hang=='2'">Đã phát thành công</option>
+                                <option value="9" ng-if= "data.pt_giao_hang=='2'">Phát hoàn thành công</option>
+                            </select>
+						</div>
+					</div>
+                    
+                    <div class="form-group" ng-if= "data.pt_giao_hang=='2'">
+						<label class="control-label col-sm-2">Mã kiểm soát</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.ma_kiem_soat">
+						</div>
+					</div>
+                    
+                    <div class="form-group" ng-if= "data.pt_giao_hang=='1' && data.trang_thai_giao_hang=='2' ">
+						<label class="control-label col-sm-2">Lý do thất bại</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="data.ly_do_that_bai">
+						</div>
+					</div>
+                    
+					<div class="form-group">
+						<label class="control-label col-sm-2">Ghi chú</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" ng-model="data.note_payment"></textarea>
+						</div>
+					</div>
+				</tab>
+			</tabset>
+			</div>
+			
+		</div>
+		
+		<footer-form-input></footer-form-input>
+	</form>
+</div>
+
+
