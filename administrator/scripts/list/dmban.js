@@ -1,0 +1,1 @@
+var dmbanModule = new baseInput('dmban','dmban',["ma_ban","ten_ban"],'Danh mục bàn');
